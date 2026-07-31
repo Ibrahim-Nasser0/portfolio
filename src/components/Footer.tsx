@@ -91,7 +91,7 @@ export const Footer = () => {
               Ibrahim Nasser<span className="text-[#E58A2B]">.</span>
             </Link>
             <p className="text-gray-400 text-sm font-light leading-relaxed max-w-sm">
-              Full-Stack Mobile Developer & Flutter Lead specializing in Clean Architecture, BLoC, and SOLID software principles.
+              Software Engineer & Full-Stack Mobile Developer specializing in Clean Architecture, BLoC, and SOLID software principles.
             </p>
 
             <div className="pt-2 space-y-2 font-mono text-xs text-gray-400">

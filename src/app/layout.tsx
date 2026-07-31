@@ -4,14 +4,14 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://ibrahim-nasser.vercel.app"),
   title: {
-    default: "Ibrahim Nasser · Full-Stack Mobile Developer & Flutter Lead",
+    default: "Ibrahim Nasser · Software Engineer & Full-Stack Mobile Developer",
     template: "%s | Ibrahim Nasser",
   },
   description:
-    "Software Engineer and Flutter Lead specialized in architecting enterprise mobile, web, and desktop solutions using Clean Architecture, BLoC state management, and SOLID principles.",
+    "Software Engineer specialized in architecting enterprise mobile, web, and desktop solutions using Clean Architecture, BLoC state management, and SOLID principles.",
   keywords: [
     "Ibrahim Nasser",
-    "Flutter Lead",
+    "Software Engineer",
     "Full-Stack Mobile Developer",
     "Clean Architecture",
     "BLoC State Management",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://ibrahim-nasser.vercel.app",
-    title: "Ibrahim Nasser · Full-Stack Mobile Developer & Flutter Lead",
+    title: "Ibrahim Nasser · Software Engineer & Full-Stack Mobile Developer",
     description:
       "Enterprise mobile, web, and desktop applications built with Flutter, Clean Architecture, and SOLID principles.",
     siteName: "Ibrahim Nasser Portfolio",
@@ -35,13 +35,13 @@ export const metadata: Metadata = {
         url: "/assets/images/me1.jpeg",
         width: 1200,
         height: 630,
-        alt: "Ibrahim Nasser · Full-Stack Mobile Developer",
+        alt: "Ibrahim Nasser · Software Engineer & Full-Stack Mobile Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ibrahim Nasser · Full-Stack Mobile Developer & Flutter Lead",
+    title: "Ibrahim Nasser · Software Engineer & Full-Stack Mobile Developer",
     description:
       "Enterprise mobile, web, and desktop applications built with Flutter, Clean Architecture, and SOLID principles.",
     images: ["/assets/images/me1.jpeg"],

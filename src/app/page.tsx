@@ -14,7 +14,7 @@ import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/Footer";
 
 export const metadata = {
-  title: "Ibrahim Nasser · Full-Stack Mobile Developer & Flutter Lead",
+  title: "Ibrahim Nasser · Software Engineer & Full-Stack Mobile Developer",
   description:
     "Detail-oriented Flutter Developer & Software Engineer experienced in architecting modular mobile, web, and desktop solutions using BLoC, Clean Architecture, and SOLID principles.",
 };
