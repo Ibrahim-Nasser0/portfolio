@@ -1,0 +1,198 @@
+"use client";
+
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { personalInfo } from "@/data/portfolioData";
+import { Mail, MapPin, Phone, Send, CheckCircle } from "lucide-react";
+import { Github, Linkedin } from "@/components/icons/SocialIcons";
+import confetti from "canvas-confetti";
+
+export const ContactSection = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
+
+    setSubmitted(true);
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ["#E58A2B", "#F5A642", "#FFFFFF"],
+    });
+
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({ name: "", email: "", message: "" });
+    }, 4000);
+  };
+
+  return (
+    <section id="contact" className="py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
+      <div className="mb-16">
+        <p className="font-mono text-xs text-[#E58A2B] uppercase tracking-[0.2em]">
+          [ Direct Outreach ]
+        </p>
+        <h2 className="mt-4 font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Let&apos;s build enterprise digital experiences.
+        </h2>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        {/* Contact Info */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="space-y-6"
+        >
+          <p className="text-gray-300 text-base leading-relaxed font-light">
+            I am available for full-time mobile development roles, freelance enterprise solutions, and system architecture collaborations. Drop a message or reach out directly through email.
+          </p>
+
+          <div className="space-y-4">
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="flex items-center gap-4 p-5 rounded-2xl bg-[#15171E] border border-white/10 hover:border-[#E58A2B]/50 transition-all text-white group"
+            >
+              <div className="p-3 rounded-xl bg-[#E58A2B]/10 text-[#E58A2B] group-hover:scale-110 transition-transform">
+                <Mail className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider block">Direct Email</span>
+                <span className="font-bold text-sm sm:text-base group-hover:text-[#E58A2B] transition-colors">
+                  {personalInfo.email}
+                </span>
+              </div>
+            </a>
+
+            <a
+              href={`tel:${personalInfo.phone}`}
+              className="flex items-center gap-4 p-5 rounded-2xl bg-[#15171E] border border-white/10 hover:border-[#E58A2B]/50 transition-all text-white group"
+            >
+              <div className="p-3 rounded-xl bg-[#E58A2B]/10 text-[#E58A2B] group-hover:scale-110 transition-transform">
+                <Phone className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider block">Phone / Mobile</span>
+                <span className="font-bold text-sm sm:text-base group-hover:text-[#E58A2B] transition-colors">
+                  {personalInfo.phone}
+                </span>
+              </div>
+            </a>
+
+            <div className="flex items-center gap-4 p-5 rounded-2xl bg-[#15171E] border border-white/10 text-white">
+              <div className="p-3 rounded-xl bg-[#E58A2B]/10 text-[#E58A2B]">
+                <MapPin className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider block">Location</span>
+                <span className="font-bold text-sm sm:text-base">{personalInfo.location}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-4 flex items-center gap-4">
+            <a
+              href={personalInfo.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#15171E] border border-white/10 hover:border-[#E58A2B] hover:text-[#E58A2B] text-gray-300 font-mono text-xs font-semibold transition-all"
+            >
+              <Github className="w-4 h-4" />
+              <span>GitHub Profile ↗</span>
+            </a>
+
+            <a
+              href={personalInfo.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#15171E] border border-white/10 hover:border-[#E58A2B] hover:text-[#E58A2B] text-gray-300 font-mono text-xs font-semibold transition-all"
+            >
+              <Linkedin className="w-4 h-4" />
+              <span>LinkedIn Profile ↗</span>
+            </a>
+          </div>
+        </motion.div>
+
+        {/* Message Form */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="p-8 rounded-2xl bg-[#15171E] border border-white/10 shadow-2xl"
+        >
+          <h4 className="font-display text-2xl font-bold text-white mb-6">Send a Direct Message</h4>
+
+          {submitted ? (
+            <div className="py-12 text-center space-y-3">
+              <CheckCircle className="w-16 h-16 text-[#E58A2B] mx-auto animate-bounce" />
+              <h5 className="font-display text-2xl font-bold text-white">Message Sent Successfully!</h5>
+              <p className="text-gray-300 text-sm font-light">Thank you for reaching out. I will respond to your email promptly.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="John Doe"
+                  className="w-full px-4 py-3 rounded-xl bg-[#0B0C10] border border-white/10 focus:border-[#E58A2B] focus:outline-none text-white text-sm transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="john@example.com"
+                  className="w-full px-4 py-3 rounded-xl bg-[#0B0C10] border border-white/10 focus:border-[#E58A2B] focus:outline-none text-white text-sm transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">
+                  Message
+                </label>
+                <textarea
+                  required
+                  rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Tell me about your project or inquiry..."
+                  className="w-full px-4 py-3 rounded-xl bg-[#0B0C10] border border-white/10 focus:border-[#E58A2B] focus:outline-none text-white text-sm transition-colors resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-3.5 rounded-full bg-[#E58A2B] hover:bg-[#F5A642] text-black font-bold text-sm shadow-lg shadow-[#E58A2B]/20 transition-all flex items-center justify-center gap-2"
+              >
+                <Send className="w-4 h-4" />
+                <span>Send Message</span>
+              </button>
+            </form>
+          )}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
