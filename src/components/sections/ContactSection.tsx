@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { personalInfo } from "@/data/portfolioData";
-import { Mail, MapPin, Phone, Send, CheckCircle } from "lucide-react";
-import { Github, Linkedin } from "@/components/icons/SocialIcons";
+import { Mail, MapPin, Send, CheckCircle, ExternalLink } from "lucide-react";
+import { Github, Linkedin, Whatsapp } from "@/components/icons/SocialIcons";
 import confetti from "canvas-confetti";
 
 export const ContactSection = () => {
@@ -33,6 +33,8 @@ export const ContactSection = () => {
     }, 4000);
   };
 
+  const whatsappUrl = `https://wa.me/${personalInfo.phone.replace(/[^0-9]/g, "")}`;
+
   return (
     <section id="contact" className="py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
       <div className="mb-16">
@@ -45,7 +47,7 @@ export const ContactSection = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        {/* Contact Info */}
+        {/* Contact Info Cards */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -54,57 +56,72 @@ export const ContactSection = () => {
           className="space-y-6"
         >
           <p className="text-gray-300 text-base leading-relaxed font-light">
-            I am available for full-time mobile development roles, freelance enterprise solutions, and system architecture collaborations. Drop a message or reach out directly through email.
+            Available for full-time mobile development roles, cross-platform Flutter applications, and software architecture consulting. Connect directly via WhatsApp or email.
           </p>
 
           <div className="space-y-4">
+            {/* WhatsApp Card */}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between p-5 rounded-2xl bg-[#15171E] border border-white/10 hover:border-emerald-500/50 transition-all text-white group shadow-lg"
+            >
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform">
+                  <Whatsapp className="w-5 h-5 text-emerald-400" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider block font-bold">
+                    WhatsApp Chat (Instant)
+                  </span>
+                  <span className="font-bold text-sm sm:text-base group-hover:text-emerald-400 transition-colors">
+                    {personalInfo.phone}
+                  </span>
+                </div>
+              </div>
+              <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-emerald-400 transition-colors" />
+            </a>
+
+            {/* Email Card */}
             <a
               href={`mailto:${personalInfo.email}`}
-              className="flex items-center gap-4 p-5 rounded-2xl bg-[#15171E] border border-white/10 hover:border-[#E58A2B]/50 transition-all text-white group"
+              className="flex items-center justify-between p-5 rounded-2xl bg-[#15171E] border border-white/10 hover:border-[#E58A2B]/50 transition-all text-white group shadow-lg"
             >
-              <div className="p-3 rounded-xl bg-[#E58A2B]/10 text-[#E58A2B] group-hover:scale-110 transition-transform">
-                <Mail className="w-5 h-5" />
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-xl bg-[#E58A2B]/10 text-[#E58A2B] group-hover:scale-110 transition-transform">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-mono text-[#E58A2B] uppercase tracking-wider block font-bold">
+                    Direct Email Inbox
+                  </span>
+                  <span className="font-bold text-sm sm:text-base group-hover:text-[#E58A2B] transition-colors">
+                    {personalInfo.email}
+                  </span>
+                </div>
               </div>
-              <div>
-                <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider block">Direct Email</span>
-                <span className="font-bold text-sm sm:text-base group-hover:text-[#E58A2B] transition-colors">
-                  {personalInfo.email}
-                </span>
-              </div>
+              <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-[#E58A2B] transition-colors" />
             </a>
 
-            <a
-              href={`tel:${personalInfo.phone}`}
-              className="flex items-center gap-4 p-5 rounded-2xl bg-[#15171E] border border-white/10 hover:border-[#E58A2B]/50 transition-all text-white group"
-            >
-              <div className="p-3 rounded-xl bg-[#E58A2B]/10 text-[#E58A2B] group-hover:scale-110 transition-transform">
-                <Phone className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider block">Phone / Mobile</span>
-                <span className="font-bold text-sm sm:text-base group-hover:text-[#E58A2B] transition-colors">
-                  {personalInfo.phone}
-                </span>
-              </div>
-            </a>
-
-            <div className="flex items-center gap-4 p-5 rounded-2xl bg-[#15171E] border border-white/10 text-white">
-              <div className="p-3 rounded-xl bg-[#E58A2B]/10 text-[#E58A2B]">
+            {/* Location Card */}
+            <div className="flex items-center gap-4 p-5 rounded-2xl bg-[#15171E] border border-white/10 text-white shadow-lg">
+              <div className="p-3 rounded-xl bg-white/5 text-[#E58A2B]">
                 <MapPin className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider block">Location</span>
-                <span className="font-bold text-sm sm:text-base">{personalInfo.location}</span>
+                <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider block">Location & Campus</span>
+                <span className="font-bold text-sm sm:text-base">{personalInfo.location} · Suez Canal University</span>
               </div>
             </div>
           </div>
 
-          <div className="pt-4 flex items-center gap-4">
+          <div className="pt-4 flex flex-wrap items-center gap-4">
             <a
               href={personalInfo.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#15171E] border border-white/10 hover:border-[#E58A2B] hover:text-[#E58A2B] text-gray-300 font-mono text-xs font-semibold transition-all"
+              className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#15171E] border border-white/10 hover:border-[#E58A2B] hover:text-[#E58A2B] text-gray-300 font-mono text-xs font-semibold transition-all shadow-md"
             >
               <Github className="w-4 h-4" />
               <span>GitHub Profile ↗</span>
@@ -114,7 +131,7 @@ export const ContactSection = () => {
               href={personalInfo.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#15171E] border border-white/10 hover:border-[#E58A2B] hover:text-[#E58A2B] text-gray-300 font-mono text-xs font-semibold transition-all"
+              className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#15171E] border border-white/10 hover:border-[#E58A2B] hover:text-[#E58A2B] text-gray-300 font-mono text-xs font-semibold transition-all shadow-md"
             >
               <Linkedin className="w-4 h-4" />
               <span>LinkedIn Profile ↗</span>
@@ -122,21 +139,21 @@ export const ContactSection = () => {
           </div>
         </motion.div>
 
-        {/* Message Form */}
+        {/* Interactive Message Form Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="p-8 rounded-2xl bg-[#15171E] border border-white/10 shadow-2xl"
+          className="p-8 rounded-3xl bg-[#15171E] border border-white/10 shadow-2xl space-y-6"
         >
-          <h4 className="font-display text-2xl font-bold text-white mb-6">Send a Direct Message</h4>
+          <h3 className="font-display text-2xl font-bold text-white">Send a Direct Message</h3>
 
           {submitted ? (
             <div className="py-12 text-center space-y-3">
               <CheckCircle className="w-16 h-16 text-[#E58A2B] mx-auto animate-bounce" />
-              <h5 className="font-display text-2xl font-bold text-white">Message Sent Successfully!</h5>
-              <p className="text-gray-300 text-sm font-light">Thank you for reaching out. I will respond to your email promptly.</p>
+              <h4 className="font-display text-2xl font-bold text-white">Message Sent Successfully!</h4>
+              <p className="text-gray-300 text-sm font-light">Thank you for reaching out. I will respond to your inquiry promptly.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -184,7 +201,7 @@ export const ContactSection = () => {
 
               <button
                 type="submit"
-                className="w-full py-3.5 rounded-full bg-[#E58A2B] hover:bg-[#F5A642] text-black font-bold text-sm shadow-lg shadow-[#E58A2B]/20 transition-all flex items-center justify-center gap-2"
+                className="w-full py-3.5 rounded-full bg-[#E58A2B] hover:bg-[#F5A642] text-black font-bold text-sm shadow-lg shadow-[#E58A2B]/20 transition-all flex items-center justify-center gap-2 active:scale-95"
               >
                 <Send className="w-4 h-4" />
                 <span>Send Message</span>

@@ -2,43 +2,43 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { TrendingUp, Users, Star, ShieldCheck, Download } from "lucide-react";
+import { TrendingUp, LayoutGrid, Server, Database, Award } from "lucide-react";
 
 export const ImpactMetricsSection = () => {
   const metrics = [
     {
-      id: "downloads",
-      title: "Active Users & Downloads",
-      stat: "50,000+",
-      desc: "Combined userbase across shipped mobile applications.",
-      icon: Users,
+      id: "screens",
+      title: "Shipped App Screens & Modules",
+      stat: "27+",
+      desc: "10+ Desktop Admin screens + 12+ Mobile Donor screens + 5+ Bookly screens.",
+      icon: LayoutGrid,
       color: "text-[#E58A2B]",
       borderColor: "border-[#E58A2B]/30",
     },
     {
-      id: "crashfree",
-      title: "Crash-Free Users",
-      stat: "99.9%",
-      desc: "Measured via Firebase Crashlytics & Sentry error reporting.",
-      icon: ShieldCheck,
+      id: "apis",
+      title: "Integrated RESTful APIs",
+      stat: "30+",
+      desc: "Connected via Dio with token authentication, interceptors & error mappers.",
+      icon: Server,
       color: "text-emerald-400",
       borderColor: "border-emerald-500/30",
     },
     {
-      id: "rating",
-      title: "Store Rating Average",
-      stat: "4.8 ★",
-      desc: "Consistently rated high across Google Play & Apple App Store.",
-      icon: Star,
+      id: "records",
+      title: "Desktop System Capacity",
+      stat: "500+",
+      desc: "Student & Donor records managed with real-time analytics & CRUD storage.",
+      icon: Database,
       color: "text-amber-400",
       borderColor: "border-amber-400/30",
     },
     {
-      id: "roi",
-      title: "API Performance Gain",
-      stat: "40%",
-      desc: "Latency reduction through caching & optimistic UI updates.",
-      icon: TrendingUp,
+      id: "credentials",
+      title: "Verified Certifications",
+      stat: "21",
+      desc: "Across Clean Architecture, BLoC/MVVM, SQL/NoSQL, and Flutter engineering.",
+      icon: Award,
       color: "text-blue-400",
       borderColor: "border-blue-500/30",
     },
@@ -49,13 +49,13 @@ export const ImpactMetricsSection = () => {
       <div className="text-center max-w-3xl mx-auto mb-16">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-4">
           <TrendingUp className="w-3.5 h-3.5" />
-          <span>Measurable Engineering Value</span>
+          <span>Verified Engineering Output</span>
         </div>
         <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Business Impact & Store Success
+          Delivered Project Metrics & Scale
         </h2>
         <p className="mt-4 text-gray-400 text-base sm:text-lg font-light leading-relaxed">
-          Delivering robust, scalable mobile products with verified store stability and high user engagement.
+          Tangible software deliverables, system integrations, and verified achievements from shipped projects.
         </p>
       </div>
 

@@ -4,7 +4,6 @@ import { RightSectionNav } from "@/components/RightSectionNav";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { DeveloperTerminalModal } from "@/components/ui/DeveloperTerminalModal";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { StatsSection } from "@/components/sections/StatsSection";
 import { ImpactMetricsSection } from "@/components/sections/ImpactMetricsSection";
 import { FeaturedProjectsSection } from "@/components/sections/FeaturedProjectsSection";
 import { FlutterPlaygroundSection } from "@/components/sections/FlutterPlaygroundSection";
@@ -14,7 +13,6 @@ import { ArchitecturePrinciplesSection } from "@/components/sections/Architectur
 import { ToolsSetupSection } from "@/components/sections/ToolsSetupSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { AboutSection } from "@/components/sections/AboutSection";
-import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/Footer";
 
 export const metadata = {
@@ -40,7 +38,6 @@ export default function HomePage() {
         <ToolsSetupSection />
         <TestimonialsSection />
         <AboutSection />
-        <ContactSection />
       </main>
 
       <DeveloperTerminalModal />

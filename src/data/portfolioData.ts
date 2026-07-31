@@ -51,17 +51,17 @@ export interface ExperienceItem {
 export const personalInfo = {
   introName: "Ibrahim Nasser",
   name: "Ibrahim Nasser Ibrahim",
-  title: "Full-Stack Mobile Developer – Flutter & .NET",
+  title: "Flutter Developer | Cross-Platform Mobile & Desktop Developer",
   profileImage: "/assets/images/me1.jpeg",
-  cvUrl: "/assets/cv/my_cv.pdf",
+  cvUrl: "/assets/cv/Ibrahim NasserCV (Flutter).pdf",
   email: "ibrahimnasser.mobile@gmail.com",
-  phone: "+20 105 5810 234",
+  phone: "+20 127 898 8474",
   location: "Ismailia, Egypt",
   linkedinUrl: "https://www.linkedin.com/in/ibrahim-nasser-mobile/",
-  githubUrl: "https://github.com/Ibrahim-nasser0",
-  summaryHeadline: "Flutter Developer | Building Scalable Mobile & Desktop Applications",
+  githubUrl: "https://github.com/Ibrahim-Nasser0",
+  summaryHeadline: "Flutter Developer | Building Scalable Cross-Platform Mobile & Desktop Apps",
   summaryDetails:
-    "Detail-oriented Flutter Developer experienced in architecting modular mobile, web, and desktop solutions. Proficient in Dart and advanced state management (BLoC/Cubit) with a strong commitment to Clean Code and SOLID principles. Proven ability to translate complex designs into high-fidelity interfaces while ensuring robust API integration and performance optimization. Dedicated to continuous learning and implementing industry-standard software patterns.",
+    "Flutter Developer focused on building scalable cross-platform mobile and desktop applications using Flutter and Dart. Experienced with Clean Architecture, BLoC/Cubit, REST APIs, and responsive UI development. Currently expanding backend development skills with .NET.",
 };
 
 export interface RecommendationModel {
@@ -117,34 +117,30 @@ export const education = {
 
 export const experiences: ExperienceItem[] = [
   {
-    title: "Member at Mobile Development Track (Flutter Mentor)",
-    company: "GDG Suez Canal University · Seasonal",
-    date: "Apr 2026 - Present",
+    title: "Mobile Development Track Organizer (Volunteer)",
+    company: "GDG – Suez Canal University (Remote)",
+    date: "Apr 2026 – Present",
     descriptionPoints: [
-      "Mentored students in Flutter development, mobile fundamentals, debugging, and clean coding practices.",
-      "Delivered technical guidance on state management (BLoC), API integration, and scalable app architecture.",
-      "Reviewed assignments and helped participants solve complex implementation and debugging issues.",
-      "Collaborated with the core team to organize workshops, hands-on sessions, and technical events."
+      "Supported participants in Flutter development, state management, API integration, and responsive UI — reviewing assignments and providing technical feedback.",
+      "Collaborated with the core team to organize workshops and hands-on sessions, contributing to track planning and content preparation.",
     ],
   },
   {
     title: "Flutter Developer Intern",
-    company: "COM FAB",
-    date: "Nov 2025 - Jan 2026",
+    company: "Com Fab – Egypt (Remote)",
+    date: "Nov 2025 – Jan 2026",
     descriptionPoints: [
-      "Served as the sole Mobile Developer, taking full ownership of the app's lifecycle from conception to MVP.",
-      "Led the planning, requirement analysis, and UI/UX design phases for the mobile application.",
-      "Successfully developed and delivered the Minimum Viable Product (MVP) using Flutter."
+      "Structured a multi-module Flutter application (e-commerce, chat, donation, support systems) with scalable architecture and UI/UX design.",
+      "Contributed to MVP planning, feature prioritization, and future enhancements (notifications, localization).",
     ],
   },
   {
-    title: "Flutter Training",
-    company: "KAAF | Creativa Innovation Hub – Ismailia",
+    title: "Flutter Developer Trainee",
+    company: "Creativa Innovation Hub – Ismailia (On-site)",
     date: "Jul 2025",
     descriptionPoints: [
-      "Built cross-platform mobile applications using Flutter and Dart, focusing on clean, maintainable code and reusable components.",
-      "Applied Object-Oriented Programming (OOP) principles and implemented responsive UI designs suitable for various screen sizes.",
-      "Participated in hands-on projects that simulated real-world app development workflows, enhancing problem-solving and product-oriented thinking."
+      "Built cross-platform Flutter applications applying OOP, reusable widgets, and responsive UI principles.",
+      "Participated in hands-on projects simulating real-world development workflows.",
     ],
   },
 ];
