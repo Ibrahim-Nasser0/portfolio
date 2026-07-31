@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { personalInfo } from "@/data/portfolioData";
-import { Download, Menu, X, Home, User, Briefcase, Award } from "lucide-react";
+import { Download, Menu, X, Home, User, Briefcase, Award, BookOpen } from "lucide-react";
 import { Github, Linkedin } from "@/components/icons/SocialIcons";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
@@ -19,6 +19,7 @@ export const Navbar = () => {
     { name: "Work", href: "/work", icon: Briefcase },
     { name: "About", href: "/about", icon: User },
     { name: "Credentials", href: "/recognition", icon: Award },
+    { name: "Insights", href: "/insights", icon: BookOpen },
   ];
 
   return (

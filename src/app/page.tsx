@@ -7,6 +7,8 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { StatsSection } from "@/components/sections/StatsSection";
 import { FeaturedProjectsSection } from "@/components/sections/FeaturedProjectsSection";
 import { ArchitecturePrinciplesSection } from "@/components/sections/ArchitecturePrinciplesSection";
+import { ToolsSetupSection } from "@/components/sections/ToolsSetupSection";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/Footer";
@@ -28,6 +30,8 @@ export default function HomePage() {
         <StatsSection />
         <FeaturedProjectsSection />
         <ArchitecturePrinciplesSection />
+        <ToolsSetupSection />
+        <TestimonialsSection />
         <AboutSection />
         <ContactSection />
       </main>

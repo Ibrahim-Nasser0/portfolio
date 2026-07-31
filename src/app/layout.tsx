@@ -85,7 +85,7 @@ export default function RootLayout({
     url: "https://ibrahim-nasser.vercel.app",
     sameAs: [
       "https://github.com/Ebrahim-Nasser",
-      "https://linkedin.com/in/ibrahimnasser-mobile",
+      "https://www.linkedin.com/in/ibrahim-nasser-mobile/",
     ],
     knowsAbout: [
       "Flutter",
