@@ -1,6 +1,7 @@
 import React from "react";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
 import { Navbar } from "@/components/Navbar";
+import { RightSectionNav } from "@/components/RightSectionNav";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { ProcessWorkflowSection } from "@/components/sections/ProcessWorkflowSection";
@@ -17,6 +18,7 @@ export default function WorkPage() {
     <AuroraBackground>
       <CustomCursor />
       <Navbar />
+      <RightSectionNav />
       <div className="pt-16">
         <ProjectsSection />
         <ProcessWorkflowSection />

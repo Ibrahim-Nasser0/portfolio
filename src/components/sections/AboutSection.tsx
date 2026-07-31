@@ -3,14 +3,45 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { education, personalInfo } from "@/data/portfolioData";
-import { GraduationCap, Mail, MapPin, Phone, Download, Sparkles, Globe2, Award } from "lucide-react";
+import {
+  GraduationCap,
+  Mail,
+  MapPin,
+  Phone,
+  Download,
+  Sparkles,
+  Globe2,
+  CheckCircle2,
+  Code,
+  ShieldCheck,
+  Zap,
+} from "lucide-react";
+import { Github, Linkedin } from "@/components/icons/SocialIcons";
 import Image from "next/image";
 import { TiltCard } from "@/components/ui/TiltCard";
 
 export const AboutSection = () => {
+  const engineeringValues = [
+    {
+      title: "Clean Architecture First",
+      description: "Decoupled domain logic, clear boundary interfaces, and testable use cases.",
+      icon: ShieldCheck,
+    },
+    {
+      title: "Predictable BLoC States",
+      description: "Immutable state streams that eliminate unexpected side effects in mobile UI.",
+      icon: Zap,
+    },
+    {
+      title: "Continuous Mentorship",
+      description: "Sharing technical knowledge and guiding junior developers at GDG SCU.",
+      icon: Code,
+    },
+  ];
+
   return (
     <section id="about" className="py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
-      {/* About Page Hero Header */}
+      {/* Hero Header */}
       <div className="space-y-6 mb-16">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-semibold uppercase tracking-[0.2em]">
           <Sparkles className="w-3.5 h-3.5 animate-pulse" />
@@ -29,17 +60,18 @@ export const AboutSection = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
-        {/* Profile Image Column (5 cols) */}
+      {/* Main Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        {/* Left Column: Portrait Card & Quick Actions (5 cols) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="lg:col-span-5"
+          className="lg:col-span-5 space-y-6"
         >
           <TiltCard className="h-full">
-            <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-white/10 group-hover:border-[#E58A2B]/60 bg-[#15171E] shadow-2xl shadow-black/90 transition-all duration-700 h-full">
+            <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-white/10 group-hover:border-[#E58A2B]/60 bg-[#15171E] shadow-2xl shadow-black/90 transition-all duration-700">
               <Image
                 src="/assets/images/me1.jpeg"
                 alt={personalInfo.name}
@@ -50,34 +82,74 @@ export const AboutSection = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C10] via-[#0B0C10]/20 to-transparent opacity-85" />
 
+              {/* Floating Status Pill */}
               <div className="absolute bottom-6 left-6 right-6 space-y-2">
-                <span className="inline-block px-3 py-1 rounded-full bg-[#E58A2B] text-black font-mono text-[10px] font-bold uppercase tracking-wider mb-1">
-                  Software Engineer & Flutter Lead
-                </span>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B0C10]/80 border border-white/10 backdrop-blur-md text-[10px] font-mono text-[#E58A2B] font-bold">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E58A2B]" />
+                  </span>
+                  <span>GDG Mobile Mentor & CS Student</span>
+                </div>
+
                 <h3 className="font-display text-2xl font-bold text-white">{personalInfo.name}</h3>
                 <p className="text-xs text-gray-300 font-mono">{personalInfo.location}</p>
               </div>
             </div>
           </TiltCard>
+
+          {/* Quick Action Links Bar */}
+          <div className="p-4 rounded-2xl bg-[#15171E] border border-white/10 flex items-center justify-between gap-3 font-mono text-xs">
+            <a
+              href={personalInfo.cvUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 text-center py-2.5 rounded-xl bg-[#E58A2B] text-black font-bold hover:bg-[#F5A642] transition-colors flex items-center justify-center gap-1.5"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Résumé ↗</span>
+            </a>
+
+            <div className="flex items-center gap-1">
+              <a
+                href={personalInfo.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-[#E58A2B] hover:border-[#E58A2B]/40 transition-all"
+                aria-label="GitHub Profile"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+              <a
+                href={personalInfo.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-[#E58A2B] hover:border-[#E58A2B]/40 transition-all"
+                aria-label="LinkedIn Profile"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Info Column (7 cols) */}
+        {/* Right Column: Specification Matrix & Education (7 cols) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="lg:col-span-7 flex flex-col justify-between space-y-6"
+          className="lg:col-span-7 space-y-6"
         >
-          {/* Education Card */}
+          {/* Education & Academic Specialty Card */}
           <div className="p-8 rounded-3xl bg-[#15171E] border border-white/10 shadow-2xl space-y-4">
             <div className="flex items-center gap-3 text-[#E58A2B]">
-              <div className="p-2.5 rounded-xl bg-[#E58A2B]/10">
+              <div className="p-3 rounded-2xl bg-[#E58A2B]/10">
                 <GraduationCap className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="font-display text-xl font-bold text-white">Education & Degree</h4>
-                <p className="text-xs text-gray-400 font-mono">Academic CS Specialty</p>
+                <h3 className="font-display text-2xl font-bold text-white">Academic Specialty</h3>
+                <p className="text-xs text-gray-400 font-mono">Suez Canal University</p>
               </div>
             </div>
 
@@ -92,14 +164,14 @@ export const AboutSection = () => {
             </p>
           </div>
 
-          {/* Contact & Bio Specs Grid */}
+          {/* Contact Specs 4-Card Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
             <div className="p-5 rounded-2xl bg-[#15171E] border border-white/10 flex items-center gap-3">
               <div className="p-2.5 rounded-xl bg-[#E58A2B]/10 text-[#E58A2B]">
                 <Mail className="w-4 h-4" />
               </div>
               <div className="min-w-0">
-                <span className="text-[10px] text-gray-400 uppercase tracking-wider block">Email Address</span>
+                <span className="text-[10px] text-gray-400 uppercase tracking-wider block">Email</span>
                 <a href={`mailto:${personalInfo.email}`} className="font-bold text-white truncate block hover:text-[#E58A2B] transition-colors">
                   {personalInfo.email}
                 </a>
@@ -111,7 +183,7 @@ export const AboutSection = () => {
                 <Phone className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-[10px] text-gray-400 uppercase tracking-wider block">Direct Phone</span>
+                <span className="text-[10px] text-gray-400 uppercase tracking-wider block">Phone</span>
                 <a href={`tel:${personalInfo.phone}`} className="font-bold text-white hover:text-[#E58A2B] transition-colors">
                   {personalInfo.phone}
                 </a>
@@ -133,23 +205,31 @@ export const AboutSection = () => {
                 <Globe2 className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-[10px] text-gray-400 uppercase tracking-wider block">Spoken Languages</span>
+                <span className="text-[10px] text-gray-400 uppercase tracking-wider block">Languages</span>
                 <span className="font-bold text-white">Arabic (Native), English (Proficient)</span>
               </div>
             </div>
           </div>
 
-          {/* Action Button */}
-          <div className="pt-2">
-            <a
-              href={personalInfo.cvUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#E58A2B] hover:bg-[#F5A642] text-black font-mono font-bold text-xs uppercase tracking-wider shadow-xl shadow-[#E58A2B]/20 transition-all transform hover:-translate-y-0.5"
-            >
-              <Download className="w-4 h-4" />
-              <span>Download Official Résumé ↗</span>
-            </a>
+          {/* Core Engineering Values */}
+          <div className="p-6 rounded-3xl bg-[#15171E] border border-white/10 space-y-4">
+            <h4 className="font-mono text-xs font-bold text-[#E58A2B] uppercase tracking-[0.2em]">
+              [ Core Engineering Pillars ]
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {engineeringValues.map((val) => {
+                const Icon = val.icon;
+                return (
+                  <div key={val.title} className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2">
+                    <div className="p-2 rounded-lg bg-[#E58A2B]/10 text-[#E58A2B] w-fit">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <h5 className="font-display text-sm font-bold text-white">{val.title}</h5>
+                    <p className="text-xs text-gray-400 font-light leading-relaxed">{val.description}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </motion.div>
       </div>

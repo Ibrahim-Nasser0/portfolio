@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
 import { Navbar } from "@/components/Navbar";
+import { RightSectionNav } from "@/components/RightSectionNav";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { articles, ArticleModel } from "@/data/insightsData";
 import { BookOpen, Sparkles, Clock, ArrowUpRight, Search, X, Check, Code, Share2 } from "lucide-react";
@@ -44,8 +45,9 @@ export default function InsightsPage() {
     <AuroraBackground>
       <CustomCursor />
       <Navbar />
+      <RightSectionNav />
 
-      <div className="pt-28 pb-16 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06] space-y-16">
+      <div id="insights" className="pt-28 pb-16 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06] space-y-16">
         {/* Header Hero */}
         <div className="space-y-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-semibold uppercase tracking-[0.2em]">
