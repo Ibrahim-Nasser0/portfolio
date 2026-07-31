@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { projects, ProjectModel } from "@/data/portfolioData";
 import { Layers, ShieldAlert, X, CheckCircle2, ArrowUpRight } from "lucide-react";
 import { Github } from "@/components/icons/SocialIcons";
+import { TiltCard } from "@/components/ui/TiltCard";
 import Image from "next/image";
 
 export const ProjectsSection = () => {
@@ -12,6 +13,11 @@ export const ProjectsSection = () => {
   const [activeProject, setActiveProject] = useState<ProjectModel | null>(null);
 
   const categories = ["All", "Mobile", "Desktop", "Other"];
+
+  const getCategoryCount = (category: string) => {
+    if (category === "All") return projects.length;
+    return projects.filter((p) => p.category === category).length;
+  };
 
   const filteredProjects =
     selectedCategory === "All"
@@ -30,25 +36,28 @@ export const ProjectsSection = () => {
           </h2>
         </div>
 
-        {/* Category Pills */}
+        {/* Category Pills with Badge Counts */}
         <div className="flex flex-wrap items-center gap-2">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-full text-xs font-mono font-semibold transition-all duration-300 ${
-                selectedCategory === cat
-                  ? "bg-[#E58A2B] text-black shadow-lg shadow-[#E58A2B]/20"
-                  : "bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:border-[#E58A2B]/40"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+          {categories.map((cat) => {
+            const count = getCategoryCount(cat);
+            return (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-4 py-2 rounded-full text-xs font-mono font-semibold transition-all duration-300 ${
+                  selectedCategory === cat
+                    ? "bg-[#E58A2B] text-black shadow-lg shadow-[#E58A2B]/20"
+                    : "bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:border-[#E58A2B]/40"
+                }`}
+              >
+                {cat} <span className="opacity-70 text-[10px]">({count})</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      {/* Projects Grid */}
+      {/* Projects Grid with 3D Perspective Tilt Cards */}
       <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <AnimatePresence>
           {filteredProjects.map((project, idx) => (
@@ -59,75 +68,78 @@ export const ProjectsSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.4, delay: idx * 0.05 }}
-              className="group relative flex flex-col h-full overflow-hidden rounded-2xl border border-white/10 bg-[#15171E] hover:border-[#E58A2B]/50 transition-all duration-500 hover:-translate-y-1 shadow-xl"
             >
-              {/* Card Media Header */}
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#0B0C10]">
-                <Image
-                  src={project.mockupUrl || project.imageUrl}
-                  alt={project.name}
-                  fill
-                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                  unoptimized
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#15171E] via-transparent to-transparent opacity-80" />
-                <span className="absolute top-4 right-4 font-mono text-xs text-gray-400 bg-black/60 px-2.5 py-1 rounded-md backdrop-blur-md">
-                  0{idx + 1}
-                </span>
-              </div>
+              <TiltCard className="h-full">
+                <div className="group relative flex flex-col h-full overflow-hidden rounded-2xl border border-white/10 bg-[#15171E] hover:border-[#E58A2B]/50 transition-all duration-500 hover:-translate-y-1 shadow-xl">
+                  {/* Card Media Header */}
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#0B0C10]">
+                    <Image
+                      src={project.mockupUrl || project.imageUrl}
+                      alt={project.name}
+                      fill
+                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                      unoptimized
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#15171E] via-transparent to-transparent opacity-80" />
+                    <span className="absolute top-4 right-4 font-mono text-xs text-gray-400 bg-black/60 px-2.5 py-1 rounded-md backdrop-blur-md">
+                      0{idx + 1}
+                    </span>
+                  </div>
 
-              {/* Card Body */}
-              <div className="p-6 flex flex-1 flex-col justify-between space-y-4">
-                <div>
-                  <div className="flex items-start justify-between gap-2">
+                  {/* Card Body */}
+                  <div className="p-6 flex flex-1 flex-col justify-between space-y-4">
                     <div>
-                      <h3 className="font-display text-xl font-bold text-white group-hover:text-[#E58A2B] transition-colors leading-tight">
-                        {project.name}
-                      </h3>
-                      <p className="mt-1 text-xs text-gray-400 font-mono">
-                        {project.category} · {project.skillsUsed[0]}
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <h3 className="font-display text-xl font-bold text-white group-hover:text-[#E58A2B] transition-colors leading-tight">
+                            {project.name}
+                          </h3>
+                          <p className="mt-1 text-xs text-gray-400 font-mono">
+                            {project.category} · {project.skillsUsed[0]}
+                          </p>
+                        </div>
+                        <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-[#E58A2B] transition-all transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
+                      </div>
+
+                      <p className="mt-3 text-gray-300 text-sm font-light leading-relaxed line-clamp-3">
+                        {project.heroDescription}
                       </p>
                     </div>
-                    <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-[#E58A2B] transition-all transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
-                  </div>
 
-                  <p className="mt-3 text-gray-300 text-sm font-light leading-relaxed line-clamp-3">
-                    {project.heroDescription}
-                  </p>
-                </div>
+                    {/* Skill Tags & Action */}
+                    <div>
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {project.skillsUsed.slice(0, 3).map((skill) => (
+                          <span
+                            key={skill}
+                            className="rounded-full border border-white/10 px-3 py-1 text-[11px] font-mono text-gray-300"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
 
-                {/* Skill Tags & Action */}
-                <div>
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.skillsUsed.slice(0, 3).map((skill) => (
-                      <span
-                        key={skill}
-                        className="rounded-full border border-white/10 px-3 py-1 text-[11px] font-mono text-gray-300"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center justify-between pt-3 border-t border-white/10">
-                    <button
-                      onClick={() => setActiveProject(project)}
-                      className="text-xs font-mono font-bold text-[#E58A2B] hover:underline"
-                    >
-                      Case Study Details →
-                    </button>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-white"
-                      aria-label="GitHub"
-                    >
-                      <Github className="w-4 h-4" />
-                    </a>
+                      <div className="flex items-center justify-between pt-3 border-t border-white/10">
+                        <button
+                          onClick={() => setActiveProject(project)}
+                          className="text-xs font-mono font-bold text-[#E58A2B] hover:underline"
+                        >
+                          Case Study Details →
+                        </button>
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-400 hover:text-white"
+                          aria-label="GitHub Repository"
+                        >
+                          <Github className="w-4 h-4" />
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </TiltCard>
             </motion.div>
           ))}
         </AnimatePresence>

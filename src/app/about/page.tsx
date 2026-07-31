@@ -1,6 +1,7 @@
 import React from "react";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
 import { Navbar } from "@/components/Navbar";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { SkillsSection } from "@/components/sections/SkillsSection";
@@ -15,6 +16,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <AuroraBackground>
+      <CustomCursor />
       <Navbar />
       <div className="pt-16 space-y-12">
         <AboutSection />

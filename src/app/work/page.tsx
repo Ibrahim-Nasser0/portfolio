@@ -1,6 +1,7 @@
 import React from "react";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
 import { Navbar } from "@/components/Navbar";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/Footer";
@@ -13,6 +14,7 @@ export const metadata = {
 export default function WorkPage() {
   return (
     <AuroraBackground>
+      <CustomCursor />
       <Navbar />
       <div className="pt-16">
         <ProjectsSection />

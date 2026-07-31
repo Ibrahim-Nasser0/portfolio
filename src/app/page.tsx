@@ -1,7 +1,10 @@
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
 import { Navbar } from "@/components/Navbar";
 import { RightSectionNav } from "@/components/RightSectionNav";
+import { CustomCursor } from "@/components/ui/CustomCursor";
+import { DeveloperTerminalModal } from "@/components/ui/DeveloperTerminalModal";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { StatsSection } from "@/components/sections/StatsSection";
 import { FeaturedProjectsSection } from "@/components/sections/FeaturedProjectsSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ContactSection } from "@/components/sections/ContactSection";
@@ -16,14 +19,20 @@ export const metadata = {
 export default function HomePage() {
   return (
     <AuroraBackground>
+      <CustomCursor />
       <Navbar />
       <RightSectionNav />
       <main className="space-y-6">
         <HeroSection />
+        <StatsSection />
         <FeaturedProjectsSection />
         <AboutSection />
         <ContactSection />
       </main>
+
+      {/* Interactive Developer CLI Terminal Drawer */}
+      <DeveloperTerminalModal />
+
       <Footer />
     </AuroraBackground>
   );
