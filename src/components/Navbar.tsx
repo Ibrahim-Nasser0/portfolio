@@ -5,22 +5,25 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { personalInfo } from "@/data/portfolioData";
-import { Download, Menu, X, Home, User, Briefcase, Award, BookOpen, Code2, Cpu, History, ChevronDown } from "lucide-react";
-import { Github, Linkedin } from "@/components/icons/SocialIcons";
+import { Download, Menu, X, Home, User, Briefcase, Award, BookOpen, Code2, Cpu, History, ChevronDown, Mail, MessageSquare, ExternalLink } from "lucide-react";
+import { Github, Linkedin, Whatsapp } from "@/components/icons/SocialIcons";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { AmbientAudioPlayer } from "@/components/ui/AmbientAudioPlayer";
-import { MagneticButton } from "@/components/ui/MagneticButton";
 
 export const Navbar = () => {
   const pathname = usePathname();
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
+  const [contactPopoverOpen, setContactPopoverOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const contactRef = useRef<HTMLDivElement | null>(null);
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Core sleek primary navigation links
+  // Primary navigation links including Home
   const primaryLinks = [
+    { name: "Home", href: "/", icon: Home },
     { name: "Work", href: "/work", icon: Briefcase },
     { name: "Playground", href: "/playground", icon: Code2 },
     { name: "About", href: "/about", icon: User },
@@ -34,19 +37,17 @@ export const Navbar = () => {
     { name: "Credentials", href: "/recognition", icon: Award, desc: "Certificates & recommendations" },
   ];
 
-  const allLinks = [
-    { name: "Home", href: "/", icon: Home },
-    ...primaryLinks,
-    ...secondaryLinks,
-  ];
-
+  const allLinks = [...primaryLinks, ...secondaryLinks];
   const isMoreActive = secondaryLinks.some((l) => l.href === pathname);
 
-  // Close dropdown on outside click
+  // Close dropdowns on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setMoreDropdownOpen(false);
+      }
+      if (contactRef.current && !contactRef.current.contains(event.target as Node)) {
+        setContactPopoverOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -61,19 +62,54 @@ export const Navbar = () => {
   const handleMouseLeaveMore = () => {
     closeTimeoutRef.current = setTimeout(() => {
       setMoreDropdownOpen(false);
-    }, 350); // 350ms delay so dropdown never closes abruptly while moving mouse!
+    }, 350);
   };
+
+  const whatsappUrl = `https://wa.me/${personalInfo.phone.replace(/[^0-9]/g, "")}`;
+
+  const contactChannels = [
+    {
+      name: "WhatsApp Direct",
+      desc: personalInfo.phone,
+      href: whatsappUrl,
+      icon: Whatsapp,
+    },
+    {
+      name: "LinkedIn Profile",
+      desc: "Connect Professionally",
+      href: personalInfo.linkedinUrl,
+      icon: Linkedin,
+    },
+    {
+      name: "GitHub Repositories",
+      desc: "Explore Source Code",
+      href: personalInfo.githubUrl,
+      icon: Github,
+    },
+    {
+      name: "Email Inbox",
+      desc: personalInfo.email,
+      href: `mailto:${personalInfo.email}`,
+      icon: Mail,
+    },
+    {
+      name: "Download Résumé (CV)",
+      desc: "PDF Curriculum Vitae",
+      href: personalInfo.cvUrl,
+      icon: Download,
+    },
+  ];
 
   return (
     <>
       <ScrollProgress />
       <header className="fixed inset-x-0 top-0 z-50 py-4 px-4 sm:px-8 pointer-events-none">
         <div className="max-w-7xl mx-auto flex items-center justify-between pointer-events-auto">
-          {/* Brand Logo */}
+          {/* Left: Brand Logo Pill */}
           <Link
             href="/"
             aria-label="Ibrahim Nasser Home Page"
-            className="flex items-center gap-3 px-4 py-2 rounded-full bg-[#15171E]/90 backdrop-blur-xl border border-white/10 shadow-xl group hover:border-[#E58A2B]/50 transition-all"
+            className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#15171E]/90 backdrop-blur-xl border border-white/10 shadow-xl group hover:border-[#E58A2B]/50 transition-all shrink-0"
           >
             <div className="relative flex h-2.5 w-2.5" aria-hidden="true">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
@@ -84,22 +120,11 @@ export const Navbar = () => {
             </span>
           </Link>
 
-          {/* Sleek Desktop Navigation (Compact 4 Core Links + More Dropdown) */}
+          {/* Center: Desktop Primary Navigation Pill */}
           <nav
             aria-label="Primary Navigation"
             className="hidden md:flex items-center gap-1 p-1.5 rounded-full bg-[#15171E]/90 backdrop-blur-xl border border-white/10 shadow-2xl"
           >
-            {/* Home Icon Button */}
-            <Link
-              href="/"
-              className={`p-2 rounded-full text-xs font-mono transition-colors ${
-                pathname === "/" ? "bg-[#E58A2B] text-black" : "text-gray-400 hover:text-white hover:bg-white/5"
-              }`}
-              title="Home"
-            >
-              <Home className="w-4 h-4" />
-            </Link>
-
             {primaryLinks.map((link) => {
               const Icon = link.icon;
               const isActive = pathname === link.href;
@@ -128,7 +153,7 @@ export const Navbar = () => {
               );
             })}
 
-            {/* Robust Click & Hover Sticky "More" Dropdown */}
+            {/* Sticky "More" Dropdown */}
             <div
               ref={dropdownRef}
               className="relative"
@@ -148,7 +173,7 @@ export const Navbar = () => {
                 <ChevronDown className={`w-3.5 h-3.5 text-[#E58A2B] transition-transform duration-300 ${moreDropdownOpen ? "rotate-180" : ""}`} />
               </button>
 
-              {/* Popover Dropdown with Invisible Bridge Padding */}
+              {/* Popover Dropdown */}
               <AnimatePresence>
                 {moreDropdownOpen && (
                   <motion.div
@@ -188,26 +213,80 @@ export const Navbar = () => {
             </div>
           </nav>
 
-          {/* Right CTA Actions */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Right: Symmetrical CTA Actions Dock (Balanced width matching Left side) */}
+          <div className="hidden md:flex items-center gap-2.5 shrink-0">
             <AmbientAudioPlayer />
 
-            <a
-              href={personalInfo.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 rounded-full bg-[#15171E]/90 border border-white/10 hover:border-[#E58A2B] text-gray-300 hover:text-[#E58A2B] backdrop-blur-xl shadow-lg transition-colors"
-              aria-label="GitHub Profile"
-            >
-              <Github className="w-4 h-4" />
-            </a>
+            {/* Symmetrical Connect CTA Button */}
+            <div ref={contactRef} className="relative">
+              <button
+                onClick={() => setContactPopoverOpen(!contactPopoverOpen)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 font-mono text-xs shadow-lg ${
+                  contactPopoverOpen
+                    ? "bg-[#E58A2B] text-black font-bold border-[#E58A2B]"
+                    : "bg-[#E58A2B] hover:bg-[#F5A642] text-black font-bold border-transparent shadow-[#E58A2B]/20"
+                }`}
+                aria-expanded={contactPopoverOpen}
+              >
+                <MessageSquare className="w-3.5 h-3.5 text-black" />
+                <span>Connect</span>
+                <ChevronDown className={`w-3 h-3 text-black transition-transform duration-300 ${contactPopoverOpen ? "rotate-180" : ""}`} />
+              </button>
 
-            <MagneticButton href={personalInfo.cvUrl} target="_blank" rel="noopener noreferrer">
-              <span className="flex items-center gap-2 px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-wider text-black bg-[#E58A2B] hover:bg-[#F5A642] rounded-full transition-all shadow-lg shadow-[#E58A2B]/25">
-                <Download className="w-3.5 h-3.5" />
-                <span>Résumé ↗</span>
-              </span>
-            </MagneticButton>
+              {/* Complete Contact Channels & Résumé Popover */}
+              <AnimatePresence>
+                {contactPopoverOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full right-0 mt-2 w-80 bg-[#15171E] border border-white/15 rounded-3xl p-4 shadow-2xl backdrop-blur-2xl space-y-3 z-50 ring-1 ring-black/50"
+                  >
+                    <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
+                      <span className="font-mono text-xs font-bold text-[#E58A2B] uppercase tracking-wider">
+                        Contact Channels & CV
+                      </span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/30 text-[#E58A2B] text-[10px] font-mono font-bold tracking-wider">
+                        DIRECT
+                      </span>
+                    </div>
+
+                    <div className="space-y-2">
+                      {contactChannels.map((chan) => {
+                        const Icon = chan.icon;
+                        return (
+                          <a
+                            key={chan.name}
+                            href={chan.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setContactPopoverOpen(false)}
+                            className="group/item flex items-center justify-between p-3 rounded-2xl bg-white/[0.03] hover:bg-white/10 border border-white/5 hover:border-[#E58A2B]/40 transition-all duration-300"
+                          >
+                            <div className="flex items-center gap-3">
+                              <div className="p-2 rounded-xl bg-white/5 text-[#E58A2B] group-hover/item:bg-[#E58A2B] group-hover/item:text-black transition-colors">
+                                <Icon className="w-4 h-4" />
+                              </div>
+                              <div>
+                                <div className="text-xs font-mono font-bold text-white group-hover/item:text-[#E58A2B] transition-colors">
+                                  {chan.name}
+                                </div>
+                                <div className="text-[10px] text-gray-400 font-mono truncate max-w-[160px]">
+                                  {chan.desc}
+                                </div>
+                              </div>
+                            </div>
+
+                            <ExternalLink className="w-3.5 h-3.5 text-gray-500 group-hover/item:text-white transition-colors" />
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -256,15 +335,35 @@ export const Navbar = () => {
               </div>
 
               <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                <a
-                  href={personalInfo.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 text-gray-400 hover:text-[#E58A2B]"
-                  aria-label="GitHub Profile"
-                >
-                  <Github className="w-5 h-5" />
-                </a>
+                <div className="flex gap-2">
+                  <a
+                    href={personalInfo.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 text-gray-400 hover:text-[#E58A2B]"
+                    aria-label="GitHub Profile"
+                  >
+                    <Github className="w-5 h-5" />
+                  </a>
+                  <a
+                    href={personalInfo.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 text-gray-400 hover:text-[#E58A2B]"
+                    aria-label="LinkedIn Profile"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 text-gray-400 hover:text-emerald-400"
+                    aria-label="WhatsApp Chat"
+                  >
+                    <Whatsapp className="w-5 h-5" />
+                  </a>
+                </div>
 
                 <a
                   href={personalInfo.cvUrl}

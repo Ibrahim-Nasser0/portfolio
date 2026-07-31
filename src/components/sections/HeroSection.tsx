@@ -3,14 +3,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { personalInfo } from "@/data/portfolioData";
-import { MapPin, Sparkles, Code, CheckCircle2 } from "lucide-react";
+import { MapPin, CheckCircle2, Terminal, ArrowDown, Code2 } from "lucide-react";
 import Image from "next/image";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { TiltCard } from "@/components/ui/TiltCard";
 
 export const HeroSection = () => {
   return (
-    <section id="hero" className="relative min-h-[88vh] flex flex-col justify-center py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
+    <section id="hero" className="relative min-h-[90vh] flex flex-col justify-center py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left Column: Typography & CTAs (7 cols) */}
         <div className="lg:col-span-7 z-10">
@@ -19,7 +19,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-6 space-y-2 font-mono text-xs uppercase tracking-[0.16em]"
+            className="mb-6 space-y-3 font-mono text-xs uppercase tracking-[0.16em]"
           >
             <div className="flex flex-wrap items-center gap-3">
               <div className="flex items-center gap-2 text-[#E58A2B] font-semibold">
@@ -27,7 +27,7 @@ export const HeroSection = () => {
                 <span>{personalInfo.location} · Cairo (UTC+3)</span>
               </div>
               <span className="hidden sm:inline text-white/20">|</span>
-              <div className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-medium flex items-center gap-1.5">
+              <div className="px-3 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-medium flex items-center gap-1.5 shadow-sm">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
@@ -73,34 +73,47 @@ export const HeroSection = () => {
             GDG Mobile Mentor · Suez Canal University · Clean Architecture & BLoC
           </motion.p>
 
-          {/* Magnetic CTAs */}
+          {/* Magnetic CTAs & Developer CLI Hint */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-8 flex flex-wrap items-center gap-4"
+            className="mt-8 space-y-4"
           >
-            <MagneticButton href="/work">
-              <span className="rounded-full bg-white px-7 py-3 text-sm font-semibold text-black transition-transform shadow-lg shadow-white/10 block">
-                View work
-              </span>
-            </MagneticButton>
+            <div className="flex flex-wrap items-center gap-4">
+              <MagneticButton href="#projects">
+                <span className="rounded-full bg-[#E58A2B] hover:bg-[#F5A642] px-7 py-3 text-sm font-bold text-black transition-all shadow-lg shadow-[#E58A2B]/25 flex items-center gap-2">
+                  <span>Explore Work</span>
+                  <ArrowDown className="w-4 h-4" />
+                </span>
+              </MagneticButton>
 
-            <MagneticButton href="#contact">
-              <span className="rounded-full border border-[#E58A2B] px-7 py-3 text-sm font-semibold text-[#E58A2B] hover:bg-[#E58A2B] hover:text-black transition-all block">
-                Get in touch
-              </span>
-            </MagneticButton>
+              <MagneticButton href="/playground">
+                <span className="rounded-full border border-white/20 bg-white/5 hover:bg-white/10 px-7 py-3 text-sm font-semibold text-white transition-all flex items-center gap-2">
+                  <Code2 className="w-4 h-4 text-[#E58A2B]" />
+                  <span>Flutter Engine</span>
+                </span>
+              </MagneticButton>
 
-            <MagneticButton href={personalInfo.cvUrl} target="_blank" rel="noopener noreferrer">
-              <span className="rounded-full border border-white/20 px-7 py-3 text-sm font-medium text-gray-300 hover:border-[#E58A2B] hover:text-[#E58A2B] transition-colors block">
-                Résumé ↗
-              </span>
-            </MagneticButton>
+              <MagneticButton href={personalInfo.cvUrl} target="_blank" rel="noopener noreferrer">
+                <span className="rounded-full border border-[#E58A2B]/40 px-7 py-3 text-sm font-medium text-[#E58A2B] hover:bg-[#E58A2B] hover:text-black transition-all block">
+                  Résumé ↗
+                </span>
+              </MagneticButton>
+            </div>
+
+            {/* CLI Keyboard Shortcut Badge */}
+            <div className="pt-2 flex items-center gap-2 font-mono text-[11px] text-gray-400">
+              <Terminal className="w-3.5 h-3.5 text-[#E58A2B]" />
+              <span>Developer CLI:</span>
+              <kbd className="px-2 py-0.5 rounded bg-white/10 border border-white/15 text-white font-mono text-[10px]">
+                Ctrl + K
+              </kbd>
+            </div>
           </motion.div>
         </div>
 
-        {/* Right Column: High-End Architectural Floating Glass Portrait Frame (5 cols) */}
+        {/* Right Column: Floating Glass Portrait Frame (5 cols) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
