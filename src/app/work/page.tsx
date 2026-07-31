@@ -3,6 +3,7 @@ import { AuroraBackground } from "@/components/ui/AuroraBackground";
 import { Navbar } from "@/components/Navbar";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { ProcessWorkflowSection } from "@/components/sections/ProcessWorkflowSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/Footer";
 
@@ -18,6 +19,7 @@ export default function WorkPage() {
       <Navbar />
       <div className="pt-16">
         <ProjectsSection />
+        <ProcessWorkflowSection />
         <ContactSection />
       </div>
       <Footer />

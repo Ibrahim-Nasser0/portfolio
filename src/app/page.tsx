@@ -6,6 +6,7 @@ import { DeveloperTerminalModal } from "@/components/ui/DeveloperTerminalModal";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { StatsSection } from "@/components/sections/StatsSection";
 import { FeaturedProjectsSection } from "@/components/sections/FeaturedProjectsSection";
+import { ArchitecturePrinciplesSection } from "@/components/sections/ArchitecturePrinciplesSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/Footer";
@@ -26,13 +27,12 @@ export default function HomePage() {
         <HeroSection />
         <StatsSection />
         <FeaturedProjectsSection />
+        <ArchitecturePrinciplesSection />
         <AboutSection />
         <ContactSection />
       </main>
 
-      {/* Interactive Developer CLI Terminal Drawer */}
       <DeveloperTerminalModal />
-
       <Footer />
     </AuroraBackground>
   );
