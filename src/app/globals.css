@@ -53,3 +53,24 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #e58a2b;
 }
+
+/* Boilerlab.ai Style Scroll Snap Slide Deck */
+.slide-deck-container {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.slide-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+

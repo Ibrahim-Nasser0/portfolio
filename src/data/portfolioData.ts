@@ -52,6 +52,7 @@ export const personalInfo = {
   introName: "Ibrahim Nasser",
   name: "Ibrahim Nasser Ibrahim",
   title: "Full-Stack Mobile Developer – Flutter & .NET",
+  profileImage: "/assets/images/me1.jpeg",
   cvUrl: "/assets/cv/my_cv.pdf",
   email: "ibrahimnasser.mobile@gmail.com",
   phone: "+20 105 5810 234",

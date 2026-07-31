@@ -1,77 +1,73 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 
-export const TiltCard = ({
-  children,
-  className = "",
-}: {
+interface TiltCardProps {
   children: React.ReactNode;
   className?: string;
-}) => {
-  const cardRef = useRef<HTMLDivElement | null>(null);
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
-  const [spotlightPos, setSpotlightPos] = useState({ x: 50, y: 50 });
-  const [isHovered, setIsHovered] = useState(false);
+}
+
+export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "" }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+    const width = rect.width;
+    const height = rect.height;
 
-    // Calculate rotation (-8deg to 8deg max)
-    const rotX = ((y - centerY) / centerY) * -7;
-    const rotY = ((x - centerX) / centerX) * 7;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
 
-    setRotateX(rotX);
-    setRotateY(rotY);
-    setSpotlightPos({
-      x: (x / rect.width) * 100,
-      y: (y / rect.height) * 100,
-    });
-  };
+    setMousePos({ x: mouseX, y: mouseY });
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+
+    x.set(xPct);
+    y.set(yPct);
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
-    setRotateX(0);
-    setRotateY(0);
+    x.set(0);
+    y.set(0);
   };
 
   return (
     <motion.div
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      animate={{
-        rotateX: isHovered ? rotateX : 0,
-        rotateY: isHovered ? rotateY : 0,
-        scale: isHovered ? 1.015 : 1,
+      style={{
+        rotateY,
+        rotateX,
+        transformStyle: "preserve-3d",
       }}
-      transition={{ type: "spring", stiffness: 400, damping: 25 }}
-      style={{ transformStyle: "preserve-3d" }}
-      className={`relative perspective-1000 ${className}`}
+      className={`relative transition-transform duration-200 ease-out ${className}`}
     >
-      {/* Dynamic Cursor Spotlight Effect */}
-      {isHovered && (
-        <div
-          className="pointer-events-none absolute inset-0 z-20 rounded-2xl transition-opacity duration-300"
-          style={{
-            background: `radial-gradient(400px circle at ${spotlightPos.x}% ${spotlightPos.y}%, rgba(229, 138, 43, 0.12), transparent 80%)`,
-          }}
-        />
-      )}
-      {children}
+      {/* Dynamic Gold Radial Mouse Spotlight Overlay */}
+      <div
+        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"
+        style={{
+          background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(229, 138, 43, 0.2), transparent 80%)`,
+        }}
+      />
+
+      <div style={{ transform: "translateZ(20px)", transformStyle: "preserve-3d" }}>
+        {children}
+      </div>
     </motion.div>
   );
 };

@@ -8,6 +8,8 @@ import { personalInfo } from "@/data/portfolioData";
 import { Download, Menu, X, Home, User, Briefcase, Award, BookOpen } from "lucide-react";
 import { Github, Linkedin } from "@/components/icons/SocialIcons";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { SoundToggle } from "@/components/ui/SoundToggle";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 export const Navbar = () => {
   const pathname = usePathname();
@@ -81,6 +83,8 @@ export const Navbar = () => {
 
           {/* Right CTA Actions */}
           <div className="hidden md:flex items-center gap-3">
+            <SoundToggle />
+
             <div className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#15171E]/80 backdrop-blur-xl border border-white/10 shadow-lg">
               <a
                 href={personalInfo.githubUrl}
@@ -102,19 +106,17 @@ export const Navbar = () => {
               </a>
             </div>
 
-            <a
-              href={personalInfo.cvUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-wider text-black bg-[#E58A2B] hover:bg-[#F5A642] rounded-full transition-all transform hover:-translate-y-0.5 shadow-lg shadow-[#E58A2B]/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>Résumé ↗</span>
-            </a>
+            <MagneticButton href={personalInfo.cvUrl} target="_blank" rel="noopener noreferrer">
+              <span className="flex items-center gap-2 px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-wider text-black bg-[#E58A2B] hover:bg-[#F5A642] rounded-full transition-all shadow-lg shadow-[#E58A2B]/25">
+                <Download className="w-3.5 h-3.5" />
+                <span>Résumé ↗</span>
+              </span>
+            </MagneticButton>
           </div>
 
           {/* Mobile Menu Toggle */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-2">
+            <SoundToggle />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2.5 min-h-[48px] min-w-[48px] flex items-center justify-center rounded-full bg-[#15171E]/90 border border-white/10 text-gray-300 hover:text-white backdrop-blur-md shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E58A2B]"

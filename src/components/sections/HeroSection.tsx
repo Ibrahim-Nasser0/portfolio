@@ -3,8 +3,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { personalInfo } from "@/data/portfolioData";
-import { ArrowDown, MapPin, Sparkles } from "lucide-react";
+import { MapPin, Sparkles, Code, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
+import { MagneticButton } from "@/components/ui/MagneticButton";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 export const HeroSection = () => {
   return (
@@ -61,96 +63,105 @@ export const HeroSection = () => {
             GDG Mobile Mentor · Suez Canal University · Clean Architecture & BLoC
           </motion.p>
 
-          {/* CTAs */}
+          {/* Magnetic CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             className="mt-8 flex flex-wrap items-center gap-4"
           >
-            <a
-              href="/work"
-              className="rounded-full bg-white px-7 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5 shadow-lg shadow-white/10"
-            >
-              View work
-            </a>
+            <MagneticButton href="/work">
+              <span className="rounded-full bg-white px-7 py-3 text-sm font-semibold text-black transition-transform shadow-lg shadow-white/10 block">
+                View work
+              </span>
+            </MagneticButton>
 
-            <a
-              href="#contact"
-              className="rounded-full border border-[#E58A2B] px-7 py-3 text-sm font-semibold text-[#E58A2B] hover:bg-[#E58A2B] hover:text-black transition-all"
-            >
-              Get in touch
-            </a>
+            <MagneticButton href="#contact">
+              <span className="rounded-full border border-[#E58A2B] px-7 py-3 text-sm font-semibold text-[#E58A2B] hover:bg-[#E58A2B] hover:text-black transition-all block">
+                Get in touch
+              </span>
+            </MagneticButton>
 
-            <a
-              href={personalInfo.cvUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-white/20 px-7 py-3 text-sm font-medium text-gray-300 hover:border-[#E58A2B] hover:text-[#E58A2B] transition-colors"
-            >
-              Résumé ↗
-            </a>
+            <MagneticButton href={personalInfo.cvUrl} target="_blank" rel="noopener noreferrer">
+              <span className="rounded-full border border-white/20 px-7 py-3 text-sm font-medium text-gray-300 hover:border-[#E58A2B] hover:text-[#E58A2B] transition-colors block">
+                Résumé ↗
+              </span>
+            </MagneticButton>
           </motion.div>
         </div>
 
-        {/* Right Column: Luxury High-End Profile Photo Frame (5 cols) */}
+        {/* Right Column: High-End Architectural Floating Glass Portrait Frame (5 cols) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="lg:col-span-5 relative flex items-center justify-center"
+          className="lg:col-span-5 flex justify-center lg:justify-end"
         >
-          <div className="relative w-full max-w-sm group">
-            {/* Ambient Radial Golden Glow Behind Frame */}
-            <div className="absolute -inset-1 rounded-[32px] bg-gradient-to-r from-[#E58A2B]/30 via-[#F5A642]/10 to-transparent blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-700" />
+          <div className="relative group w-full max-w-[340px] sm:max-w-[380px]">
+            {/* High-Tech Background Orbit Line */}
+            <div className="absolute -inset-6 rounded-[44px] border border-white/5 pointer-events-none" />
+            <div className="absolute -inset-10 rounded-[50px] border border-[#E58A2B]/10 pointer-events-none animate-pulse" />
 
-            {/* Main Photo Card Frame */}
-            <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-white/10 group-hover:border-[#E58A2B]/60 bg-[#15171E] shadow-2xl shadow-black/90 transition-all duration-700">
-              <Image
-                src="/assets/images/me1.jpeg"
-                alt={personalInfo.name}
-                fill
-                className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                priority
-                unoptimized
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C10] via-[#0B0C10]/20 to-transparent opacity-85" />
+            {/* Ambient Gold Halo Glow */}
+            <div className="absolute -inset-2 rounded-[36px] bg-gradient-to-tr from-[#E58A2B]/30 via-amber-500/10 to-transparent blur-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
 
-              {/* Bottom Floating Info Badge */}
-              <div className="absolute bottom-6 left-6 right-6 space-y-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B0C10]/80 border border-white/10 backdrop-blur-md text-[10px] font-mono text-gray-300">
+            {/* 3D Tilt Card Frame */}
+            <TiltCard className="w-full">
+              <div className="relative aspect-[4/5] w-full rounded-[32px] overflow-hidden border border-white/15 group-hover:border-[#E58A2B]/80 transition-all duration-500 shadow-2xl bg-[#0B0C0E]">
+                {/* High-Res Portrait Image */}
+                <Image
+                  src={personalInfo.profileImage}
+                  alt={personalInfo.name}
+                  fill
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                  priority
+                />
+
+                {/* Vignette Gradients */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C0E] via-transparent to-black/20 opacity-80" />
+
+                {/* Top-Right Floating Status Pill */}
+                <div className="absolute top-4 right-4 z-20 px-3.5 py-1.5 rounded-full bg-[#0B0C0E]/75 border border-white/15 backdrop-blur-md text-[#E58A2B] font-mono text-[11px] font-bold flex items-center gap-2 shadow-lg">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E58A2B]" />
                   </span>
-                  <span>GDG Mentor & Full-Stack Mobile Developer</span>
+                  <span>GDG Mentor</span>
                 </div>
 
-                <h3 className="font-display text-2xl font-bold text-white tracking-tight">
-                  {personalInfo.name}
-                </h3>
+                {/* Top-Left Verification Badge */}
+                <div className="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md text-emerald-400 font-mono text-[10px] font-bold flex items-center gap-1.5 shadow-lg">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>VERIFIED PRO</span>
+                </div>
+
+                {/* Bottom Glass Pill Overlay (Tech Highlights) */}
+                <div className="absolute bottom-4 left-4 right-4 z-20 p-4 rounded-2xl bg-[#15171E]/80 backdrop-blur-xl border border-white/10 space-y-2 shadow-xl">
+                  <div className="flex items-center justify-between">
+                    <span className="font-display text-sm font-bold text-white">
+                      Ibrahim Nasser
+                    </span>
+                    <span className="font-mono text-[10px] text-[#E58A2B] font-bold">
+                      FLUTTER & .NET
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {["Flutter", "Clean Architecture", "BLoC", "C#"].map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 font-mono text-[10px] text-gray-300"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
+            </TiltCard>
           </div>
         </motion.div>
       </div>
-
-      {/* Case Studies scroll prompt */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
-        className="mt-12"
-      >
-        <a
-          href="/work"
-          className="inline-flex items-center gap-3 text-xs font-mono uppercase tracking-[0.14em] text-gray-400 hover:text-[#E58A2B] transition-colors"
-        >
-          <span className="h-8 w-px bg-white/20 animate-pulse" />
-          <span>Explore selected case studies</span>
-          <ArrowDown className="w-3.5 h-3.5 animate-bounce text-[#E58A2B]" />
-        </a>
-      </motion.div>
     </section>
   );
 };
