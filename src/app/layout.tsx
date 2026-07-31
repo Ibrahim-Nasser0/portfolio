@@ -4,6 +4,13 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Ibrahim Nasser · Full-Stack Mobile Developer & Flutter Lead",
   description: "Enterprise mobile, desktop, and cross-platform applications built with Flutter, Clean Architecture, and SOLID principles.",
+  icons: {
+    icon: [
+      { url: "/assets/images/avatar-favicon.png", type: "image/png" },
+    ],
+    shortcut: "/assets/images/avatar-favicon.png",
+    apple: "/assets/images/avatar-favicon.png",
+  },
 };
 
 export default function RootLayout({
