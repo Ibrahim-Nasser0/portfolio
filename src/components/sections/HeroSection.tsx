@@ -19,13 +19,23 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-6 space-y-1.5 font-mono text-xs uppercase tracking-[0.2em]"
+            className="mb-6 space-y-2 font-mono text-xs uppercase tracking-[0.16em]"
           >
-            <div className="flex items-center gap-2 text-[#E58A2B] font-semibold">
-              <MapPin className="w-3.5 h-3.5" />
-              <span>{personalInfo.location}</span>
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2 text-[#E58A2B] font-semibold">
+                <MapPin className="w-3.5 h-3.5" />
+                <span>{personalInfo.location} · Cairo (UTC+3)</span>
+              </div>
+              <span className="hidden sm:inline text-white/20">|</span>
+              <div className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-medium flex items-center gap-1.5">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                </span>
+                <span>Available for Freelance & Mobile Roles</span>
+              </div>
             </div>
-            <p className="text-[#9CA3AF] font-medium">
+            <p className="text-[#9CA3AF] font-medium tracking-[0.18em]">
               Full-Stack Mobile Developer / Flutter / .NET / Clean Architecture
             </p>
           </motion.div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { GlobalAudioProvider } from "@/context/AudioContext";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ibrahim-nasser.vercel.app"),
@@ -108,7 +109,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-[#0B0C0E] text-[#F3F4F6]">
-        {children}
+        <GlobalAudioProvider>
+          {children}
+        </GlobalAudioProvider>
       </body>
     </html>
   );

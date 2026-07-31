@@ -5,7 +5,11 @@ import { CustomCursor } from "@/components/ui/CustomCursor";
 import { DeveloperTerminalModal } from "@/components/ui/DeveloperTerminalModal";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { StatsSection } from "@/components/sections/StatsSection";
+import { ImpactMetricsSection } from "@/components/sections/ImpactMetricsSection";
 import { FeaturedProjectsSection } from "@/components/sections/FeaturedProjectsSection";
+import { FlutterPlaygroundSection } from "@/components/sections/FlutterPlaygroundSection";
+import { ArchitectureVisualizerSection } from "@/components/sections/ArchitectureVisualizerSection";
+import { PerformanceMatrixSection } from "@/components/sections/PerformanceMatrixSection";
 import { ArchitecturePrinciplesSection } from "@/components/sections/ArchitecturePrinciplesSection";
 import { ToolsSetupSection } from "@/components/sections/ToolsSetupSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
@@ -27,8 +31,11 @@ export default function HomePage() {
       <RightSectionNav />
       <main className="space-y-6">
         <HeroSection />
-        <StatsSection />
+        <ImpactMetricsSection />
         <FeaturedProjectsSection />
+        <FlutterPlaygroundSection />
+        <ArchitectureVisualizerSection />
+        <PerformanceMatrixSection />
         <ArchitecturePrinciplesSection />
         <ToolsSetupSection />
         <TestimonialsSection />

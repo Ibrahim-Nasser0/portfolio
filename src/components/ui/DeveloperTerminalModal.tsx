@@ -25,6 +25,17 @@ export const DeveloperTerminalModal = () => {
   const terminalEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setIsOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  useEffect(() => {
     if (isOpen) {
       terminalEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
@@ -128,6 +139,9 @@ export const DeveloperTerminalModal = () => {
       >
         <Terminal className="w-4 h-4 text-[#E58A2B] group-hover:scale-110 transition-transform" />
         <span>&gt;_ Ibrahim CLI</span>
+        <span className="hidden sm:inline-block ml-1 px-1.5 py-0.5 rounded bg-white/10 text-[10px] text-gray-400 group-hover:text-white font-mono">
+          Ctrl K
+        </span>
       </button>
 
       {/* Terminal Modal Drawer */}

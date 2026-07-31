@@ -33,6 +33,21 @@ export const RightSectionNav = () => {
         { id: "skills", label: "CAPABILITIES" },
         { id: "contact", label: "CONTACT" },
       ];
+    } else if (pathname === "/playground") {
+      return [
+        { id: "playground", label: "FLUTTER ENGINE" },
+        { id: "contact", label: "CONTACT" },
+      ];
+    } else if (pathname === "/stack") {
+      return [
+        { id: "stack", label: "WORKSPACE" },
+        { id: "contact", label: "CONTACT" },
+      ];
+    } else if (pathname === "/changelog") {
+      return [
+        { id: "changelog", label: "ACTIVITY STREAM" },
+        { id: "contact", label: "CONTACT" },
+      ];
     } else if (pathname === "/recognition") {
       return [
         { id: "certificates", label: "CREDENTIALS" },
