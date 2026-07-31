@@ -58,7 +58,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-[#6B7280]"
           >
-            3+ Years · 3AMI Team Lead · Suez Canal University · Clean Architecture & BLoC
+            GDG Mobile Mentor · Suez Canal University · Clean Architecture & BLoC
           </motion.p>
 
           {/* CTAs */}
@@ -123,7 +123,7 @@ export const HeroSection = () => {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E58A2B]" />
                   </span>
-                  <span>Software Engineer & Flutter Lead</span>
+                  <span>GDG Mentor & Full-Stack Mobile Developer</span>
                 </div>
 
                 <h3 className="font-display text-2xl font-bold text-white tracking-tight">
