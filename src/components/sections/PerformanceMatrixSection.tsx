@@ -37,6 +37,8 @@ export const PerformanceMatrixSection = () => {
 
           <div className="relative flex items-center">
             <input
+              id="performance-benchmark-slider"
+              aria-label="Performance benchmark optimization level"
               type="range"
               min="0"
               max="100"

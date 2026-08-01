@@ -83,9 +83,9 @@ export const FeaturedProjectsSection = () => {
 
               {/* Features */}
               <div>
-                <h4 className="text-xs font-mono font-bold text-[#E58A2B] uppercase tracking-wider mb-3 flex items-center gap-2">
+                <p className="text-xs font-mono font-bold text-[#E58A2B] uppercase tracking-wider mb-3 flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4" /> Core Features & Architecture
-                </h4>
+                </p>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-300">
                   {activeProject.features.map((feat, i) => (
                     <li key={i} className="flex items-start gap-2 bg-white/5 p-3 rounded-lg border border-white/5 font-light">
@@ -98,9 +98,9 @@ export const FeaturedProjectsSection = () => {
 
               {/* Tech Stack */}
               <div>
-                <h4 className="text-xs font-mono font-bold text-[#E58A2B] uppercase tracking-wider mb-3 flex items-center gap-2">
+                <p className="text-xs font-mono font-bold text-[#E58A2B] uppercase tracking-wider mb-3 flex items-center gap-2">
                   <Layers className="w-4 h-4" /> Technologies Used
-                </h4>
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {activeProject.techMobile.concat(activeProject.techBackend, activeProject.techTools).map((tech) => (
                     <span
@@ -116,9 +116,9 @@ export const FeaturedProjectsSection = () => {
               {/* Challenges */}
               {activeProject.challenges.length > 0 && (
                 <div>
-                  <h4 className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <p className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider mb-3 flex items-center gap-2">
                     <ShieldAlert className="w-4 h-4" /> Engineering Solutions
-                  </h4>
+                  </p>
                   <div className="space-y-3">
                     {activeProject.challenges.map((item, idx) => (
                       <div key={idx} className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1 text-xs sm:text-sm">

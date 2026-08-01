@@ -261,9 +261,9 @@ export const Footer = () => {
 
           {/* Navigation Sitemap */}
           <div className="space-y-3">
-            <h4 className="font-mono text-xs font-bold text-[#E58A2B] uppercase tracking-[0.2em]">
+            <p className="font-mono text-xs font-bold text-[#E58A2B] uppercase tracking-[0.2em]">
               Navigation
-            </h4>
+            </p>
             <ul className="space-y-2 text-sm font-mono">
               <li>
                 <Link href="/" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
@@ -306,9 +306,9 @@ export const Footer = () => {
 
           {/* Featured Systems */}
           <div className="space-y-3">
-            <h4 className="font-mono text-xs font-bold text-[#E58A2B] uppercase tracking-[0.2em]">
+            <p className="font-mono text-xs font-bold text-[#E58A2B] uppercase tracking-[0.2em]">
               Case Studies
-            </h4>
+            </p>
             <ul className="space-y-2 text-sm font-mono">
               <li>
                 <Link href="/project/hungry-app" className="text-gray-400 hover:text-white transition-colors block truncate">

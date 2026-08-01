@@ -214,9 +214,9 @@ export const AboutSection = () => {
 
           {/* Core Engineering Values */}
           <div className="p-6 rounded-3xl bg-[#15171E] border border-white/10 space-y-4">
-            <h4 className="font-mono text-xs font-bold text-[#E58A2B] uppercase tracking-[0.2em]">
+            <p className="font-mono text-xs font-bold text-[#E58A2B] uppercase tracking-[0.2em]">
               [ Core Engineering Pillars ]
-            </h4>
+            </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {engineeringValues.map((val) => {
                 const Icon = val.icon;

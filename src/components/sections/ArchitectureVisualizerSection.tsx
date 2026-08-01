@@ -129,7 +129,7 @@ class UserRepositoryImpl implements IUserRepository {
                 <div className={`p-3 rounded-xl bg-white/5 ${layer.textColor}`}>
                   <Icon className="w-6 h-6" />
                 </div>
-                <span className="font-mono text-[10px] text-gray-500 font-bold uppercase tracking-widest">
+                <span className="font-mono text-[10px] text-[#94A3B8] font-bold uppercase tracking-widest">
                   Layer 0{idx + 1}
                 </span>
               </div>
@@ -194,7 +194,7 @@ class UserRepositoryImpl implements IUserRepository {
                 <Code2 className="w-4 h-4 text-[#E58A2B]" />
                 <span className="text-white font-bold">{current.id}_impl.dart</span>
               </div>
-              <span className="text-[10px] text-gray-500 font-bold uppercase">Clean Architecture</span>
+              <span className="text-[10px] text-[#94A3B8] font-bold uppercase">Clean Architecture</span>
             </div>
             <pre className="p-5 font-mono text-xs text-amber-100/90 leading-relaxed overflow-x-auto whitespace-pre">
               <code>{current.code}</code>

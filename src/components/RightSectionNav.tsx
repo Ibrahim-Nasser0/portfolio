@@ -112,21 +112,21 @@ export const RightSectionNav = () => {
           >
             {/* Label Text */}
             <span
-              className={`whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.22em] transition-all duration-300 ${
+              className={`whitespace-nowrap font-mono text-[11px] font-semibold uppercase tracking-[0.22em] transition-all duration-300 ${
                 isActive
-                  ? "text-[#E58A2B] opacity-100 font-bold translate-x-0"
-                  : "text-gray-400 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0"
+                  ? "text-[#E58A2B] opacity-100 translate-x-0"
+                  : "text-[#94A3B8] opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0"
               }`}
             >
               {sec.label}
             </span>
 
-            {/* Dash Bar Line */}
+            {/* Dash Bar Line (GPU-accelerated scale-x transform) */}
             <span
-              className={`h-[2px] rounded-full transition-all duration-300 ${
+              className={`w-8 h-[2px] rounded-full origin-right transition-transform duration-300 ${
                 isActive
-                  ? "w-8 bg-[#E58A2B] shadow-sm shadow-[#E58A2B]/50"
-                  : "w-4 bg-white/20 group-hover:w-8 group-hover:bg-white/60"
+                  ? "bg-[#E58A2B] scale-x-100"
+                  : "bg-white/30 scale-x-50 group-hover:scale-x-100 group-hover:bg-white/70"
               }`}
             />
           </a>
