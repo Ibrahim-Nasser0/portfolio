@@ -36,6 +36,14 @@ export const ParticlePortraitCanvas = ({ imageSrc }: { imageSrc: string }) => {
       mouseY = e.clientY - rect.top;
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches && e.touches.length > 0) {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.touches[0].clientX - rect.left;
+        mouseY = e.touches[0].clientY - rect.top;
+      }
+    };
+
     const handleMouseLeave = () => {
       mouseX = -1000;
       mouseY = -1000;
@@ -94,7 +102,8 @@ export const ParticlePortraitCanvas = ({ imageSrc }: { imageSrc: string }) => {
       const imgData = offCtx.getImageData(0, 0, size, size);
       const data = imgData.data;
 
-      const gap = 4; // High density dot matrix
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+      const gap = isMobile ? 6 : 4; // Adaptive gap: 6px on mobile for 60 FPS performance, 4px on desktop
       dots.length = 0;
 
       for (let y = 0; y < size; y += gap) {
@@ -217,7 +226,9 @@ export const ParticlePortraitCanvas = ({ imageSrc }: { imageSrc: string }) => {
     const container = canvas.parentElement;
     if (container) {
       container.addEventListener("mousemove", handleMouseMove, { passive: true });
+      container.addEventListener("touchmove", handleTouchMove, { passive: true });
       container.addEventListener("mouseleave", handleMouseLeave, { passive: true });
+      container.addEventListener("touchend", handleMouseLeave, { passive: true });
       container.addEventListener("click", handleClick);
     }
 
@@ -225,7 +236,9 @@ export const ParticlePortraitCanvas = ({ imageSrc }: { imageSrc: string }) => {
       observer.disconnect();
       if (container) {
         container.removeEventListener("mousemove", handleMouseMove);
+        container.removeEventListener("touchmove", handleTouchMove);
         container.removeEventListener("mouseleave", handleMouseLeave);
+        container.removeEventListener("touchend", handleMouseLeave);
         container.removeEventListener("click", handleClick);
       }
       cancelAnimationFrame(animationFrameId);

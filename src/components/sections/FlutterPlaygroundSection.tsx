@@ -193,7 +193,7 @@ ClipRRect(
 
         {/* Right Column: Phone Simulator Canvas + Dynamic Code Drawer (7 cols) */}
         <div className="lg:col-span-7 space-y-6 flex flex-col items-center">
-          <div className="relative w-full max-w-[340px] sm:max-w-[380px] aspect-[9/18] bg-[#0B0C0E] border-[8px] border-[#15171E] rounded-[48px] shadow-2xl shadow-black ring-1 ring-white/10 overflow-hidden flex flex-col">
+          <div className="relative w-full max-w-[310px] xs:max-w-[340px] sm:max-w-[380px] aspect-[9/18] bg-[#0B0C0E] border-[8px] border-[#15171E] rounded-[48px] shadow-2xl shadow-black ring-1 ring-white/10 overflow-hidden flex flex-col">
             {/* Dynamic Island / Notch */}
             <div className="absolute top-3 inset-x-0 flex justify-center z-30 pointer-events-none">
               <div className="w-28 h-4 bg-black rounded-full flex items-center justify-between px-2">

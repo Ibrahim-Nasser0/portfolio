@@ -40,6 +40,13 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
       mouseY = e.clientY;
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches && e.touches.length > 0) {
+        mouseX = e.touches[0].clientX;
+        mouseY = e.touches[0].clientY;
+      }
+    };
+
     const particles: DustParticle[] = [];
 
     const resize = () => {
@@ -50,7 +57,8 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
 
     const initParticles = () => {
       particles.length = 0;
-      const count = Math.floor((canvas.width * canvas.height) / 10000);
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+      const count = Math.floor((canvas.width * canvas.height) / (isMobile ? 18000 : 10000));
 
       for (let i = 0; i < count; i++) {
         const maxAlpha = Math.random() * 0.4 + 0.05;
@@ -130,6 +138,7 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
 
     window.addEventListener("resize", resize, { passive: true });
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
     document.addEventListener("visibilitychange", handleVisibilityChange);
     resize();
     render();
@@ -137,6 +146,7 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
     return () => {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       cancelAnimationFrame(animationFrameId);
     };

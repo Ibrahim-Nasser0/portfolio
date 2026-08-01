@@ -321,7 +321,7 @@ export const Navbar = () => {
                       key={link.href}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center gap-2.5 p-3 rounded-xl font-mono text-xs transition-all ${
+                      className={`flex items-center gap-2.5 p-3 min-h-[44px] rounded-xl font-mono text-xs transition-all ${
                         isActive
                           ? "bg-[#E58A2B] text-black font-bold"
                           : "bg-white/5 border border-white/5 text-gray-300 hover:text-white"

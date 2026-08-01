@@ -152,7 +152,7 @@ export const DeveloperTerminalModal = () => {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-2xl bg-[#0C0D12] border border-[#E58A2B]/40 rounded-2xl shadow-2xl overflow-hidden text-white flex flex-col h-[480px]"
+              className="relative w-full max-w-2xl bg-[#0C0D12] border border-[#E58A2B]/40 rounded-2xl shadow-2xl overflow-hidden text-white flex flex-col h-[85vh] sm:h-[480px]"
             >
               {/* Header Bar */}
               <div className="flex items-center justify-between px-4 py-3 bg-[#15171E] border-b border-white/10">
