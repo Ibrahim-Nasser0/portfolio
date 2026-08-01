@@ -14,6 +14,8 @@ export const PerformanceMatrixSection = () => {
     <section id="performance" className="py-24 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
       <div className="text-center max-w-3xl mx-auto mb-16">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-4">
+          <span className="text-[#94A3B8] font-mono font-bold">// 06</span>
+          <span className="text-white/20">|</span>
           <span>Performance Optimization Engine</span>
         </div>
         <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">

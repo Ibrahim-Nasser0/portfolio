@@ -18,9 +18,11 @@ export const FeaturedProjectsSection = () => {
     <section id="projects" className="py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
         <div>
-          <p className="font-mono text-xs text-[#E58A2B] uppercase tracking-[0.2em]">
-            [ Selected Case Studies ]
-          </p>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-3">
+            <span className="text-[#94A3B8] font-mono font-bold">// 02</span>
+            <span className="text-white/20">|</span>
+            <span className="uppercase tracking-wider">Selected Case Studies</span>
+          </div>
           <h2 className="mt-4 font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
             Enterprise Mobile & Desktop Systems — Shipped.
           </h2>

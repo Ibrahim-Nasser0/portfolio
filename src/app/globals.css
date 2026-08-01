@@ -9,6 +9,7 @@
   --fg-faint: #6b7280;
   --accent: #e58a2b;
   --accent-light: #f5a642;
+  --accent-secondary: #94a3b8;
   --accent-glow: rgba(229, 138, 43, 0.18);
   --line: rgba(255, 255, 255, 0.08);
   --line-soft: rgba(255, 255, 255, 0.05);
@@ -17,6 +18,7 @@
 @theme {
   --color-accent: #e58a2b;
   --color-accent-light: #f5a642;
+  --color-accent-secondary: #94a3b8;
   --color-accent-glow: rgba(229, 138, 43, 0.18);
   --color-surface: #15171e;
   --color-surface-hover: #1c1f28;

@@ -52,10 +52,10 @@ export default function HomePage() {
         <FeaturedProjectsSection />
         <FlutterPlaygroundSection />
         <ArchitectureVisualizerSection />
-        <PerformanceMatrixSection />
         <ArchitecturePrinciplesSection />
-        <ToolsSetupSection />
+        <PerformanceMatrixSection />
         <TestimonialsSection />
+        <ToolsSetupSection />
         <AboutSection />
       </main>
 

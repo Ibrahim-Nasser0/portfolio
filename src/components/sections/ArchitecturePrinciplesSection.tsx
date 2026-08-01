@@ -54,9 +54,11 @@ export const ArchitecturePrinciplesSection = () => {
   return (
     <section className="py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
       <div className="mb-16">
-        <p className="font-mono text-xs text-[#E58A2B] uppercase tracking-[0.2em]">
-          [ Engineering Standard ]
-        </p>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-3">
+          <span className="text-[#94A3B8] font-mono font-bold">// 05</span>
+          <span className="text-white/20">|</span>
+          <span className="uppercase tracking-wider">Engineering Standards</span>
+        </div>
         <h2 className="mt-4 font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
           Core Software Architecture & Engineering Principles
         </h2>
