@@ -12,9 +12,23 @@ export const ParticlePortraitCanvas = ({ imageSrc }: { imageSrc: string }) => {
     if (!ctx) return;
 
     let animationFrameId: number;
+    let isVisible = true;
     let mouseX = -1000;
     let mouseY = -1000;
     let clickPulseTime = 0;
+
+    // IntersectionObserver to pause rendering loop when canvas is offscreen
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (!wasVisible && isVisible) {
+          render();
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(canvas);
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
@@ -112,12 +126,16 @@ export const ParticlePortraitCanvas = ({ imageSrc }: { imageSrc: string }) => {
         }
       }
 
-      render();
+      if (isVisible) {
+        render();
+      }
     };
 
     let tick = 0;
 
     const render = () => {
+      if (!isVisible) return;
+
       tick += 0.015;
 
       if (clickPulseTime > 0) {
@@ -129,7 +147,9 @@ export const ParticlePortraitCanvas = ({ imageSrc }: { imageSrc: string }) => {
 
       const canvasCenter = 240;
 
-      dots.forEach((dot) => {
+      for (let i = 0; i < dots.length; i++) {
+        const dot = dots[i];
+
         // Distance to cursor
         const dx = mouseX - dot.x;
         const dy = mouseY - dot.y;
@@ -139,16 +159,14 @@ export const ParticlePortraitCanvas = ({ imageSrc }: { imageSrc: string }) => {
         let currentSize = dot.baseSize;
         let currentAlpha = dot.baseAlpha;
 
-        // Mouse hover interaction: Slight magnetic wiggle & bright gold shimmer (No disappearing)
+        // Mouse hover interaction: Slight magnetic wiggle & bright gold shimmer
         if (dist < maxDist) {
           const factor = (maxDist - dist) / maxDist;
           const angle = Math.atan2(dy, dx);
 
-          // Subtle offset drift (Max 8px, not blowing away)
           dot.vx += Math.cos(angle + Math.PI) * factor * 0.3;
           dot.vy += Math.sin(angle + Math.PI) * factor * 0.3;
 
-          // Increase brightness & size on hover
           currentSize += factor * 1.2;
           currentAlpha = Math.min(1.0, currentAlpha + factor * 0.4);
         }
@@ -180,7 +198,6 @@ export const ParticlePortraitCanvas = ({ imageSrc }: { imageSrc: string }) => {
         const finalAlpha = currentAlpha * edgeAlpha;
 
         if (finalAlpha > 0.01) {
-          ctx.save();
           // Color rendering: Warm Gold/Amber for highlights, Soft Ice Blue-White for midtones
           if (dot.brightness > 0.55 || dist < maxDist) {
             ctx.fillStyle = `rgba(229, 138, 43, ${finalAlpha})`;
@@ -191,21 +208,21 @@ export const ParticlePortraitCanvas = ({ imageSrc }: { imageSrc: string }) => {
           ctx.beginPath();
           ctx.arc(dot.x, dot.y, Math.max(0.2, currentSize), 0, Math.PI * 2);
           ctx.fill();
-          ctx.restore();
         }
-      });
+      }
 
       animationFrameId = requestAnimationFrame(render);
     };
 
     const container = canvas.parentElement;
     if (container) {
-      container.addEventListener("mousemove", handleMouseMove);
-      container.addEventListener("mouseleave", handleMouseLeave);
+      container.addEventListener("mousemove", handleMouseMove, { passive: true });
+      container.addEventListener("mouseleave", handleMouseLeave, { passive: true });
       container.addEventListener("click", handleClick);
     }
 
     return () => {
+      observer.disconnect();
       if (container) {
         container.removeEventListener("mousemove", handleMouseMove);
         container.removeEventListener("mouseleave", handleMouseLeave);
@@ -228,3 +245,4 @@ export const ParticlePortraitCanvas = ({ imageSrc }: { imageSrc: string }) => {
     </div>
   );
 };
+

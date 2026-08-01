@@ -21,8 +21,8 @@ export const ImpactMetricsSection = () => {
       stat: "30+",
       desc: "Connected via Dio with token authentication, interceptors & error mappers.",
       icon: Server,
-      color: "text-emerald-400",
-      borderColor: "border-emerald-500/30",
+      color: "text-[#E58A2B]",
+      borderColor: "border-[#E58A2B]/30",
     },
     {
       id: "records",
@@ -30,8 +30,8 @@ export const ImpactMetricsSection = () => {
       stat: "500+",
       desc: "Student & Donor records managed with real-time analytics & CRUD storage.",
       icon: Database,
-      color: "text-amber-400",
-      borderColor: "border-amber-400/30",
+      color: "text-[#E58A2B]",
+      borderColor: "border-[#E58A2B]/30",
     },
     {
       id: "credentials",
@@ -39,8 +39,8 @@ export const ImpactMetricsSection = () => {
       stat: "21",
       desc: "Across Clean Architecture, BLoC/MVVM, SQL/NoSQL, and Flutter engineering.",
       icon: Award,
-      color: "text-blue-400",
-      borderColor: "border-blue-500/30",
+      color: "text-[#E58A2B]",
+      borderColor: "border-[#E58A2B]/30",
     },
   ];
 

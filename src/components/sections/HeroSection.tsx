@@ -27,10 +27,10 @@ export const HeroSection = () => {
                 <span>{personalInfo.location} · Cairo (UTC+3)</span>
               </div>
               <span className="hidden sm:inline text-white/20">|</span>
-              <div className="px-3 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-medium flex items-center gap-1.5 shadow-sm">
+              <div className="px-3 py-0.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/30 text-[#E58A2B] text-[11px] font-medium flex items-center gap-1.5 shadow-sm">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E58A2B]" />
                 </span>
                 <span>Available for Freelance & Mobile Roles</span>
               </div>
@@ -136,6 +136,7 @@ export const HeroSection = () => {
                   src={personalInfo.profileImage}
                   alt={personalInfo.name}
                   fill
+                  sizes="(max-width: 768px) 340px, 380px"
                   className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
                   priority
                 />
@@ -153,7 +154,7 @@ export const HeroSection = () => {
                 </div>
 
                 {/* Top-Left Verification Badge */}
-                <div className="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md text-emerald-400 font-mono text-[10px] font-bold flex items-center gap-1.5 shadow-lg">
+                <div className="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md text-[#E58A2B] font-mono text-[10px] font-bold flex items-center gap-1.5 shadow-lg">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>VERIFIED PRO</span>
                 </div>

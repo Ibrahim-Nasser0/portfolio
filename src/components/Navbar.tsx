@@ -358,7 +358,7 @@ export const Navbar = () => {
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-gray-400 hover:text-emerald-400"
+                    className="p-2 text-gray-400 hover:text-[#E58A2B]"
                     aria-label="WhatsApp Chat"
                   >
                     <Whatsapp className="w-5 h-5" />

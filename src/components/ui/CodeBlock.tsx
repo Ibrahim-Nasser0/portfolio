@@ -34,8 +34,8 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
         >
           {copied ? (
             <>
-              <Check className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="text-emerald-400">Copied!</span>
+              <Check className="w-3.5 h-3.5 text-[#E58A2B]" />
+              <span className="text-[#E58A2B]">Copied!</span>
             </>
           ) : (
             <>
@@ -47,7 +47,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
       </div>
 
       {/* Code Body */}
-      <pre className="p-4 overflow-x-auto text-emerald-300 font-mono text-xs leading-relaxed">
+      <pre className="p-4 overflow-x-auto text-amber-100/90 font-mono text-xs leading-relaxed">
         <code>{code.trim()}</code>
       </pre>
     </div>

@@ -19,7 +19,7 @@ export default function ChangelogPage() {
       title: "Hungry E-Commerce App Update v2.1.0",
       desc: "Optimized BLoC state rebuilding, integrated new payment gateway webhooks, and updated custom shimmer loading skeletons.",
       icon: GitCommit,
-      tagColor: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+      tagColor: "bg-[#E58A2B]/20 text-[#E58A2B] border-[#E58A2B]/30",
     },
     {
       date: "February 2026",

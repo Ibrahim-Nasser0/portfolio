@@ -206,9 +206,9 @@ ClipRRect(
               <div className="flex items-center justify-between font-mono text-[10px] text-gray-400 mb-4 z-20">
                 <span>09:41</span>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-emerald-400 font-bold">5G</span>
+                  <span className="text-[#E58A2B] font-bold">5G</span>
                   <div className="w-4 h-2 border border-gray-400 rounded-sm p-[1px] flex items-center">
-                    <div className="h-full w-full bg-emerald-400" />
+                    <div className="h-full w-full bg-[#E58A2B]" />
                   </div>
                 </div>
               </div>
@@ -232,7 +232,7 @@ ClipRRect(
                           {counter}
                         </div>
                         <p className="text-[11px] text-gray-400 font-mono">
-                          Emit: <span className="text-emerald-400 font-bold">{blocState.toUpperCase()}</span>
+                          Emit: <span className="text-[#E58A2B] font-bold">{blocState.toUpperCase()}</span>
                         </p>
                       </div>
 
@@ -265,7 +265,7 @@ ClipRRect(
                       className="space-y-4 text-center"
                     >
                       <p className="text-[11px] text-gray-400 font-mono">
-                        👆 Drag card around to test spring recoil
+                        Drag card around to test spring recoil
                       </p>
                       <motion.div
                         drag
@@ -327,7 +327,7 @@ ClipRRect(
                           onClick={() => setIsOnline(!isOnline)}
                           className={`px-3 py-1 rounded-full text-[10px] font-bold flex items-center gap-1.5 transition-colors ${
                             isOnline
-                              ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                              ? "bg-[#E58A2B]/20 text-[#E58A2B] border border-[#E58A2B]/30"
                               : "bg-rose-500/20 text-rose-400 border border-rose-500/30"
                           }`}
                         >
@@ -344,8 +344,8 @@ ClipRRect(
                         {syncQueue.map((item, idx) => (
                           <div key={idx} className="flex items-center justify-between text-gray-300 text-[10px]">
                             <span>{item}</span>
-                            <span className={isOnline ? "text-emerald-400 font-semibold" : "text-amber-400 font-semibold"}>
-                              {isOnline ? "Synced ✓" : "Cached ⏳"}
+                            <span className={isOnline ? "text-[#E58A2B] font-semibold" : "text-amber-400 font-semibold"}>
+                              {isOnline ? "Synced" : "Cached"}
                             </span>
                           </div>
                         ))}
@@ -424,9 +424,9 @@ ClipRRect(
                     <Code2 className="w-3.5 h-3.5" />
                     <span>{activeTab}_engine.dart</span>
                   </span>
-                  <span className="text-[10px] text-emerald-400 font-bold">Dart 3.x</span>
+                  <span className="text-[10px] text-[#E58A2B] font-bold">Dart 3.x</span>
                 </div>
-                <pre className="p-4 font-mono text-[11px] text-emerald-300 leading-relaxed overflow-x-auto whitespace-pre">
+                <pre className="p-4 font-mono text-[11px] text-amber-100/90 leading-relaxed overflow-x-auto whitespace-pre">
                   <code>{dartCodeMap[activeTab]}</code>
                 </pre>
               </motion.div>

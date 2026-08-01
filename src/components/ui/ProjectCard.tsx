@@ -28,8 +28,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             src={project.mockupUrl || project.imageUrl}
             alt={project.name}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-            unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#15171E] via-[#15171E]/20 to-transparent opacity-85" />
 

@@ -37,9 +37,9 @@ BlocBuilder<AuthBloc, AuthState>(
       name: "Domain Layer (Core)",
       subtitle: "Use Cases, Business Entities & Contracts",
       icon: ShieldCheck,
-      color: "from-emerald-500/20 to-teal-500/10",
-      borderColor: "border-emerald-500",
-      textColor: "text-emerald-400",
+      color: "from-[#E58A2B]/20 to-amber-500/10",
+      borderColor: "border-[#E58A2B]",
+      textColor: "text-[#E58A2B]",
       summary: "Pure Dart layer with zero external dependencies. Defines core business logic, entities, and abstract repository contracts.",
       code: `// Domain: Pure Business Use Case
 class GetUserProfileUseCase implements UseCase<UserEntity, String> {
@@ -62,9 +62,9 @@ class GetUserProfileUseCase implements UseCase<UserEntity, String> {
       name: "Data Layer",
       subtitle: "Dio REST Client, Hive Local Cache & Data Mappers",
       icon: Database,
-      color: "from-blue-500/20 to-indigo-500/10",
-      borderColor: "border-blue-500",
-      textColor: "text-blue-400",
+      color: "from-[#E58A2B]/15 to-amber-500/5",
+      borderColor: "border-[#E58A2B]/60",
+      textColor: "text-[#E58A2B]",
       summary: "Handles network calls, caching, and serialization. Implements domain repository contracts and converts DTOs to Domain Entities.",
       code: `// Data: Repository Implementation with Offline Cache Strategy
 class UserRepositoryImpl implements IUserRepository {
@@ -194,7 +194,7 @@ class UserRepositoryImpl implements IUserRepository {
               </div>
               <span className="text-[10px] text-gray-500 font-bold uppercase">Clean Architecture</span>
             </div>
-            <pre className="p-5 font-mono text-xs text-emerald-300 leading-relaxed overflow-x-auto whitespace-pre">
+            <pre className="p-5 font-mono text-xs text-amber-100/90 leading-relaxed overflow-x-auto whitespace-pre">
               <code>{current.code}</code>
             </pre>
           </div>

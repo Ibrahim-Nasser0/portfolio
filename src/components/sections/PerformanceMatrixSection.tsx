@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Zap, Gauge, Flame, CheckCircle2, Sliders } from "lucide-react";
 
 export const PerformanceMatrixSection = () => {
   const [sliderVal, setSliderVal] = useState(85); // 0 = unoptimized, 100 = fully optimized
@@ -16,7 +14,6 @@ export const PerformanceMatrixSection = () => {
     <section id="performance" className="py-24 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
       <div className="text-center max-w-3xl mx-auto mb-16">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-4">
-          <Zap className="w-3.5 h-3.5" />
           <span>Performance Optimization Engine</span>
         </div>
         <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
@@ -33,7 +30,7 @@ export const PerformanceMatrixSection = () => {
           <div className="flex items-center justify-between text-xs font-mono font-bold text-gray-400 uppercase">
             <span>Raw Unoptimized Code</span>
             <span className="text-[#E58A2B] font-bold">Optimization: {sliderVal}%</span>
-            <span className="text-emerald-400">High-Performance Engine</span>
+            <span className="text-[#E58A2B]">High-Performance Engine</span>
           </div>
 
           <div className="relative flex items-center">
@@ -54,7 +51,6 @@ export const PerformanceMatrixSection = () => {
           <div className="p-6 rounded-2xl bg-[#0B0C0E] border border-white/10 space-y-3 relative overflow-hidden">
             <div className="flex items-center justify-between text-gray-400">
               <span className="font-mono text-xs font-bold uppercase">Render Refresh Rate</span>
-              <Gauge className="w-5 h-5 text-[#E58A2B]" />
             </div>
             <div className="flex items-baseline gap-2">
               <span className="font-display text-4xl font-extrabold text-white">{fps}</span>
@@ -67,7 +63,7 @@ export const PerformanceMatrixSection = () => {
               />
             </div>
             <p className="text-[11px] text-gray-400 font-mono">
-              {fps >= 58 ? "⚡ Locked 60 FPS Smooth Jank-Free" : "⚠️ Frame drops during scroll"}
+              {fps >= 58 ? "Locked 60 FPS Smooth Jank-Free" : "Frame drops during scroll"}
             </p>
           </div>
 
@@ -75,20 +71,19 @@ export const PerformanceMatrixSection = () => {
           <div className="p-6 rounded-2xl bg-[#0B0C0E] border border-white/10 space-y-3 relative overflow-hidden">
             <div className="flex items-center justify-between text-gray-400">
               <span className="font-mono text-xs font-bold uppercase">Cold Boot Time</span>
-              <Zap className="w-5 h-5 text-emerald-400" />
             </div>
             <div className="flex items-baseline gap-2">
               <span className="font-display text-4xl font-extrabold text-white">{startupTime}</span>
-              <span className="font-mono text-sm text-emerald-400 font-bold">sec</span>
+              <span className="font-mono text-sm text-[#E58A2B] font-bold">sec</span>
             </div>
             <div className="w-full bg-white/10 h-2 rounded-full overflow-hidden">
               <div
-                className="bg-emerald-400 h-full transition-all duration-300"
+                className="bg-[#E58A2B] h-full transition-all duration-300"
                 style={{ width: `${100 - ((Number(startupTime) - 0.8) / 2.6) * 100}%` }}
               />
             </div>
             <p className="text-[11px] text-gray-400 font-mono">
-              {Number(startupTime) <= 1.0 ? "🚀 Instant Cold Boot (< 1.0s)" : "⏳ Deferred initialization delay"}
+              {Number(startupTime) <= 1.0 ? "Instant Cold Boot (< 1.0s)" : "Deferred initialization delay"}
             </p>
           </div>
 
@@ -96,20 +91,19 @@ export const PerformanceMatrixSection = () => {
           <div className="p-6 rounded-2xl bg-[#0B0C0E] border border-white/10 space-y-3 relative overflow-hidden">
             <div className="flex items-center justify-between text-gray-400">
               <span className="font-mono text-xs font-bold uppercase">RAM Footprint</span>
-              <Flame className="w-5 h-5 text-amber-400" />
             </div>
             <div className="flex items-baseline gap-2">
               <span className="font-display text-4xl font-extrabold text-white">{memoryUsage}</span>
-              <span className="font-mono text-sm text-amber-400 font-bold">MB</span>
+              <span className="font-mono text-sm text-[#E58A2B] font-bold">MB</span>
             </div>
             <div className="w-full bg-white/10 h-2 rounded-full overflow-hidden">
               <div
-                className="bg-amber-400 h-full transition-all duration-300"
+                className="bg-[#E58A2B] h-full transition-all duration-300"
                 style={{ width: `${100 - ((memoryUsage - 43) / 102) * 100}%` }}
               />
             </div>
             <p className="text-[11px] text-gray-400 font-mono">
-              {memoryUsage <= 50 ? "🌱 Zero Memory Leaks (Isolates)" : "⚠️ High Garbage Collection churn"}
+              {memoryUsage <= 50 ? "Zero Memory Leaks (Isolates)" : "High Garbage Collection churn"}
             </p>
           </div>
         </div>
@@ -117,3 +111,4 @@ export const PerformanceMatrixSection = () => {
     </section>
   );
 };
+

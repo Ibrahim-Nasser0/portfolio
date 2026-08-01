@@ -87,7 +87,7 @@ export const TestimonialsSection = () => {
                         key={h}
                         className="rounded-full border border-white/10 px-2.5 py-0.5 font-mono text-[10px] text-gray-300 bg-white/5"
                       >
-                        ✓ {h}
+                        {h}
                       </span>
                     ))}
                   </div>

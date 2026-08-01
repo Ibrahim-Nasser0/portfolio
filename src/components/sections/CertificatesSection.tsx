@@ -238,8 +238,8 @@ export const CertificatesSection = () => {
                                 src={cert.imageUrl}
                                 alt={cert.title}
                                 fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                                unoptimized
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-[#15171E] via-transparent to-transparent opacity-85" />
 
@@ -248,7 +248,7 @@ export const CertificatesSection = () => {
                                 <span className="px-2.5 py-1 rounded-full bg-black/70 border border-white/10 text-[#E58A2B] font-mono text-[10px] font-bold uppercase tracking-wider backdrop-blur-md">
                                   {cert.category}
                                 </span>
-                                <span className="px-2.5 py-1 rounded-full bg-black/70 border border-white/10 text-emerald-400 font-mono text-[10px] font-bold backdrop-blur-md flex items-center gap-1">
+                                <span className="px-2.5 py-1 rounded-full bg-black/70 border border-white/10 text-[#E58A2B] font-mono text-[10px] font-bold backdrop-blur-md flex items-center gap-1">
                                   <CheckCircle2 className="w-3 h-3" />
                                   <span>VERIFIED</span>
                                 </span>
@@ -331,8 +331,8 @@ export const CertificatesSection = () => {
                   src={activeCert.imageUrl}
                   alt={activeCert.title}
                   fill
+                  sizes="(max-width: 1024px) 100vw, 800px"
                   className="object-contain"
-                  unoptimized
                 />
               </div>
 

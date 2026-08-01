@@ -16,7 +16,7 @@ export const DeveloperTerminalModal = () => {
           <p className="text-[#E58A2B] font-bold">
             Ibrahim Nasser Interactive CLI v1.0.0
           </p>
-          <p>Type <span className="text-emerald-400 font-bold">help</span> to list available commands.</p>
+          <p>Type <span className="text-[#E58A2B] font-bold">help</span> to list available commands.</p>
         </div>
       ),
     },
@@ -53,12 +53,12 @@ export const DeveloperTerminalModal = () => {
         response = (
           <div className="space-y-1 text-xs font-mono">
             <p className="text-[#E58A2B] font-bold">Available Commands:</p>
-            <p><span className="text-emerald-400 font-bold">projects</span> — List all shipped software case studies</p>
-            <p><span className="text-emerald-400 font-bold">skills</span> — Display technical architecture capabilities</p>
-            <p><span className="text-emerald-400 font-bold">bio</span> — Summary of Ibrahim Nasser&apos;s background</p>
-            <p><span className="text-emerald-400 font-bold">contact</span> — Get direct phone & email details</p>
-            <p><span className="text-emerald-400 font-bold">clear</span> — Clear terminal output history</p>
-            <p><span className="text-emerald-400 font-bold">exit</span> — Close terminal drawer</p>
+            <p><span className="text-[#E58A2B] font-bold">projects</span> — List all shipped software case studies</p>
+            <p><span className="text-[#E58A2B] font-bold">skills</span> — Display technical architecture capabilities</p>
+            <p><span className="text-[#E58A2B] font-bold">bio</span> — Summary of Ibrahim Nasser&apos;s background</p>
+            <p><span className="text-[#E58A2B] font-bold">contact</span> — Get direct phone & email details</p>
+            <p><span className="text-[#E58A2B] font-bold">clear</span> — Clear terminal output history</p>
+            <p><span className="text-[#E58A2B] font-bold">exit</span> — Close terminal drawer</p>
           </div>
         );
         break;
@@ -69,7 +69,7 @@ export const DeveloperTerminalModal = () => {
             <p className="text-[#E58A2B] font-bold">Shipped Projects ({projects.length}):</p>
             {projects.map((p, i) => (
               <p key={p.id} className="text-gray-300">
-                {i + 1}. <span className="text-white font-bold">{p.name}</span> ({p.category}) — {p.skillsUsed.join(", ")}
+                [{i + 1}] <span className="text-white font-bold">{p.name}</span> ({p.category}) — {p.skillsUsed.join(", ")}
               </p>
             ))}
           </div>
@@ -82,7 +82,7 @@ export const DeveloperTerminalModal = () => {
             <p className="text-[#E58A2B] font-bold">Engineering Stack:</p>
             {skillCategories.map((c) => (
               <p key={c.title} className="text-gray-300">
-                <span className="text-emerald-400 font-bold">{c.title}:</span> {c.skills.join(", ")}
+                <span className="text-[#E58A2B] font-bold">{c.title}:</span> {c.skills.join(", ")}
               </p>
             ))}
           </div>
@@ -160,7 +160,7 @@ export const DeveloperTerminalModal = () => {
                   <div className="flex gap-1.5">
                     <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
                     <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
-                    <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
+                    <span className="w-3 h-3 rounded-full bg-[#E58A2B]/80 inline-block" />
                   </div>
                   <span className="font-mono text-xs text-gray-400 ml-2">
                     ibrahim@portfolio:~
@@ -180,7 +180,7 @@ export const DeveloperTerminalModal = () => {
                 {history.map((item, idx) => (
                   <div key={idx} className="space-y-1">
                     {item.cmd !== "welcome" && (
-                      <div className="flex items-center gap-2 text-emerald-400">
+                      <div className="flex items-center gap-2 text-[#E58A2B]">
                         <span>ibrahim@portfolio:~$</span>
                         <span className="text-white font-bold">{item.cmd}</span>
                       </div>
@@ -196,7 +196,7 @@ export const DeveloperTerminalModal = () => {
                 onSubmit={handleCommand}
                 className="p-3 bg-[#15171E] border-t border-white/10 flex items-center gap-2 font-mono text-xs"
               >
-                <span className="text-emerald-400 font-bold">ibrahim@portfolio:~$</span>
+                <span className="text-[#E58A2B] font-bold">ibrahim@portfolio:~$</span>
                 <input
                   type="text"
                   value={input}

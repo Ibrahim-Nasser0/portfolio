@@ -65,22 +65,22 @@ export const ContactSection = () => {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between p-5 rounded-2xl bg-[#15171E] border border-white/10 hover:border-emerald-500/50 transition-all text-white group shadow-lg"
+              className="flex items-center justify-between p-5 rounded-2xl bg-[#15171E] border border-white/10 hover:border-[#E58A2B]/50 transition-all text-white group shadow-lg"
             >
               <div className="flex items-center gap-4">
-                <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform">
-                  <Whatsapp className="w-5 h-5 text-emerald-400" />
+                <div className="p-3 rounded-xl bg-[#E58A2B]/10 text-[#E58A2B] group-hover:scale-110 transition-transform">
+                  <Whatsapp className="w-5 h-5 text-[#E58A2B]" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider block font-bold">
+                  <span className="text-[10px] font-mono text-[#E58A2B] uppercase tracking-wider block font-bold">
                     WhatsApp Chat (Instant)
                   </span>
-                  <span className="font-bold text-sm sm:text-base group-hover:text-emerald-400 transition-colors">
+                  <span className="font-bold text-sm sm:text-base group-hover:text-[#E58A2B] transition-colors">
                     {personalInfo.phone}
                   </span>
                 </div>
               </div>
-              <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-emerald-400 transition-colors" />
+              <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-[#E58A2B] transition-colors" />
             </a>
 
             {/* Email Card */}

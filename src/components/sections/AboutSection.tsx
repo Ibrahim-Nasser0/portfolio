@@ -76,9 +76,8 @@ export const AboutSection = () => {
                 src="/assets/images/me1.jpeg"
                 alt={personalInfo.name}
                 fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                priority
-                unoptimized
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C10] via-[#0B0C10]/20 to-transparent opacity-85" />
 

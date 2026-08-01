@@ -26,6 +26,14 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
     let mouseY = -1000;
     let currentMouseX = -1000;
     let currentMouseY = -1000;
+    let isTabActive = true;
+
+    const handleVisibilityChange = () => {
+      isTabActive = !document.hidden;
+      if (isTabActive) {
+        render();
+      }
+    };
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
@@ -61,6 +69,8 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
     let tick = 0;
 
     const render = () => {
+      if (document.hidden) return;
+
       tick += 0.01;
 
       // Smooth mouse lerp
@@ -96,7 +106,8 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
       }
 
       // 3. Micro Dust Particles (Sparse & Subtle)
-      particles.forEach((p) => {
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
 
@@ -112,19 +123,21 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
-      });
+      }
 
       animationFrameId = requestAnimationFrame(render);
     };
 
-    window.addEventListener("resize", resize);
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", resize, { passive: true });
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     resize();
     render();
 
     return () => {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

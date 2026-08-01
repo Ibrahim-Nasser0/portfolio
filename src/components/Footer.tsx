@@ -78,10 +78,10 @@ export const Footer = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
             {/* Left Column (6 cols): Headline, Availability & Full Social Action Dock */}
             <div className="lg:col-span-6 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-[11px] font-semibold shadow-sm">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/30 text-[#E58A2B] font-mono text-[11px] font-semibold shadow-sm">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E58A2B]" />
                 </span>
                 <span>Available for Freelance & Mobile Engineering Roles</span>
               </div>
@@ -134,8 +134,8 @@ export const Footer = () => {
                 >
                   {copied ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
-                      <span className="text-emerald-400 font-bold">Email Copied!</span>
+                      <Check className="w-3.5 h-3.5 text-[#E58A2B]" />
+                      <span className="text-[#E58A2B] font-bold">Email Copied!</span>
                     </>
                   ) : (
                     <>
@@ -164,7 +164,7 @@ export const Footer = () => {
                 <span className="font-mono text-xs font-bold text-[#E58A2B] uppercase tracking-wider flex items-center gap-2">
                   <Mail className="w-3.5 h-3.5" /> Direct Email Outreach
                 </span>
-                <span className="text-[10px] text-emerald-400 font-mono font-bold">🟢 Instant Dispatch</span>
+                <span className="text-[10px] text-[#E58A2B] font-mono font-bold">Instant Dispatch</span>
               </div>
 
               {submitted ? (
@@ -251,8 +251,8 @@ export const Footer = () => {
               </div>
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E58A2B]" />
                 </span>
                 <span>Local Time: {currentTime || "Ismailia (UTC+3)"}</span>
               </div>

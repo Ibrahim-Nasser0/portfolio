@@ -141,7 +141,7 @@ export default async function ProjectDetailPage({
               </div>
               <div className="flex justify-between items-center py-2">
                 <span className="text-gray-400 uppercase">Code Quality</span>
-                <span className="font-bold text-emerald-400">SOLID Standard</span>
+                <span className="font-bold text-[#E58A2B]">SOLID Standard</span>
               </div>
             </div>
           </div>
@@ -153,9 +153,9 @@ export default async function ProjectDetailPage({
             src={project.mockupUrl || project.imageUrl}
             alt={project.name}
             fill
+            sizes="(max-width: 1280px) 100vw, 1200px"
             className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
             priority
-            unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#15171E] via-transparent to-transparent opacity-60" />
         </div>
