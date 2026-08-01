@@ -17,12 +17,6 @@ export const GlobalAudioProvider = ({ children }: { children: React.ReactNode })
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Persistent audio element across root layout & route changes
-    const audio = new Audio("/assets/audio/leberch-sad-510083.mp3");
-    audio.loop = true;
-    audio.volume = 0.45;
-    audioRef.current = audio;
-
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -32,7 +26,13 @@ export const GlobalAudioProvider = ({ children }: { children: React.ReactNode })
   }, []);
 
   const toggleAudio = () => {
-    if (!audioRef.current) return;
+    // Lazy instantiate audio element on first explicit user click (prevents 3.8MB payload on page load)
+    if (!audioRef.current) {
+      const audio = new Audio("/assets/audio/leberch-sad-510083.mp3");
+      audio.loop = true;
+      audio.volume = 0.45;
+      audioRef.current = audio;
+    }
 
     if (isPlaying) {
       audioRef.current.pause();

@@ -125,6 +125,7 @@ export default function RootLayout({
       className={`h-full antialiased ${plusJakartaSans.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
     >
       <head>
+        <link rel="preload" as="image" href="/assets/images/me1.jpeg" fetchPriority="high" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

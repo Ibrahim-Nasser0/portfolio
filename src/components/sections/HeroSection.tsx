@@ -138,7 +138,8 @@ export const HeroSection = () => {
                   fill
                   sizes="(max-width: 768px) 340px, 380px"
                   className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                  priority
+                  priority={true}
+                  fetchPriority="high"
                 />
 
                 {/* Vignette Gradients */}
