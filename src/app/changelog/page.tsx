@@ -2,6 +2,7 @@ import { AuroraBackground } from "@/components/ui/AuroraBackground";
 import { Navbar } from "@/components/Navbar";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { DeveloperTerminalModal } from "@/components/ui/DeveloperTerminalModal";
+import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/Footer";
 import { History, GitCommit, Award, BookOpen, Sparkles, CheckCircle2 } from "lucide-react";
 
@@ -35,7 +36,7 @@ export default function ChangelogPage() {
       title: "Article Published: Demystifying Clean Architecture in Flutter",
       desc: "Deep dive into decoupling domain logic from UI widgets, handling error exceptions gracefully with Either<Failure, Success>.",
       icon: BookOpen,
-      tagColor: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+      tagColor: "bg-[#E58A2B]/20 text-[#E58A2B] border-[#E58A2B]/30",
     },
     {
       date: "December 2025",
@@ -43,7 +44,7 @@ export default function ChangelogPage() {
       title: "Shipped Donors Management System (Flutter Desktop)",
       desc: "Released desktop administrative dashboard built with MVVM, get_it dependency injection, and responsive desktop grid views.",
       icon: GitCommit,
-      tagColor: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+      tagColor: "bg-[#E58A2B]/20 text-[#E58A2B] border-[#E58A2B]/30",
     },
   ];
 
@@ -95,6 +96,7 @@ export default function ChangelogPage() {
           })}
         </div>
       </main>
+      <ContactSection />
       <DeveloperTerminalModal />
       <Footer />
     </AuroraBackground>

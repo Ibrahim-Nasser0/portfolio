@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { GlobalAudioProvider } from "@/context/AudioContext";
+import { SplashScreen } from "@/components/ui/SplashScreen";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -133,6 +134,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-[#0B0C0E] text-[#F3F4F6]">
         <GlobalAudioProvider>
+          <SplashScreen />
           {children}
         </GlobalAudioProvider>
       </body>
