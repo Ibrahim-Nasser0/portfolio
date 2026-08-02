@@ -25,7 +25,6 @@ export const Navbar = () => {
   const primaryLinks = [
     { name: "Home", href: "/", icon: Home },
     { name: "Work", href: "/work", icon: Briefcase },
-    { name: "Playground", href: "/playground", icon: Code2 },
     { name: "About", href: "/about", icon: User },
     { name: "Insights", href: "/insights", icon: BookOpen },
   ];

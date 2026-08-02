@@ -1,0 +1,55 @@
+import { TranslationKeys } from "./en";
+
+export const ar: TranslationKeys = {
+  nav: {
+    home: "الرئيسية",
+    work: "المشاريع",
+    about: "عن المطور",
+    insights: "المقالات",
+    more: "المزيد",
+    stack: "الأدوات والتقنيات",
+    changelog: "سجل التحديثات",
+    credentials: "الشهادات والتوصيات",
+    contact: "تواصل معي",
+    skipIntro: "تخطي المقدمة",
+    systemLoading: "جاري تحميل النظام",
+  },
+  hero: {
+    statusBadge: "متاح للمشاريع والوظائف القيادية وتطوير الموبايل",
+    greeting: "مرحباً، أنا",
+    name: "إبراهيم ناصر",
+    role: "مهندس برمجيات ومطور تطبيقات الموبايل",
+    tagline: "أصمم وأطور تطبيقات جوال وسطح مكتب عالية الأداء باستخدام أحدث المعماريات البرمجية Clean Architecture و BLoC.",
+    viewWork: "استعرض المشاريع",
+    downloadResume: "تحميل السيرة الذاتية",
+  },
+  services: {
+    badge: "الخدمات والحلول البرمجية",
+    title: "ما يمكنني بناؤه وحله لك",
+    subtitle: "قدرات برمجية شاملة تشمل تطبيقات الجوال، لوحات تحكم سطح المكتب، الواجهات البرمجية للـ Backend، وتحسين أداء التطبيقات.",
+    mobileTitle: "تطبيقات جوال عابرة للمنصات",
+    mobileSubtitle: "تطبيقات احترافية لنظامي iOS و Android",
+    desktopTitle: "أنظمة إدارة لسطح المكتب",
+    desktopSubtitle: "تطبيقات إدارية لنظامي Windows و macOS",
+    backendTitle: "تطوير الـ Backend والـ APIs",
+    backendSubtitle: "بنية تحتية خادمية قابلة للتوسع",
+    profilingTitle: "فحص وتحديث الأداء",
+    profilingSubtitle: "تدقيق بـ DevTools والوصول لـ 60 FPS",
+  },
+  experience: {
+    badge: "خبرة برمجية تراكمية",
+    title: "الرحلة المهنية و",
+    subtitle: "محطات تطوير البرمجيات.",
+    presentRole: "الوظيفة الحالية",
+  },
+  projects: {
+    badge: "أبرز الأعمال",
+    title: "مشاريع ودراسات حالة مختارة",
+    subtitle: "تطبيقات حقيقية للموبايل وسطح المكتب والويب تم بناؤها بمعمارية برمجية قياسية.",
+    viewProject: "تفاصيل المشروع",
+  },
+  footer: {
+    copyright: "جميع الحقوق محفوظة.",
+    backToTop: "العودة للأعلى",
+  },
+};

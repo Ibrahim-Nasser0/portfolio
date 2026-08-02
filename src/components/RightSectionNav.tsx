@@ -17,11 +17,11 @@ export const RightSectionNav = () => {
     if (pathname === "/") {
       return [
         { id: "hero", label: "INTRO" },
+        { id: "capabilities", label: "SOLUTIONS" },
         { id: "impact", label: "IMPACT" },
         { id: "projects", label: "WORK" },
-        { id: "playground", label: "ENGINE" },
         { id: "architecture", label: "ARCHITECTURE" },
-        { id: "performance", label: "BENCHMARKS" },
+        { id: "performance", label: "PROFILING" },
         { id: "about", label: "ABOUT" },
         { id: "contact", label: "CONTACT" },
       ];

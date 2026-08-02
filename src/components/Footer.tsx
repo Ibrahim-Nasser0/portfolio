@@ -278,12 +278,6 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/playground" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
-                  <Code2 className="w-3.5 h-3.5 text-[#E58A2B]" />
-                  <span>Flutter Engine</span>
-                </Link>
-              </li>
-              <li>
                 <Link href="/about" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
                   <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#E58A2B] transition-colors" />
                   <span>About & Experience</span>
@@ -345,10 +339,9 @@ export const Footer = () => {
           <p>© {new Date().getFullYear()} Ibrahim Nasser Ibrahim. All rights reserved.</p>
 
           <div className="flex items-center gap-6">
-            <span>Designed & Built with Next.js & Tailwind</span>
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#15171E] border border-white/10 hover:border-[#E58A2B] text-gray-300 hover:text-[#E58A2B] transition-all shadow-lg active:scale-95"
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#15171E] border border-white/10 hover:border-[#E58A2B] text-gray-300 hover:text-[#E58A2B] transition-all shadow-lg active:scale-95 cursor-pointer"
             >
               <span>Back to Top</span>
               <ArrowUp className="w-3.5 h-3.5 text-[#E58A2B]" />

@@ -45,6 +45,8 @@ export interface ExperienceItem {
   title: string;
   company: string;
   date: string;
+  startDate: string;
+  endDate?: string;
   descriptionPoints: string[];
 }
 
@@ -117,9 +119,21 @@ export const education = {
 
 export const experiences: ExperienceItem[] = [
   {
+    title: "Co-Founder, CTO & Software Engineer",
+    company: "Mot7km",
+    date: "May 2026 – Present",
+    startDate: "2026-05-01",
+    descriptionPoints: [
+      "Co-Founder: Helping transform ideas into scalable SaaS products at Mot7km.",
+      "CTO: Leading technical strategy, product architecture, and engineering decisions.",
+      "Software Engineer: Actively developing mobile and desktop applications while overseeing web and backend development, ensuring seamless integration, scalability, performance, and a consistent user experience across the platform.",
+    ],
+  },
+  {
     title: "Mobile Development Track Organizer (Volunteer)",
     company: "GDG – Suez Canal University (Remote)",
     date: "Apr 2026 – Present",
+    startDate: "2026-04-01",
     descriptionPoints: [
       "Supported participants in Flutter development, state management, API integration, and responsive UI — reviewing assignments and providing technical feedback.",
       "Collaborated with the core team to organize workshops and hands-on sessions, contributing to track planning and content preparation.",
@@ -129,6 +143,8 @@ export const experiences: ExperienceItem[] = [
     title: "Flutter Developer Intern",
     company: "Com Fab – Egypt (Remote)",
     date: "Nov 2025 – Jan 2026",
+    startDate: "2025-11-01",
+    endDate: "2026-01-31",
     descriptionPoints: [
       "Structured a multi-module Flutter application (e-commerce, chat, donation, support systems) with scalable architecture and UI/UX design.",
       "Contributed to MVP planning, feature prioritization, and future enhancements (notifications, localization).",
@@ -138,6 +154,8 @@ export const experiences: ExperienceItem[] = [
     title: "Flutter Developer Trainee",
     company: "Creativa Innovation Hub – Ismailia (On-site)",
     date: "Jul 2025",
+    startDate: "2025-07-01",
+    endDate: "2025-07-31",
     descriptionPoints: [
       "Built cross-platform Flutter applications applying OOP, reusable widgets, and responsive UI principles.",
       "Participated in hands-on projects simulating real-world development workflows.",

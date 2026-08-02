@@ -1,0 +1,55 @@
+export const en = {
+  nav: {
+    home: "Home",
+    work: "Work",
+    about: "About",
+    insights: "Insights",
+    more: "More",
+    stack: "Stack & Setup",
+    changelog: "Changelog",
+    credentials: "Credentials",
+    contact: "Contact Me",
+    skipIntro: "Skip Intro",
+    systemLoading: "System Loading",
+  },
+  hero: {
+    statusBadge: "Available for Senior Mobile & Architecture Roles",
+    greeting: "Hello, I'm",
+    name: "Ibrahim Nasser",
+    role: "Software Engineer & Mobile Architect",
+    tagline: "Building high-performance, cross-platform mobile & desktop solutions with Clean Architecture & BLoC.",
+    viewWork: "View Case Studies",
+    downloadResume: "Download CV",
+  },
+  services: {
+    badge: "Core Engineering Solutions",
+    title: "What I Can Build & Solve For You",
+    subtitle: "End-to-end software engineering capabilities spanning cross-platform mobile apps, enterprise desktop dashboards, backend APIs, and app performance refactoring.",
+    mobileTitle: "Cross-Platform Mobile Apps",
+    mobileSubtitle: "Production-ready iOS & Android Apps",
+    desktopTitle: "Desktop Management Systems",
+    desktopSubtitle: "Enterprise Windows & macOS Applications",
+    backendTitle: "Backend APIs & Microservices",
+    backendSubtitle: "Scalable Server-Side Architecture",
+    profilingTitle: "Performance Profiling & Refactoring",
+    profilingSubtitle: "DevTools Audits & 60 FPS Optimization",
+  },
+  experience: {
+    badge: "Cumulative Engineering Experience",
+    title: "Career Timeline &",
+    subtitle: "Mobile Engineering Milestones.",
+    presentRole: "PRESENT ROLE",
+  },
+  projects: {
+    badge: "Featured Works",
+    title: "Selected Enterprise Case Studies",
+    subtitle: "Real-world mobile, desktop, and full-stack software applications built with modular architecture.",
+    viewProject: "Explore Case Study",
+  },
+  footer: {
+    copyright: "All rights reserved.",
+    backToTop: "Back to Top",
+  },
+};
+
+export type TranslationKeys = typeof en;

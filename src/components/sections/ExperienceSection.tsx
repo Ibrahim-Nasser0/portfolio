@@ -3,17 +3,20 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { experiences } from "@/data/portfolioData";
-import { Calendar, Sparkles, Building2 } from "lucide-react";
+import { calculateRoleDuration, calculateTotalExperienceYears } from "@/utils/dateUtils";
+import { Calendar, Sparkles, Building2, Clock } from "lucide-react";
 import { TiltCard } from "@/components/ui/TiltCard";
 
 export const ExperienceSection = () => {
+  const totalExperienceText = calculateTotalExperienceYears(experiences);
+
   return (
     <section id="experience" className="py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
       {/* Section Header */}
       <div className="space-y-4 mb-20 text-center max-w-3xl mx-auto">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-semibold uppercase tracking-[0.2em]">
           <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-          <span>Professional Experience & Leadership</span>
+          <span>{totalExperienceText} Cumulative Engineering Experience</span>
         </div>
 
         <h2 className="font-display text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.02]">
@@ -36,6 +39,7 @@ export const ExperienceSection = () => {
           {experiences.map((exp, idx) => {
             const isCurrent = exp.date.toLowerCase().includes("present");
             const isEven = idx % 2 === 0; // Even items on Left, Odd items on Right
+            const roleDuration = calculateRoleDuration(exp.startDate, exp.endDate);
 
             return (
               <motion.div
@@ -93,9 +97,18 @@ export const ExperienceSection = () => {
                         {/* Card Header */}
                         <div className="space-y-3 border-b border-white/10 pb-5">
                           <div className="flex flex-wrap items-center justify-between gap-2">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs">
-                              <Calendar className="w-3.5 h-3.5 text-[#E58A2B]" />
-                              <span>{exp.date}</span>
+                            <div className="flex flex-wrap items-center gap-2">
+                              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs">
+                                <Calendar className="w-3.5 h-3.5 text-[#E58A2B]" />
+                                <span>{exp.date}</span>
+                              </div>
+
+                              {roleDuration && (
+                                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-bold">
+                                  <Clock className="w-3 h-3 text-[#E58A2B]" />
+                                  <span>{roleDuration}</span>
+                                </div>
+                              )}
                             </div>
 
                             {isCurrent && (
@@ -150,9 +163,18 @@ export const ExperienceSection = () => {
                         {/* Card Header */}
                         <div className="space-y-3 border-b border-white/10 pb-5">
                           <div className="flex flex-wrap items-center justify-between gap-2">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs">
-                              <Calendar className="w-3.5 h-3.5 text-[#E58A2B]" />
-                              <span>{exp.date}</span>
+                            <div className="flex flex-wrap items-center gap-2">
+                              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono text-xs">
+                                <Calendar className="w-3.5 h-3.5 text-[#E58A2B]" />
+                                <span>{exp.date}</span>
+                              </div>
+
+                              {roleDuration && (
+                                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-bold">
+                                  <Clock className="w-3 h-3 text-[#E58A2B]" />
+                                  <span>{roleDuration}</span>
+                                </div>
+                              )}
                             </div>
 
                             {isCurrent && (

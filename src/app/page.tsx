@@ -3,6 +3,7 @@ import { AuroraBackground } from "@/components/ui/AuroraBackground";
 import { Navbar } from "@/components/Navbar";
 import { RightSectionNav } from "@/components/RightSectionNav";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { ServicesCapabilitiesSection } from "@/components/sections/ServicesCapabilitiesSection";
 import { ImpactMetricsSection } from "@/components/sections/ImpactMetricsSection";
 import { FeaturedProjectsSection } from "@/components/sections/FeaturedProjectsSection";
 import { PerformanceMatrixSection } from "@/components/sections/PerformanceMatrixSection";
@@ -19,12 +20,6 @@ const CustomCursor = dynamic(() =>
 const DeveloperTerminalModal = dynamic(() =>
   import("@/components/ui/DeveloperTerminalModal").then(
     (mod) => mod.DeveloperTerminalModal
-  )
-);
-
-const FlutterPlaygroundSection = dynamic(() =>
-  import("@/components/sections/FlutterPlaygroundSection").then(
-    (mod) => mod.FlutterPlaygroundSection
   )
 );
 
@@ -48,9 +43,9 @@ export default function HomePage() {
       <RightSectionNav />
       <main className="space-y-6">
         <HeroSection />
+        <ServicesCapabilitiesSection />
         <ImpactMetricsSection />
         <FeaturedProjectsSection />
-        <FlutterPlaygroundSection />
         <ArchitectureVisualizerSection />
         <ArchitecturePrinciplesSection />
         <PerformanceMatrixSection />
