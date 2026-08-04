@@ -2,22 +2,24 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Cpu, Zap, Activity, Layers, ShieldCheck, CheckCircle2, ArrowRight } from "lucide-react";
+import { Cpu, Zap, Activity, Layers, CheckCircle2, ArrowRight } from "lucide-react";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const PerformanceMatrixSection = () => {
+  const { t } = useTranslation();
   const [activeBenchmark, setActiveBenchmark] = useState(0);
 
   const benchmarks = [
     {
       id: "isolates",
-      title: "Background Dart Isolates",
-      subtitle: "Offloading Heavy Data Processing to Background Workers",
-      metric: "0ms UI Jank",
-      comparison: "Down from 120ms main-thread frame drops",
+      title: t("performanceMatrix.b1Title"),
+      subtitle: t("performanceMatrix.b1Subtitle"),
+      metric: t("performanceMatrix.b1Metric"),
+      comparison: t("performanceMatrix.b1Comparison"),
       icon: Cpu,
-      badge: "Dart 3.x Multithreading",
-      problem: "Parsing 5,000+ E-Commerce product records on the main UI thread caused frame drops during scroll.",
-      solution: "Implemented background Isolate streams via compute() to execute JSON serialization off the main thread.",
+      badge: t("performanceMatrix.b1Badge"),
+      problem: t("performanceMatrix.b1Problem"),
+      solution: t("performanceMatrix.b1Solution"),
       code: `// Offloading Heavy JSON Processing to Background Isolate
 Future<List<ProductEntity>> parseProductsAsync(String rawJson) async {
   return await Isolate.run(() {
@@ -26,21 +28,21 @@ Future<List<ProductEntity>> parseProductsAsync(String rawJson) async {
   });
 }`,
       stats: [
-        { label: "Frame Rate Lock", value: "60 FPS" },
-        { label: "Main Thread Latency", value: "0 ms" },
-        { label: "Payload Capacity", value: "5,000+ Items" },
+        { label: t("performanceMatrix.b1s1Label"), value: "60 FPS" },
+        { label: t("performanceMatrix.b1s2Label"), value: "0 ms" },
+        { label: t("performanceMatrix.b1s3Label"), value: "5,000+ Items" },
       ],
     },
     {
       id: "repaint",
-      title: "RepaintBoundary GPU Tuning",
-      subtitle: "Isolating Sub-Canvas Paint Regions",
-      metric: "95% Paint Area Saved",
-      comparison: "Reduced GPU rasterization work from 100% full-screen to 5%",
+      title: t("performanceMatrix.b2Title"),
+      subtitle: t("performanceMatrix.b2Subtitle"),
+      metric: t("performanceMatrix.b2Metric"),
+      comparison: t("performanceMatrix.b2Comparison"),
       icon: Layers,
-      badge: "Impeller Engine Tuning",
-      problem: "Animated cart badge and shimmer loading indicators triggered full-screen GPU canvas repaints on every tick.",
-      solution: "Wrapped dynamic sub-trees in RepaintBoundary nodes, creating isolated Layer boundaries in the Skia/Impeller pipeline.",
+      badge: t("performanceMatrix.b2Badge"),
+      problem: t("performanceMatrix.b2Problem"),
+      solution: t("performanceMatrix.b2Solution"),
       code: `// RepaintBoundary Node Sub-Tree Isolation
 Widget buildAnimatedBadge() {
   return const RepaintBoundary(
@@ -50,21 +52,21 @@ Widget buildAnimatedBadge() {
   );
 }`,
       stats: [
-        { label: "GPU Paint Area", value: "5% (Was 100%)" },
-        { label: "Rasterization Gain", value: "+300%" },
-        { label: "Battery Drain", value: "-40%" },
+        { label: t("performanceMatrix.b2s1Label"), value: "5% (Was 100%)" },
+        { label: t("performanceMatrix.b2s2Label"), value: "+300%" },
+        { label: t("performanceMatrix.b2s3Label"), value: "-40%" },
       ],
     },
     {
       id: "bloc_filter",
-      title: "BLoC Stream Predicate Filtering",
-      subtitle: "Eliminating Redundant Widget Rebuilds",
-      metric: "85% Rebuild Reduction",
-      comparison: "Avoided 85 out of 100 unnecessary widget tree reconstructions",
+      title: t("performanceMatrix.b3Title"),
+      subtitle: t("performanceMatrix.b3Subtitle"),
+      metric: t("performanceMatrix.b3Metric"),
+      comparison: t("performanceMatrix.b3Comparison"),
       icon: Zap,
-      badge: "flutter_bloc 8.x",
-      problem: "Unfiltered state stream emissions caused entire parent screens to rebuild on un-related state changes.",
-      solution: "Configured strict buildWhen condition predicates to ensure widgets rebuild ONLY when target state properties mutate.",
+      badge: t("performanceMatrix.b3Badge"),
+      problem: t("performanceMatrix.b3Problem"),
+      solution: t("performanceMatrix.b3Solution"),
       code: `// BLoC Stream Predicate Rebuild Filter
 BlocBuilder<CheckoutBloc, CheckoutState>(
   buildWhen: (previous, current) => 
@@ -75,21 +77,21 @@ BlocBuilder<CheckoutBloc, CheckoutState>(
   },
 );`,
       stats: [
-        { label: "Widget Rebuilds", value: "85% Saved" },
-        { label: "Memory Churn", value: "Minimal GC" },
-        { label: "State Stream Latency", value: "< 1 ms" },
+        { label: t("performanceMatrix.b3s1Label"), value: "85% Saved" },
+        { label: t("performanceMatrix.b3s2Label"), value: "Minimal GC" },
+        { label: t("performanceMatrix.b3s3Label"), value: "< 1 ms" },
       ],
     },
     {
       id: "binary_opt",
-      title: "Split ABI & Cold Boot Optimization",
-      subtitle: "Binary Size Reduction & Deferred Initialization",
-      metric: "1.8s Cold Boot",
-      comparison: "Cut APK binary size by 50% (from 28.5 MB to 14.2 MB)",
+      title: t("performanceMatrix.b4Title"),
+      subtitle: t("performanceMatrix.b4Subtitle"),
+      metric: t("performanceMatrix.b4Metric"),
+      comparison: t("performanceMatrix.b4Comparison"),
       icon: Activity,
-      badge: "Release Pipeline",
-      problem: "Large bundled assets and monolithic APK binaries caused slow app startup times on low-end Android devices.",
-      solution: "Configured split-per-abi architecture bundling (arm64-v8a) and deferred non-critical SDK initialization to post-frame callbacks.",
+      badge: t("performanceMatrix.b4Badge"),
+      problem: t("performanceMatrix.b4Problem"),
+      solution: t("performanceMatrix.b4Solution"),
       code: `// Release ABI Splitting Command
 flutter build apk --split-per-abi --release --tree-shake-icons
 
@@ -98,9 +100,9 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
   initAnalyticsService();
 });`,
       stats: [
-        { label: "Cold Boot Time", value: "1.8 sec" },
-        { label: "Split APK Size", value: "14.2 MB" },
-        { label: "Crash-Free Rate", value: "99.9%" },
+        { label: t("performanceMatrix.b4s1Label"), value: "1.8 sec" },
+        { label: t("performanceMatrix.b4s2Label"), value: "14.2 MB" },
+        { label: t("performanceMatrix.b4s3Label"), value: "99.9%" },
       ],
     },
   ];
@@ -115,13 +117,13 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
           <span className="text-[#94A3B8] font-mono font-bold">// 06</span>
           <span className="text-white/20">|</span>
           <Activity className="w-3.5 h-3.5" />
-          <span>Flutter DevTools & Engine Profiling</span>
+          <span>{t("performanceMatrix.badge")}</span>
         </div>
         <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Empirical Performance Profiling
+          {t("performanceMatrix.title")}
         </h2>
         <p className="mt-4 text-gray-400 text-base sm:text-lg font-light leading-relaxed">
-          Real-world DevTools profiling audits, frame rate optimizations, and Dart memory management techniques applied in production.
+          {t("performanceMatrix.subtitle")}
         </p>
       </div>
 
@@ -135,7 +137,7 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
             <button
               key={item.id}
               onClick={() => setActiveBenchmark(idx)}
-              className={`p-5 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between ${
+              className={`p-5 rounded-2xl border text-left rtl:text-right transition-all duration-300 flex flex-col justify-between ${
                 isSelected
                   ? "bg-[#15171E] border-[#E58A2B] shadow-2xl scale-[1.02]"
                   : "bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.04]"
@@ -155,7 +157,7 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
 
               <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
                 <span className="font-mono text-sm font-extrabold text-[#E58A2B]">{item.metric}</span>
-                <ArrowRight className={`w-4 h-4 transition-transform ${isSelected ? "text-[#E58A2B] translate-x-1" : "text-gray-500"}`} />
+                <ArrowRight className={`w-4 h-4 transition-transform rtl:rotate-180 ${isSelected ? "text-[#E58A2B] translate-x-1 rtl:-translate-x-1" : "text-gray-500"}`} />
               </div>
             </button>
           );
@@ -184,13 +186,13 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
             {/* Problem & Solution */}
             <div className="space-y-4 text-xs sm:text-sm font-light">
               <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-1">
-                <span className="text-rose-400 font-mono text-xs font-bold uppercase">Profiling Audit (Before):</span>
+                <span className="text-rose-400 font-mono text-xs font-bold uppercase">{t("performanceMatrix.profilingBefore")}</span>
                 <p className="text-gray-300 leading-relaxed">{current.problem}</p>
               </div>
 
               <div className="p-4 rounded-xl bg-[#E58A2B]/5 border border-[#E58A2B]/20 space-y-1">
                 <span className="text-[#E58A2B] font-mono text-xs font-bold uppercase flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#E58A2B]" /> Optimization Fix (After):
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#E58A2B]" /> {t("performanceMatrix.optimizationAfter")}
                 </span>
                 <p className="text-gray-200 leading-relaxed">{current.solution}</p>
               </div>
@@ -214,7 +216,7 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
                 <Zap className="w-4 h-4 text-[#E58A2B]" />
                 <span className="text-white font-bold">{current.id}_optimization.dart</span>
               </div>
-              <span className="text-[10px] text-[#94A3B8] font-bold uppercase">Flutter DevTools Verified</span>
+              <span className="text-[10px] text-[#94A3B8] font-bold uppercase">{t("performanceMatrix.devToolsVerified")}</span>
             </div>
             <pre className="p-5 font-mono text-xs text-amber-100/90 leading-relaxed overflow-x-auto whitespace-pre">
               <code>{current.code}</code>
@@ -225,3 +227,4 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
     </section>
   );
 };
+

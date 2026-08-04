@@ -3,15 +3,18 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Code, Terminal, Palette, GitBranch, Cpu, Database } from "lucide-react";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const ToolsSetupSection = () => {
+  const { t } = useTranslation();
+
   const tools = [
-    { name: "VS Code & Android Studio", category: "IDE & Editor", icon: Code },
-    { name: "Flutter DevTools & Profiler", category: "Debugging & Performance", icon: Cpu },
-    { name: "Git & GitHub Workflow", category: "Version Control", icon: GitBranch },
-    { name: "Figma UI/UX Mockups", category: "Design System", icon: Palette },
-    { name: "Postman & Swagger API", category: "API Testing", icon: Terminal },
-    { name: "Hive & SQLite Inspector", category: "Local Databases", icon: Database },
+    { name: t("toolsSetup.tool1Name"), category: t("toolsSetup.tool1Category"), icon: Code },
+    { name: t("toolsSetup.tool2Name"), category: t("toolsSetup.tool2Category"), icon: Cpu },
+    { name: t("toolsSetup.tool3Name"), category: t("toolsSetup.tool3Category"), icon: GitBranch },
+    { name: t("toolsSetup.tool4Name"), category: t("toolsSetup.tool4Category"), icon: Palette },
+    { name: t("toolsSetup.tool5Name"), category: t("toolsSetup.tool5Category"), icon: Terminal },
+    { name: t("toolsSetup.tool6Name"), category: t("toolsSetup.tool6Category"), icon: Database },
   ];
 
   return (
@@ -20,19 +23,19 @@ export const ToolsSetupSection = () => {
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-3">
           <span className="text-[#94A3B8] font-mono font-bold">// 08</span>
           <span className="text-white/20">|</span>
-          <span className="uppercase tracking-wider">Development Workspace</span>
+          <span className="uppercase tracking-wider">{t("toolsSetup.badge")}</span>
         </div>
         <h2 className="mt-4 font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Everyday Engineering Environment & Tools
+          {t("toolsSetup.title")}
         </h2>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-        {tools.map((t, idx) => {
-          const Icon = t.icon;
+        {tools.map((tItem, idx) => {
+          const Icon = tItem.icon;
           return (
             <motion.div
-              key={t.name}
+              key={tItem.name}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -43,10 +46,10 @@ export const ToolsSetupSection = () => {
                 <Icon className="w-5 h-5" />
               </div>
               <p className="font-display text-xs font-bold text-white group-hover:text-[#E58A2B] transition-colors leading-tight">
-                {t.name}
+                {tItem.name}
               </p>
               <span className="text-[10px] font-mono text-gray-500 block">
-                {t.category}
+                {tItem.category}
               </span>
             </motion.div>
           );
@@ -55,3 +58,4 @@ export const ToolsSetupSection = () => {
     </section>
   );
 };
+

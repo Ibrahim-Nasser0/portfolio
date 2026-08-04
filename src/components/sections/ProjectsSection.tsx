@@ -19,19 +19,26 @@ import {
 import { Github } from "@/components/icons/SocialIcons";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import Link from "next/link";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const ProjectsSection = () => {
+  const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [activeProject, setActiveProject] = useState<ProjectModel | null>(null);
   const [activeModalTab, setActiveModalTab] = useState<"overview" | "architecture" | "challenges">("overview");
 
-  const categories = ["All", "Mobile", "Desktop", "Other"];
+  const categories = [
+    { key: "All", label: t("projects.all") },
+    { key: "Mobile", label: t("projects.mobile") },
+    { key: "Desktop", label: t("projects.desktop") },
+    { key: "Other", label: t("projects.other") },
+  ];
 
-  const getCategoryCount = (category: string) => {
-    if (category === "All") return projects.length;
-    return projects.filter((p) => p.category === category).length;
+  const getCategoryCount = (categoryKey: string) => {
+    if (categoryKey === "All") return projects.length;
+    return projects.filter((p) => p.category === categoryKey).length;
   };
 
   const filteredProjects = projects.filter((project) => {
@@ -55,18 +62,18 @@ export const ProjectsSection = () => {
       <div className="space-y-6 mb-16">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-semibold uppercase tracking-[0.2em]">
           <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-          <span>Case Studies & Systems Portfolio</span>
+          <span>{t("projects.badge")}</span>
         </div>
 
         <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.02]">
-          Shipped Mobile, Web & <br className="hidden sm:block" />
+          {t("projects.title")} <br className="hidden sm:block" />
           <span className="text-gray-400 font-normal hover:text-[#E58A2B] transition-colors">
-            Desktop Architectures.
+            {t("projects.subtitle")}
           </span>
         </h1>
 
         <p className="max-w-2xl text-gray-300 text-base sm:text-lg font-light leading-relaxed">
-          Explore production-ready applications built with Flutter, Clean Architecture, BLoC state management, and SOLID software engineering principles.
+          {t("featuredProjects.subtitle")}
         </p>
 
         {/* Live Search & Filter Bar Controls */}
@@ -74,18 +81,18 @@ export const ProjectsSection = () => {
           {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-2">
             {categories.map((cat) => {
-              const count = getCategoryCount(cat);
+              const count = getCategoryCount(cat.key);
               return (
                 <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
+                  key={cat.key}
+                  onClick={() => setSelectedCategory(cat.key)}
                   className={`px-4 py-2 rounded-full text-xs font-mono font-semibold transition-all duration-300 ${
-                    selectedCategory === cat
+                    selectedCategory === cat.key
                       ? "bg-[#E58A2B] text-black shadow-lg shadow-[#E58A2B]/20 font-bold"
                       : "bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:border-[#E58A2B]/40"
                   }`}
                 >
-                  {cat} <span className="opacity-75 text-[10px]">({count})</span>
+                  {cat.label} <span className="opacity-75 text-[10px]">({count})</span>
                 </button>
               );
             })}

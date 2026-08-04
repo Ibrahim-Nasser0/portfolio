@@ -2,21 +2,23 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShieldCheck, Cpu, Database, ArrowRight, Code2, CheckCircle2, Workflow } from "lucide-react";
+import { ShieldCheck, Cpu, Database, Code2, CheckCircle2, Workflow } from "lucide-react";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const ArchitectureVisualizerSection = () => {
+  const { t } = useTranslation();
   const [activeLayer, setActiveLayer] = useState<"presentation" | "domain" | "data">("domain");
 
   const layers = [
     {
       id: "presentation",
-      name: "Presentation Layer",
-      subtitle: "UI Widgets & BLoC / Cubit State Handlers",
+      name: t("architectureVisualizer.layer1Name"),
+      subtitle: t("architectureVisualizer.layer1Subtitle"),
       icon: Cpu,
       color: "from-amber-500/20 to-[#E58A2B]/10",
       borderColor: "border-[#E58A2B]",
       textColor: "text-[#E58A2B]",
-      summary: "Strictly decoupled from data sources. Rebuilds UI reactively based on immutable state emissions from BLoC events.",
+      summary: t("architectureVisualizer.layer1Summary"),
       code: `// Presentation: Reactive BLoC State Builder
 BlocBuilder<AuthBloc, AuthState>(
   builder: (context, state) => state.when(
@@ -27,20 +29,20 @@ BlocBuilder<AuthBloc, AuthState>(
   ),
 );`,
       highlights: [
-        "Zero business logic in UI widgets",
-        "Freezed immutable states & events",
-        "Deterministic UI state testing",
+        t("architectureVisualizer.layer1h1"),
+        t("architectureVisualizer.layer1h2"),
+        t("architectureVisualizer.layer1h3"),
       ],
     },
     {
       id: "domain",
-      name: "Domain Layer (Core)",
-      subtitle: "Use Cases, Business Entities & Contracts",
+      name: t("architectureVisualizer.layer2Name"),
+      subtitle: t("architectureVisualizer.layer2Subtitle"),
       icon: ShieldCheck,
       color: "from-[#E58A2B]/20 to-amber-500/10",
       borderColor: "border-[#E58A2B]",
       textColor: "text-[#E58A2B]",
-      summary: "Pure Dart layer with zero external dependencies. Defines core business logic, entities, and abstract repository contracts.",
+      summary: t("architectureVisualizer.layer2Summary"),
       code: `// Domain: Pure Business Use Case
 class GetUserProfileUseCase implements UseCase<UserEntity, String> {
   final IUserRepository repository;
@@ -52,20 +54,20 @@ class GetUserProfileUseCase implements UseCase<UserEntity, String> {
   }
 }`,
       highlights: [
-        "100% pure Dart (Framework independent)",
-        "Single Responsibility Use Cases",
-        "Dependency Inversion (DIP) via abstract interfaces",
+        t("architectureVisualizer.layer2h1"),
+        t("architectureVisualizer.layer2h2"),
+        t("architectureVisualizer.layer2h3"),
       ],
     },
     {
       id: "data",
-      name: "Data Layer",
-      subtitle: "Dio REST Client, Hive Local Cache & Data Mappers",
+      name: t("architectureVisualizer.layer3Name"),
+      subtitle: t("architectureVisualizer.layer3Subtitle"),
       icon: Database,
       color: "from-[#E58A2B]/15 to-amber-500/5",
       borderColor: "border-[#E58A2B]/60",
       textColor: "text-[#E58A2B]",
-      summary: "Handles network calls, caching, and serialization. Implements domain repository contracts and converts DTOs to Domain Entities.",
+      summary: t("architectureVisualizer.layer3Summary"),
       code: `// Data: Repository Implementation with Offline Cache Strategy
 class UserRepositoryImpl implements IUserRepository {
   final DioClient dioClient;
@@ -83,9 +85,9 @@ class UserRepositoryImpl implements IUserRepository {
   }
 }`,
       highlights: [
-        "Optimistic local storage via Hive DB",
-        "Dio Interceptors for JWT Refresh & Retries",
-        "Data Transfer Objects (DTO) Mappers",
+        t("architectureVisualizer.layer3h1"),
+        t("architectureVisualizer.layer3h2"),
+        t("architectureVisualizer.layer3h3"),
       ],
     },
   ];
@@ -99,13 +101,13 @@ class UserRepositoryImpl implements IUserRepository {
           <Workflow className="w-3.5 h-3.5" />
           <span className="text-[#94A3B8] font-mono font-bold">// 04</span>
           <span className="text-white/20">|</span>
-          <span>Clean Architecture Blueprint</span>
+          <span>{t("architectureVisualizer.badge")}</span>
         </div>
         <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          System Architecture & Data Flow
+          {t("architectureVisualizer.title")}
         </h2>
         <p className="mt-4 text-gray-400 text-base sm:text-lg font-light leading-relaxed">
-          Interactive breakdown of Clean Architecture layers, ensuring maintainability, 100% testability, and decoupling.
+          {t("architectureVisualizer.subtitle")}
         </p>
       </div>
 
@@ -119,7 +121,7 @@ class UserRepositoryImpl implements IUserRepository {
             <button
               key={layer.id}
               onClick={() => setActiveLayer(layer.id as typeof activeLayer)}
-              className={`relative p-6 rounded-2xl border text-left transition-all duration-300 ${
+              className={`relative p-6 rounded-2xl border text-left rtl:text-right transition-all duration-300 ${
                 isSelected
                   ? `bg-[#15171E] ${layer.borderColor} shadow-2xl scale-[1.02]`
                   : "bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.04]"
@@ -130,7 +132,7 @@ class UserRepositoryImpl implements IUserRepository {
                   <Icon className="w-6 h-6" />
                 </div>
                 <span className="font-mono text-[10px] text-[#94A3B8] font-bold uppercase tracking-widest">
-                  Layer 0{idx + 1}
+                  {t("common.layer")}0{idx + 1}
                 </span>
               </div>
               <h3 className="font-display text-lg font-bold text-white">{layer.name}</h3>
@@ -176,7 +178,7 @@ class UserRepositoryImpl implements IUserRepository {
             {/* Highlights List */}
             <div className="space-y-3 pt-4 border-t border-white/10">
               <span className="font-mono text-xs font-bold text-white uppercase tracking-wider block">
-                Key Architectural Benefits:
+                {t("architectureVisualizer.keyBenefits")}
               </span>
               {current.highlights.map((h, i) => (
                 <div key={i} className="flex items-start gap-2.5 text-xs text-gray-300 font-mono">
@@ -205,3 +207,4 @@ class UserRepositoryImpl implements IUserRepository {
     </section>
   );
 };
+

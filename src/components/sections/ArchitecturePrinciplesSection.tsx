@@ -4,49 +4,46 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Layers, ShieldCheck, Cpu, GitBranch, RefreshCw, Lock } from "lucide-react";
 import { TiltCard } from "@/components/ui/TiltCard";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const ArchitecturePrinciplesSection = () => {
+  const { t } = useTranslation();
+
   const principles = [
     {
       id: "01",
-      title: "Clean Architecture & Layer Separation",
-      description:
-        "Strict decoupling of Domain, Data, and Presentation layers ensuring testability, maintainability, and independence from UI frameworks.",
+      title: t("architecturePrinciples.p1Title"),
+      description: t("architecturePrinciples.p1Desc"),
       icon: Layers,
     },
     {
       id: "02",
-      title: "Predictable BLoC State Management",
-      description:
-        "Unidirectional data flow using BLoC and Cubit patterns, eliminating unexpected UI state side effects across complex screen trees.",
+      title: t("architecturePrinciples.p2Title"),
+      description: t("architecturePrinciples.p2Desc"),
       icon: Cpu,
     },
     {
       id: "03",
-      title: "SOLID Object-Oriented Principles",
-      description:
-        "Single Responsibility, Open/Closed, Dependency Inversion, and Interface Segregation enforced across all repositories and use cases.",
+      title: t("architecturePrinciples.p3Title"),
+      description: t("architecturePrinciples.p3Desc"),
       icon: ShieldCheck,
     },
     {
       id: "04",
-      title: "Modular Repository Pattern",
-      description:
-        "Abstract data source contracts allowing seamless swapping between remote REST APIs, local SQLite/Hive databases, and mock fixtures.",
+      title: t("architecturePrinciples.p4Title"),
+      description: t("architecturePrinciples.p4Desc"),
       icon: GitBranch,
     },
     {
       id: "05",
-      title: "Offline-First Local Caching",
-      description:
-        "Robust offline synchronization strategies using Hive and Shared Preferences for uninterrupted user experiences during network loss.",
+      title: t("architecturePrinciples.p5Title"),
+      description: t("architecturePrinciples.p5Desc"),
       icon: RefreshCw,
     },
     {
       id: "06",
-      title: "Secure Tokens & Storage",
-      description:
-        "Encrypted token storage via Flutter Secure Storage, automatic JWT refresh interceptors, and SSL pinning for enterprise data security.",
+      title: t("architecturePrinciples.p6Title"),
+      description: t("architecturePrinciples.p6Desc"),
       icon: Lock,
     },
   ];
@@ -57,10 +54,10 @@ export const ArchitecturePrinciplesSection = () => {
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-3">
           <span className="text-[#94A3B8] font-mono font-bold">// 05</span>
           <span className="text-white/20">|</span>
-          <span className="uppercase tracking-wider">Engineering Standards</span>
+          <span className="uppercase tracking-wider">{t("architecturePrinciples.badge")}</span>
         </div>
         <h2 className="mt-4 font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Core Software Architecture & Engineering Principles
+          {t("architecturePrinciples.title")}
         </h2>
       </div>
 
@@ -104,3 +101,4 @@ export const ArchitecturePrinciplesSection = () => {
     </section>
   );
 };
+

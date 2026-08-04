@@ -2,10 +2,12 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal, X, CornerDownLeft, Sparkles } from "lucide-react";
+import { Terminal, X, CornerDownLeft } from "lucide-react";
 import { personalInfo, projects, skillCategories } from "@/data/portfolioData";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const DeveloperTerminalModal = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<Array<{ cmd: string; output: React.ReactNode }>>([
@@ -14,9 +16,9 @@ export const DeveloperTerminalModal = () => {
       output: (
         <div className="space-y-1 text-gray-300">
           <p className="text-[#E58A2B] font-bold">
-            Ibrahim Nasser Interactive CLI v1.0.0
+            {t("terminal.welcomeTitle")}
           </p>
-          <p>Type <span className="text-[#E58A2B] font-bold">help</span> to list available commands.</p>
+          <p>{t("terminal.welcomeHint")} <span className="text-[#E58A2B] font-bold">{t("terminal.helpCmd")}</span> {t("terminal.toListCmds")}</p>
         </div>
       ),
     },
@@ -52,13 +54,13 @@ export const DeveloperTerminalModal = () => {
       case "help":
         response = (
           <div className="space-y-1 text-xs font-mono">
-            <p className="text-[#E58A2B] font-bold">Available Commands:</p>
-            <p><span className="text-[#E58A2B] font-bold">projects</span> — List all shipped software case studies</p>
-            <p><span className="text-[#E58A2B] font-bold">skills</span> — Display technical architecture capabilities</p>
-            <p><span className="text-[#E58A2B] font-bold">bio</span> — Summary of Ibrahim Nasser&apos;s background</p>
-            <p><span className="text-[#E58A2B] font-bold">contact</span> — Get direct phone & email details</p>
-            <p><span className="text-[#E58A2B] font-bold">clear</span> — Clear terminal output history</p>
-            <p><span className="text-[#E58A2B] font-bold">exit</span> — Close terminal drawer</p>
+            <p className="text-[#E58A2B] font-bold">{t("terminal.availableCmds")}</p>
+            <p><span className="text-[#E58A2B] font-bold">{t("terminal.cmdProjects")}</span> {t("terminal.cmdProjectsDesc")}</p>
+            <p><span className="text-[#E58A2B] font-bold">{t("terminal.cmdSkills")}</span> {t("terminal.cmdSkillsDesc")}</p>
+            <p><span className="text-[#E58A2B] font-bold">{t("terminal.cmdBio")}</span> {t("terminal.cmdBioDesc")}</p>
+            <p><span className="text-[#E58A2B] font-bold">{t("terminal.cmdContact")}</span> {t("terminal.cmdContactDesc")}</p>
+            <p><span className="text-[#E58A2B] font-bold">{t("terminal.cmdClear")}</span> {t("terminal.cmdClearDesc")}</p>
+            <p><span className="text-[#E58A2B] font-bold">{t("terminal.cmdExit")}</span> {t("terminal.cmdExitDesc")}</p>
           </div>
         );
         break;
@@ -66,7 +68,7 @@ export const DeveloperTerminalModal = () => {
       case "projects":
         response = (
           <div className="space-y-1 text-xs font-mono">
-            <p className="text-[#E58A2B] font-bold">Shipped Projects ({projects.length}):</p>
+            <p className="text-[#E58A2B] font-bold">{t("terminal.shippedProjects")} ({projects.length}):</p>
             {projects.map((p, i) => (
               <p key={p.id} className="text-gray-300">
                 [{i + 1}] <span className="text-white font-bold">{p.name}</span> ({p.category}) — {p.skillsUsed.join(", ")}
@@ -79,7 +81,7 @@ export const DeveloperTerminalModal = () => {
       case "skills":
         response = (
           <div className="space-y-2 text-xs font-mono">
-            <p className="text-[#E58A2B] font-bold">Engineering Stack:</p>
+            <p className="text-[#E58A2B] font-bold">{t("terminal.engineeringStack")}</p>
             {skillCategories.map((c) => (
               <p key={c.title} className="text-gray-300">
                 <span className="text-[#E58A2B] font-bold">{c.title}:</span> {c.skills.join(", ")}
@@ -100,9 +102,9 @@ export const DeveloperTerminalModal = () => {
       case "contact":
         response = (
           <div className="space-y-1 text-xs font-mono text-gray-300">
-            <p>Email: <a href={`mailto:${personalInfo.email}`} className="text-[#E58A2B] hover:underline">{personalInfo.email}</a></p>
-            <p>Phone: <span className="text-[#E58A2B]">{personalInfo.phone}</span></p>
-            <p>Location: <span className="text-white">{personalInfo.location}</span></p>
+            <p>{t("terminal.emailLabel")} <a href={`mailto:${personalInfo.email}`} className="text-[#E58A2B] hover:underline">{personalInfo.email}</a></p>
+            <p>{t("terminal.phoneLabel")} <span className="text-[#E58A2B]">{personalInfo.phone}</span></p>
+            <p>{t("terminal.locationLabel")} <span className="text-white">{personalInfo.location}</span></p>
           </div>
         );
         break;
@@ -120,7 +122,7 @@ export const DeveloperTerminalModal = () => {
       default:
         response = (
           <p className="text-xs font-mono text-rose-400">
-            Command not recognized: &quot;{cleanCmd}&quot;. Type <span className="text-white font-bold">help</span> for commands.
+            {t("terminal.unknownCmd")} &quot;{cleanCmd}&quot;. {t("terminal.typeHelp")} <span className="text-white font-bold">{t("terminal.helpCmd")}</span> {t("terminal.forCommands")}
           </p>
         );
     }
@@ -134,12 +136,12 @@ export const DeveloperTerminalModal = () => {
       {/* Floating Trigger Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 left-6 z-40 flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#15171E]/90 border border-white/10 hover:border-[#E58A2B] text-xs font-mono text-gray-300 hover:text-white backdrop-blur-xl shadow-2xl transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E58A2B]"
+        className="fixed bottom-6 left-6 rtl:left-auto rtl:right-6 z-40 flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#15171E]/90 border border-white/10 hover:border-[#E58A2B] text-xs font-mono text-gray-300 hover:text-white backdrop-blur-xl shadow-2xl transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E58A2B]"
         aria-label="Open Interactive Developer Terminal"
       >
         <Terminal className="w-4 h-4 text-[#E58A2B] group-hover:scale-110 transition-transform" />
-        <span>&gt;_ Ibrahim CLI</span>
-        <span className="hidden sm:inline-block ml-1 px-1.5 py-0.5 rounded bg-white/10 text-[10px] text-gray-400 group-hover:text-white font-mono">
+        <span>{t("terminal.triggerLabel")}</span>
+        <span className="hidden sm:inline-block ml-1 rtl:ml-0 rtl:mr-1 px-1.5 py-0.5 rounded bg-white/10 text-[10px] text-gray-400 group-hover:text-white font-mono">
           Ctrl K
         </span>
       </button>
@@ -162,7 +164,7 @@ export const DeveloperTerminalModal = () => {
                     <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
                     <span className="w-3 h-3 rounded-full bg-[#E58A2B]/80 inline-block" />
                   </div>
-                  <span className="font-mono text-xs text-gray-400 ml-2">
+                  <span className="font-mono text-xs text-gray-400 ml-2 rtl:ml-0 rtl:mr-2">
                     ibrahim@portfolio:~
                   </span>
                 </div>
@@ -201,12 +203,12 @@ export const DeveloperTerminalModal = () => {
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Type a command (e.g. help, projects, skills)..."
+                  placeholder={t("terminal.placeholder")}
                   className="flex-1 bg-transparent border-none outline-none text-white font-mono placeholder:text-gray-500"
                   autoFocus
                 />
                 <button type="submit" className="text-gray-400 hover:text-[#E58A2B]">
-                  <CornerDownLeft className="w-4 h-4" />
+                  <CornerDownLeft className="w-4 h-4 rtl:rotate-180" />
                 </button>
               </form>
             </motion.div>
@@ -216,3 +218,4 @@ export const DeveloperTerminalModal = () => {
     </>
   );
 };
+

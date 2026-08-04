@@ -3,35 +3,34 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FileCode, SearchCheck, Workflow, Rocket } from "lucide-react";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const ProcessWorkflowSection = () => {
+  const { t } = useTranslation();
+
   const steps = [
     {
       step: "01",
-      title: "Requirements & System Design",
-      description:
-        "Analyzing business rules, defining domain entities, drawing UI wireframes, and drafting API contracts with Clean Architecture boundaries.",
+      title: t("workflow.step1Title"),
+      description: t("workflow.step1Desc"),
       icon: SearchCheck,
     },
     {
       step: "02",
-      title: "Clean Code & BLoC Implementation",
-      description:
-        "Writing modular Dart code, constructing immutable BLoC states, enforcing SOLID principles, and building responsive UI widgets.",
+      title: t("workflow.step2Title"),
+      description: t("workflow.step2Desc"),
       icon: FileCode,
     },
     {
       step: "03",
-      title: "API Integration & Caching",
-      description:
-        "Connecting RESTful endpoints via Dio/Http interceptors, setting up Hive/SQLite local caching, and handling offline synchronization.",
+      title: t("workflow.step3Title"),
+      description: t("workflow.step3Desc"),
       icon: Workflow,
     },
     {
       step: "04",
-      title: "QA Testing & Production Release",
-      description:
-        "Conducting widget and unit tests, performing memory leak audits, building Android APKs / iOS bundles, and deploying to app stores.",
+      title: t("workflow.step4Title"),
+      description: t("workflow.step4Desc"),
       icon: Rocket,
     },
   ];
@@ -40,10 +39,10 @@ export const ProcessWorkflowSection = () => {
     <section className="py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
       <div className="mb-16">
         <p className="font-mono text-xs text-[#E58A2B] uppercase tracking-[0.2em]">
-          [ Engineering Workflow ]
+          {t("workflow.badge")}
         </p>
         <h2 className="mt-4 font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Development Process & Delivery Methodology
+          {t("workflow.title")}
         </h2>
       </div>
 
@@ -65,7 +64,7 @@ export const ProcessWorkflowSection = () => {
                     <Icon className="w-5 h-5" />
                   </div>
                   <span className="font-mono text-xs font-bold text-[#E58A2B]">
-                    STEP {s.step}
+                    {t("common.step")}{s.step}
                   </span>
                 </div>
 
@@ -84,3 +83,4 @@ export const ProcessWorkflowSection = () => {
     </section>
   );
 };
+

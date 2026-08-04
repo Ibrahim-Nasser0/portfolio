@@ -5,13 +5,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { personalInfo } from "@/data/portfolioData";
-import { Download, Menu, X, Home, User, Briefcase, Award, BookOpen, Code2, Cpu, History, ChevronDown, Mail, MessageSquare, ExternalLink } from "lucide-react";
+import { Download, Menu, X, Home, User, Briefcase, Award, BookOpen, Code2, Cpu, History, ChevronDown, Mail, MessageSquare, ExternalLink, Globe } from "lucide-react";
 import { Github, Linkedin, Whatsapp } from "@/components/icons/SocialIcons";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { AmbientAudioPlayer } from "@/components/ui/AmbientAudioPlayer";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const Navbar = () => {
   const pathname = usePathname();
+  const { locale, toggleLocale, t } = useTranslation();
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
   const [contactPopoverOpen, setContactPopoverOpen] = useState(false);
@@ -23,17 +25,17 @@ export const Navbar = () => {
 
   // Primary navigation links including Home
   const primaryLinks = [
-    { name: "Home", href: "/", icon: Home },
-    { name: "Work", href: "/work", icon: Briefcase },
-    { name: "About", href: "/about", icon: User },
-    { name: "Insights", href: "/insights", icon: BookOpen },
+    { name: t("nav.home"), href: "/", icon: Home },
+    { name: t("nav.work"), href: "/work", icon: Briefcase },
+    { name: t("nav.about"), href: "/about", icon: User },
+    { name: t("nav.insights"), href: "/insights", icon: BookOpen },
   ];
 
   // Secondary sub-pages under "More ▾"
   const secondaryLinks = [
-    { name: "Stack & Setup", href: "/stack", icon: Cpu, desc: "Tools, Hardware & IDE plugins" },
-    { name: "Changelog", href: "/changelog", icon: History, desc: "Commits, articles & talks log" },
-    { name: "Credentials", href: "/recognition", icon: Award, desc: "Certificates & recommendations" },
+    { name: t("nav.stack"), href: "/stack", icon: Cpu, desc: t("nav.stackDesc") },
+    { name: t("nav.changelog"), href: "/changelog", icon: History, desc: t("nav.changelogDesc") },
+    { name: t("nav.credentials"), href: "/recognition", icon: Award, desc: t("nav.credentialsDesc") },
   ];
 
   const allLinks = [...primaryLinks, ...secondaryLinks];
@@ -68,32 +70,32 @@ export const Navbar = () => {
 
   const contactChannels = [
     {
-      name: "WhatsApp Direct",
+      name: t("nav.whatsappDirect"),
       desc: personalInfo.phone,
       href: whatsappUrl,
       icon: Whatsapp,
     },
     {
-      name: "LinkedIn Profile",
-      desc: "Connect Professionally",
+      name: t("nav.linkedinProfile"),
+      desc: t("nav.linkedinDesc"),
       href: personalInfo.linkedinUrl,
       icon: Linkedin,
     },
     {
-      name: "GitHub Repositories",
-      desc: "Explore Source Code",
+      name: t("nav.githubRepos"),
+      desc: t("nav.githubDesc"),
       href: personalInfo.githubUrl,
       icon: Github,
     },
     {
-      name: "Email Inbox",
+      name: t("nav.emailInbox"),
       desc: personalInfo.email,
       href: `mailto:${personalInfo.email}`,
       icon: Mail,
     },
     {
-      name: "Download Résumé (CV)",
-      desc: "PDF Curriculum Vitae",
+      name: t("nav.downloadCV"),
+      desc: t("nav.cvDesc"),
       href: personalInfo.cvUrl,
       icon: Download,
     },
@@ -168,7 +170,7 @@ export const Navbar = () => {
                 }`}
                 aria-expanded={moreDropdownOpen}
               >
-                <span>More</span>
+                <span>{t("nav.more")}</span>
                 <ChevronDown className={`w-3.5 h-3.5 text-[#E58A2B] transition-transform duration-300 ${moreDropdownOpen ? "rotate-180" : ""}`} />
               </button>
 
@@ -214,6 +216,16 @@ export const Navbar = () => {
 
           {/* Right: Symmetrical CTA Actions Dock (Balanced width matching Left side) */}
           <div className="hidden md:flex items-center gap-2.5 shrink-0">
+            {/* Language Toggle Switcher */}
+            <button
+              onClick={toggleLocale}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#15171E] border border-white/10 hover:border-[#E58A2B] text-gray-300 hover:text-white font-mono text-xs transition-all cursor-pointer shadow-md active:scale-95"
+              title="Switch Language (EN / AR)"
+            >
+              <Globe className="w-3.5 h-3.5 text-[#E58A2B]" />
+              <span className="font-bold uppercase">{locale === "en" ? "AR" : "EN"}</span>
+            </button>
+
             <AmbientAudioPlayer />
 
             {/* Symmetrical Connect CTA Button */}
@@ -228,7 +240,7 @@ export const Navbar = () => {
                 aria-expanded={contactPopoverOpen}
               >
                 <MessageSquare className="w-3.5 h-3.5 text-black" />
-                <span>Connect</span>
+                <span>{t("nav.connect")}</span>
                 <ChevronDown className={`w-3 h-3 text-black transition-transform duration-300 ${contactPopoverOpen ? "rotate-180" : ""}`} />
               </button>
 
@@ -244,10 +256,10 @@ export const Navbar = () => {
                   >
                     <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
                       <span className="font-mono text-xs font-bold text-[#E58A2B] uppercase tracking-wider">
-                        Contact Channels & CV
+                        {t("nav.contactChannels")}
                       </span>
                       <span className="px-2.5 py-0.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/30 text-[#E58A2B] text-[10px] font-mono font-bold tracking-wider">
-                        DIRECT
+                        {t("nav.direct")}
                       </span>
                     </div>
 
@@ -370,7 +382,7 @@ export const Navbar = () => {
                   rel="noopener noreferrer"
                   className="px-5 py-2.5 text-xs font-mono font-bold text-black bg-[#E58A2B] rounded-full shadow-md"
                 >
-                  Résumé ↗
+                  {t("nav.resume")} ↗
                 </a>
               </div>
             </motion.div>

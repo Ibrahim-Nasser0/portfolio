@@ -7,6 +7,7 @@ import { ProjectModel } from "@/data/portfolioData";
 import { ArrowUpRight, Eye, Sparkles } from "lucide-react";
 import { Github } from "@/components/icons/SocialIcons";
 import { TiltCard } from "@/components/ui/TiltCard";
+import { useTranslation } from "@/context/LanguageContext";
 
 interface ProjectCardProps {
   project: ProjectModel;
@@ -19,6 +20,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   index,
   onQuickView,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <TiltCard className="h-full">
       <div className="group relative flex flex-col h-full overflow-hidden rounded-3xl border border-white/10 bg-[#15171E] hover:border-[#E58A2B]/60 transition-all duration-700 hover:-translate-y-1.5 shadow-2xl shadow-black/80">
@@ -47,7 +50,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
             <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#E58A2B] text-black font-mono text-xs font-bold shadow-2xl shadow-[#E58A2B]/50 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Explore Case Study ↗</span>
+              <span>{t("projects.exploreCaseStudy")} ↗</span>
             </div>
           </div>
         </div>
@@ -94,7 +97,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 href={`/project/${project.id}`}
                 className="font-bold text-[#E58A2B] hover:underline flex items-center gap-1"
               >
-                <span>Read Full Case</span>
+                <span>{t("services.exploreCaseStudies")}</span>
                 <span>→</span>
               </Link>
 
@@ -125,3 +128,4 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     </TiltCard>
   );
 };
+

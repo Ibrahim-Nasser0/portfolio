@@ -7,8 +7,10 @@ import { ArrowUpRight, CheckCircle2, Layers, ShieldAlert, X } from "lucide-react
 import { Github } from "@/components/icons/SocialIcons";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import Link from "next/link";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const FeaturedProjectsSection = () => {
+  const { t } = useTranslation();
   const [activeProject, setActiveProject] = useState<ProjectModel | null>(null);
 
   // Take top 3 featured projects for the Home Landing page
@@ -21,10 +23,10 @@ export const FeaturedProjectsSection = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-3">
             <span className="text-[#94A3B8] font-mono font-bold">// 02</span>
             <span className="text-white/20">|</span>
-            <span className="uppercase tracking-wider">Selected Case Studies</span>
+            <span className="uppercase tracking-wider">{t("featuredProjects.badge")}</span>
           </div>
           <h2 className="mt-4 font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Enterprise Mobile & Desktop Systems — Shipped.
+            {t("featuredProjects.title")}
           </h2>
         </div>
 
@@ -32,8 +34,8 @@ export const FeaturedProjectsSection = () => {
           href="/work"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 hover:border-[#E58A2B] text-gray-300 hover:text-[#E58A2B] font-mono text-xs font-semibold transition-all self-start md:self-auto"
         >
-          <span>View All Case Studies ({projects.length})</span>
-          <ArrowUpRight className="w-4 h-4 text-[#E58A2B]" />
+          <span>{t("featuredProjects.viewAll")} ({projects.length})</span>
+          <ArrowUpRight className="w-4 h-4 text-[#E58A2B] rtl:rotate-180" />
         </Link>
       </div>
 
@@ -68,7 +70,7 @@ export const FeaturedProjectsSection = () => {
             >
               <button
                 onClick={() => setActiveProject(null)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-[#E58A2B] hover:text-black text-gray-300 transition-colors"
+                className="absolute top-4 right-4 rtl:right-auto rtl:left-4 p-2 rounded-full bg-white/10 hover:bg-[#E58A2B] hover:text-black text-gray-300 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -84,7 +86,7 @@ export const FeaturedProjectsSection = () => {
               {/* Features */}
               <div>
                 <p className="text-xs font-mono font-bold text-[#E58A2B] uppercase tracking-wider mb-3 flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4" /> Core Features & Architecture
+                  <CheckCircle2 className="w-4 h-4" /> {t("featuredProjects.coreFeatures")}
                 </p>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-300">
                   {activeProject.features.map((feat, i) => (
@@ -99,7 +101,7 @@ export const FeaturedProjectsSection = () => {
               {/* Tech Stack */}
               <div>
                 <p className="text-xs font-mono font-bold text-[#E58A2B] uppercase tracking-wider mb-3 flex items-center gap-2">
-                  <Layers className="w-4 h-4" /> Technologies Used
+                  <Layers className="w-4 h-4" /> {t("featuredProjects.technologiesUsed")}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {activeProject.techMobile.concat(activeProject.techBackend, activeProject.techTools).map((tech) => (
@@ -117,13 +119,13 @@ export const FeaturedProjectsSection = () => {
               {activeProject.challenges.length > 0 && (
                 <div>
                   <p className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-                    <ShieldAlert className="w-4 h-4" /> Engineering Solutions
+                    <ShieldAlert className="w-4 h-4" /> {t("featuredProjects.engineeringSolutions")}
                   </p>
                   <div className="space-y-3">
                     {activeProject.challenges.map((item, idx) => (
                       <div key={idx} className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1 text-xs sm:text-sm">
-                        <p className="text-amber-300 font-semibold">Challenge: {item.challenge}</p>
-                        <p className="text-gray-300 font-light">Solution: {item.solution}</p>
+                        <p className="text-amber-300 font-semibold">{t("common.challenge")} {item.challenge}</p>
+                        <p className="text-gray-300 font-light">{t("common.solutionLabel")} {item.solution}</p>
                       </div>
                     ))}
                   </div>
@@ -136,7 +138,7 @@ export const FeaturedProjectsSection = () => {
                   href={`/project/${activeProject.id}`}
                   className="font-mono text-xs font-bold text-[#E58A2B] hover:underline"
                 >
-                  Dedicated Case Page →
+                  {t("featuredProjects.dedicatedCase")}
                 </Link>
 
                 <a
@@ -146,7 +148,7 @@ export const FeaturedProjectsSection = () => {
                   className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#E58A2B] text-black font-bold text-sm hover:bg-[#F5A642] transition-colors"
                 >
                   <Github className="w-4 h-4" />
-                  <span>View Repository ↗</span>
+                  <span>{t("featuredProjects.viewRepo")}</span>
                 </a>
               </div>
             </motion.div>
@@ -156,3 +158,4 @@ export const FeaturedProjectsSection = () => {
     </section>
   );
 };
+

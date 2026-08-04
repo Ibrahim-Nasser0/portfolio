@@ -3,41 +3,44 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { TrendingUp, LayoutGrid, Server, Database, Award } from "lucide-react";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const ImpactMetricsSection = () => {
+  const { t } = useTranslation();
+
   const metrics = [
     {
       id: "screens",
-      title: "Shipped App Screens & Modules",
+      title: t("impact.screensShipped"),
       stat: "27+",
-      desc: "10+ Desktop Admin screens + 12+ Mobile Donor screens + 5+ Bookly screens.",
+      desc: t("impact.screensDesc"),
       icon: LayoutGrid,
       color: "text-[#E58A2B]",
       borderColor: "border-[#E58A2B]/30",
     },
     {
       id: "apis",
-      title: "Integrated RESTful APIs",
+      title: t("impact.apiEndpoints"),
       stat: "30+",
-      desc: "Connected via Dio with token authentication, interceptors & error mappers.",
+      desc: t("impact.apiDesc"),
       icon: Server,
       color: "text-[#E58A2B]",
       borderColor: "border-[#E58A2B]/30",
     },
     {
       id: "records",
-      title: "Desktop System Capacity",
+      title: t("impact.recordsProcessed"),
       stat: "500+",
-      desc: "Student & Donor records managed with real-time analytics & CRUD storage.",
+      desc: t("impact.recordsDesc"),
       icon: Database,
       color: "text-[#E58A2B]",
       borderColor: "border-[#E58A2B]/30",
     },
     {
-      id: "credentials",
-      title: "Verified Certifications",
-      stat: "21",
-      desc: "Across Clean Architecture, BLoC/MVVM, SQL/NoSQL, and Flutter engineering.",
+      id: "crash",
+      title: t("impact.crashFreeRate"),
+      stat: "99.9%",
+      desc: t("impact.crashFreeDesc"),
       icon: Award,
       color: "text-[#E58A2B]",
       borderColor: "border-[#E58A2B]/30",
@@ -51,13 +54,13 @@ export const ImpactMetricsSection = () => {
           <TrendingUp className="w-3.5 h-3.5" />
           <span className="text-[#94A3B8] font-mono font-bold">// 01</span>
           <span className="text-white/20">|</span>
-          <span>Verified Engineering Output</span>
+          <span>{t("impact.badge")}</span>
         </div>
         <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Delivered Project Metrics & Scale
+          {t("impact.title")}
         </h2>
         <p className="mt-4 text-gray-400 text-base sm:text-lg font-light leading-relaxed">
-          Tangible software deliverables, system integrations, and verified achievements from shipped projects.
+          {t("impact.subtitle")}
         </p>
       </div>
 
@@ -78,7 +81,7 @@ export const ImpactMetricsSection = () => {
                   <Icon className="w-6 h-6" />
                 </div>
                 <span className="font-mono text-[10px] text-gray-500 font-bold uppercase tracking-widest">
-                  Metric 0{idx + 1}
+                  {t("common.metric")}0{idx + 1}
                 </span>
               </div>
 

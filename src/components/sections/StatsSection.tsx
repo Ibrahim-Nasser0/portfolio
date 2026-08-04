@@ -3,35 +3,38 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Award, Briefcase, Code, ShieldCheck } from "lucide-react";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const StatsSection = () => {
+  const { t } = useTranslation();
+
   const stats = [
     {
       id: 1,
       value: "3+",
-      label: "Years Engineering",
-      subtext: "Flutter & .NET Development",
+      label: t("stats.yearsLabel"),
+      subtext: t("stats.yearsSubtext"),
       icon: Briefcase,
     },
     {
       id: 2,
       value: "06",
-      label: "Shipped Case Studies",
-      subtext: "Enterprise Mobile & Desktop Apps",
+      label: t("stats.casesLabel"),
+      subtext: t("stats.casesSubtext"),
       icon: Code,
     },
     {
       id: 3,
       value: "25",
-      label: "Accredited Badges",
-      subtext: "Verified Technical Certifications",
+      label: t("stats.badgesLabel"),
+      subtext: t("stats.badgesSubtext"),
       icon: Award,
     },
     {
       id: 4,
       value: "100%",
-      label: "Clean Architecture",
-      subtext: "BLoC & SOLID Standards",
+      label: t("stats.archLabel"),
+      subtext: t("stats.archSubtext"),
       icon: ShieldCheck,
     },
   ];
@@ -76,3 +79,4 @@ export const StatsSection = () => {
     </section>
   );
 };
+

@@ -2,68 +2,67 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Smartphone, Monitor, Server, Zap, CheckCircle2, ArrowUpRight, Sparkles, Layers, ShieldCheck } from "lucide-react";
+import { Smartphone, Monitor, Server, Zap, CheckCircle2, ArrowUpRight, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const ServicesCapabilitiesSection = () => {
+  const { t } = useTranslation();
+
   const capabilities = [
     {
       id: "mobile",
-      title: "Cross-Platform Mobile Apps",
-      subtitle: "Production-ready iOS & Android Apps",
+      title: t("services.mobileTitle"),
+      subtitle: t("services.mobileSubtitle"),
       icon: Smartphone,
-      description:
-        "Architecting scalable, responsive mobile applications with Flutter, Dart, BLoC state streams, and Clean Architecture. Built for offline-first resilience and zero UI jank.",
+      description: t("services.mobileDesc"),
       deliverables: [
-        "Offline-First Caching (Hive / SQLite)",
-        "Payment Webhooks & Gateway Integration",
-        "Predictable BLoC State Management",
-        "Responsive Tablet & Foldable UI Layouts",
+        t("services.mobileD1"),
+        t("services.mobileD2"),
+        t("services.mobileD3"),
+        t("services.mobileD4"),
       ],
       tags: ["Flutter & Dart", "Clean Architecture", "BLoC Pattern", "Offline Sync"],
     },
     {
       id: "desktop",
-      title: "Desktop Management Systems",
-      subtitle: "Enterprise Windows & macOS Applications",
+      title: t("services.desktopTitle"),
+      subtitle: t("services.desktopSubtitle"),
       icon: Monitor,
-      description:
-        "Building robust desktop administrative software (like Donors Management System) equipped with multi-window support, high-density data tables, local database synchronization, and automated data export.",
+      description: t("services.desktopDesc"),
       deliverables: [
-        "High-Density Data Grids & Export",
-        "Multi-Window Desktop Navigation",
-        "Local Database Synchronization",
-        "Desktop Keyboard Shortcuts & Accessibility",
+        t("services.desktopD1"),
+        t("services.desktopD2"),
+        t("services.desktopD3"),
+        t("services.desktopD4"),
       ],
       tags: ["Flutter Desktop", "MVVM Pattern", "Local SQLite", "Desktop Grid"],
     },
     {
       id: "backend",
-      title: "Backend APIs & Microservices",
-      subtitle: "Scalable Server-Side Architecture",
+      title: t("services.backendTitle"),
+      subtitle: t("services.backendSubtitle"),
       icon: Server,
-      description:
-        "Engineering secure RESTful APIs, microservices, and database models using C# and .NET Core. Handling authentication, data serialization, and OpenAPI documentation.",
+      description: t("services.backendDesc"),
       deliverables: [
-        "ASP.NET Core Web API Development",
-        "JWT Token Authentication & Interceptors",
-        "Relational Database Design (SQL Server)",
-        "OpenAPI / Swagger Integration",
+        t("services.backendD1"),
+        t("services.backendD2"),
+        t("services.backendD3"),
+        t("services.backendD4"),
       ],
       tags: ["C# & .NET", "ASP.NET Core", "SQL Server", "RESTful APIs"],
     },
     {
       id: "profiling",
-      title: "Performance Profiling & Refactoring",
-      subtitle: "DevTools Audits & 60 FPS Optimization",
+      title: t("services.profilingTitle"),
+      subtitle: t("services.profilingSubtitle"),
       icon: Zap,
-      description:
-        "Auditing legacy codebases using DevTools, isolating heavy compute payloads with background Isolates, and refactoring widget trees to eliminate frame drops and memory leaks.",
+      description: t("services.profilingDesc"),
       deliverables: [
-        "Dart Isolate Multithreading",
-        "RepaintBoundary Sub-Tree Isolation",
-        "BLoC Stream Predicate Filtering",
-        "Binary Size & Cold Boot Optimization",
+        t("services.profilingD1"),
+        t("services.profilingD2"),
+        t("services.profilingD3"),
+        t("services.profilingD4"),
       ],
       tags: ["DevTools Profiler", "Dart Isolates", "Memory Management", "60 FPS Lock"],
     },
@@ -78,13 +77,13 @@ export const ServicesCapabilitiesSection = () => {
             <span className="text-[#94A3B8] font-mono font-bold">// 02</span>
             <span className="text-white/20">|</span>
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Core Engineering Solutions</span>
+            <span>{t("services.badge")}</span>
           </div>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            What I Can Build & Solve For You
+            {t("services.title")}
           </h2>
           <p className="mt-4 text-gray-400 text-base sm:text-lg font-light leading-relaxed">
-            End-to-end software engineering capabilities spanning cross-platform mobile apps, enterprise desktop dashboards, backend APIs, and app performance refactoring.
+            {t("services.subtitle")}
           </p>
         </div>
 
@@ -92,8 +91,8 @@ export const ServicesCapabilitiesSection = () => {
           href="/work"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 hover:border-[#E58A2B] text-gray-300 hover:text-[#E58A2B] font-mono text-xs font-semibold transition-all self-start md:self-auto"
         >
-          <span>Explore Case Studies</span>
-          <ArrowUpRight className="w-4 h-4 text-[#E58A2B]" />
+          <span>{t("services.exploreCaseStudies")}</span>
+          <ArrowUpRight className="w-4 h-4 text-[#E58A2B] rtl:rotate-180" />
         </Link>
       </div>
 
@@ -118,7 +117,7 @@ export const ServicesCapabilitiesSection = () => {
                     <Icon className="w-6 h-6" />
                   </div>
                   <span className="font-mono text-[10px] text-[#94A3B8] font-bold uppercase tracking-widest bg-white/5 px-3 py-1 rounded-full border border-white/5">
-                    Solution 0{idx + 1}
+                    {t("common.solution")}0{idx + 1}
                   </span>
                 </div>
 
@@ -138,7 +137,7 @@ export const ServicesCapabilitiesSection = () => {
                 {/* Deliverables List */}
                 <div className="space-y-2 pt-2">
                   <span className="font-mono text-[11px] font-bold text-gray-400 uppercase tracking-wider block mb-2">
-                    Key Deliverables:
+                    {t("common.keyDeliverables")}
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-light text-gray-300">
                     {item.deliverables.map((deliv, i) => (
@@ -169,3 +168,4 @@ export const ServicesCapabilitiesSection = () => {
     </section>
   );
 };
+

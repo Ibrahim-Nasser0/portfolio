@@ -1,25 +1,40 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Fraunces, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Fraunces, JetBrains_Mono, Cairo } from "next/font/google";
 import "./globals.css";
 import { GlobalAudioProvider } from "@/context/AudioContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 import { SplashScreen } from "@/components/ui/SplashScreen";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
+  fallback: ["system-ui", "sans-serif"],
+  adjustFontFallback: false,
 });
 
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
+  fallback: ["Georgia", "serif"],
+  adjustFontFallback: false,
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
+  fallback: ["monospace"],
+  adjustFontFallback: false,
+});
+
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  variable: "--font-cairo",
+  display: "swap",
+  fallback: ["system-ui", "sans-serif"],
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -123,7 +138,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`h-full antialiased ${plusJakartaSans.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
+      className={`h-full antialiased ${plusJakartaSans.variable} ${fraunces.variable} ${jetbrainsMono.variable} ${cairo.variable}`}
     >
       <head>
         <link rel="preload" as="image" href="/assets/images/me1.jpeg" fetchPriority="high" />
@@ -133,10 +148,12 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-[#0B0C0E] text-[#F3F4F6]">
-        <GlobalAudioProvider>
-          <SplashScreen />
-          {children}
-        </GlobalAudioProvider>
+        <LanguageProvider>
+          <GlobalAudioProvider>
+            <SplashScreen />
+            {children}
+          </GlobalAudioProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -1,18 +1,18 @@
+"use client";
+
+import React from "react";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
 import { Navbar } from "@/components/Navbar";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { DeveloperTerminalModal } from "@/components/ui/DeveloperTerminalModal";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/Footer";
-import { History, GitCommit, Award, BookOpen, Sparkles, CheckCircle2 } from "lucide-react";
-
-export const metadata = {
-  title: "Changelog & Activity Log · Ibrahim Nasser",
-  description:
-    "Dynamic timeline of recent engineering commits, published articles, store updates, and GDG community mentorship.",
-};
+import { History, GitCommit, Award, BookOpen } from "lucide-react";
+import { useTranslation } from "@/context/LanguageContext";
 
 export default function ChangelogPage() {
+  const { t } = useTranslation();
+
   const activityLogs = [
     {
       date: "March 2026",
@@ -57,24 +57,24 @@ export default function ChangelogPage() {
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-4">
             <History className="w-3.5 h-3.5" />
-            <span>Engineering Changelog</span>
+            <span>{t("changelog.badge")}</span>
           </div>
           <h1 className="font-display text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
-            Activity & Updates Log
+            {t("changelog.title")}
           </h1>
           <p className="mt-4 text-gray-400 text-base sm:text-lg font-light leading-relaxed">
-            Continuous milestones, open-source contributions, store releases, and technical community talks.
+            {t("changelog.subtitle")}
           </p>
         </div>
 
         {/* Timeline Stream */}
-        <div className="relative border-l border-white/10 pl-6 sm:pl-10 space-y-12 ml-4">
+        <div className="relative border-l rtl:border-l-0 rtl:border-r border-white/10 pl-6 sm:pl-10 rtl:pl-0 rtl:pr-6 rtl:sm:pr-10 space-y-12 ml-4 rtl:ml-0 rtl:mr-4">
           {activityLogs.map((item, idx) => {
             const Icon = item.icon;
             return (
               <div key={idx} className="relative group">
                 {/* Timeline Dot */}
-                <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 p-2 rounded-full bg-[#15171E] border border-[#E58A2B] text-[#E58A2B] shadow-lg group-hover:scale-110 transition-transform">
+                <div className="absolute -left-[31px] sm:-left-[47px] rtl:left-auto rtl:-right-[31px] rtl:sm:-right-[47px] top-1.5 p-2 rounded-full bg-[#15171E] border border-[#E58A2B] text-[#E58A2B] shadow-lg group-hover:scale-110 transition-transform">
                   <Icon className="w-4 h-4" />
                 </div>
 

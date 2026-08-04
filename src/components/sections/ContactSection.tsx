@@ -6,8 +6,10 @@ import { personalInfo } from "@/data/portfolioData";
 import { Mail, MapPin, Send, CheckCircle, ExternalLink } from "lucide-react";
 import { Github, Linkedin, Whatsapp } from "@/components/icons/SocialIcons";
 import confetti from "canvas-confetti";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const ContactSection = () => {
+  const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -39,11 +41,14 @@ export const ContactSection = () => {
     <section id="contact" className="py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
       <div className="mb-16">
         <p className="font-mono text-xs text-[#E58A2B] uppercase tracking-[0.2em]">
-          [ Direct Outreach ]
+          [ {t("contact.badge")} ]
         </p>
         <h2 className="mt-4 font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Let&apos;s build enterprise digital experiences.
+          {t("contact.title")}
         </h2>
+        <p className="mt-3 text-gray-400 text-base sm:text-lg font-light leading-relaxed">
+          {t("contact.subtitle")}
+        </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -56,7 +61,7 @@ export const ContactSection = () => {
           className="space-y-6"
         >
           <p className="text-gray-300 text-base leading-relaxed font-light">
-            Available for full-time mobile development roles, cross-platform Flutter applications, and software architecture consulting. Connect directly via WhatsApp or email.
+            {t("contact.availableDesc")}
           </p>
 
           <div className="space-y-4">
@@ -73,7 +78,7 @@ export const ContactSection = () => {
                 </div>
                 <div>
                   <span className="text-[10px] font-mono text-[#E58A2B] uppercase tracking-wider block font-bold">
-                    WhatsApp Chat (Instant)
+                    {t("contact.whatsappCardLabel")}
                   </span>
                   <span className="font-bold text-sm sm:text-base group-hover:text-[#E58A2B] transition-colors">
                     {personalInfo.phone}
@@ -94,7 +99,7 @@ export const ContactSection = () => {
                 </div>
                 <div>
                   <span className="text-[10px] font-mono text-[#E58A2B] uppercase tracking-wider block font-bold">
-                    Direct Email Inbox
+                    {t("contact.emailCardLabel")}
                   </span>
                   <span className="font-bold text-sm sm:text-base group-hover:text-[#E58A2B] transition-colors">
                     {personalInfo.email}
@@ -110,8 +115,8 @@ export const ContactSection = () => {
                 <MapPin className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider block">Location & Campus</span>
-                <span className="font-bold text-sm sm:text-base">{personalInfo.location} · Suez Canal University</span>
+                <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider block">{t("contact.location")}</span>
+                <span className="font-bold text-sm sm:text-base">{t("hero.location")}</span>
               </div>
             </div>
           </div>
@@ -124,7 +129,7 @@ export const ContactSection = () => {
               className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#15171E] border border-white/10 hover:border-[#E58A2B] hover:text-[#E58A2B] text-gray-300 font-mono text-xs font-semibold transition-all shadow-md"
             >
               <Github className="w-4 h-4" />
-              <span>GitHub Profile ↗</span>
+              <span>{t("contact.githubProfile")}</span>
             </a>
 
             <a
@@ -134,7 +139,7 @@ export const ContactSection = () => {
               className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#15171E] border border-white/10 hover:border-[#E58A2B] hover:text-[#E58A2B] text-gray-300 font-mono text-xs font-semibold transition-all shadow-md"
             >
               <Linkedin className="w-4 h-4" />
-              <span>LinkedIn Profile ↗</span>
+              <span>{t("contact.linkedinProfile")}</span>
             </a>
           </div>
         </motion.div>
@@ -147,54 +152,54 @@ export const ContactSection = () => {
           transition={{ duration: 0.5, delay: 0.15 }}
           className="p-8 rounded-3xl bg-[#15171E] border border-white/10 shadow-2xl space-y-6"
         >
-          <h3 className="font-display text-2xl font-bold text-white">Send a Direct Message</h3>
+          <h3 className="font-display text-2xl font-bold text-white">{t("contact.formTitle")}</h3>
 
           {submitted ? (
             <div className="py-12 text-center space-y-3">
               <CheckCircle className="w-16 h-16 text-[#E58A2B] mx-auto animate-bounce" />
-              <h4 className="font-display text-2xl font-bold text-white">Message Sent Successfully!</h4>
-              <p className="text-gray-300 text-sm font-light">Thank you for reaching out. I will respond to your inquiry promptly.</p>
+              <h4 className="font-display text-2xl font-bold text-white">{t("contact.successTitle")}</h4>
+              <p className="text-gray-300 text-sm font-light">{t("contact.successMessage")}</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">
-                  Your Name
+                  {t("contact.nameLabel")}
                 </label>
                 <input
                   type="text"
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="John Doe"
+                  placeholder={t("contact.namePlaceholder")}
                   className="w-full px-4 py-3 rounded-xl bg-[#0B0C10] border border-white/10 focus:border-[#E58A2B] focus:outline-none text-white text-sm transition-colors"
                 />
               </div>
 
               <div>
                 <label className="block text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">
-                  Your Email
+                  {t("contact.emailLabel")}
                 </label>
                 <input
                   type="email"
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="john@example.com"
+                  placeholder={t("contact.emailPlaceholder")}
                   className="w-full px-4 py-3 rounded-xl bg-[#0B0C10] border border-white/10 focus:border-[#E58A2B] focus:outline-none text-white text-sm transition-colors"
                 />
               </div>
 
               <div>
                 <label className="block text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">
-                  Message
+                  {t("contact.messageLabel")}
                 </label>
                 <textarea
                   required
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Tell me about your project or inquiry..."
+                  placeholder={t("contact.messagePlaceholder")}
                   className="w-full px-4 py-3 rounded-xl bg-[#0B0C10] border border-white/10 focus:border-[#E58A2B] focus:outline-none text-white text-sm transition-colors resize-none"
                 />
               </div>
@@ -204,7 +209,7 @@ export const ContactSection = () => {
                 className="w-full py-3.5 rounded-full bg-[#E58A2B] hover:bg-[#F5A642] text-black font-bold text-sm shadow-lg shadow-[#E58A2B]/20 transition-all flex items-center justify-center gap-2 active:scale-95"
               >
                 <Send className="w-4 h-4" />
-                <span>Send Message</span>
+                <span>{t("contact.sendButton")}</span>
               </button>
             </form>
           )}

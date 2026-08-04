@@ -1,18 +1,17 @@
+"use client";
+
+import React from "react";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
 import { Navbar } from "@/components/Navbar";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { DeveloperTerminalModal } from "@/components/ui/DeveloperTerminalModal";
 import { FlutterPlaygroundSection } from "@/components/sections/FlutterPlaygroundSection";
 import { Footer } from "@/components/Footer";
-import { Sparkles, Code2, Layers, Cpu, CheckCircle2 } from "lucide-react";
-
-export const metadata = {
-  title: "Playground & UI Labs · Ibrahim Nasser",
-  description:
-    "Interactive Flutter component engine, low-level canvas mechanics, spring physics gestures, and reactive BLoC state management demos.",
-};
+import { useTranslation } from "@/context/LanguageContext";
 
 export default function PlaygroundPage() {
+  const { t } = useTranslation();
+
   const labHighlights = [
     {
       title: "CustomPainter & Skia Shaders",
@@ -47,10 +46,10 @@ export default function PlaygroundPage() {
         <section className="py-16 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-white/[0.06]">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Engineering UI Mechanics & Specifications
+              {t("playground.labTitle")}
             </h2>
             <p className="mt-3 text-gray-400 text-sm sm:text-base font-light">
-              Architectural principles powering the interactive Flutter component engine.
+              {t("playground.labSubtitle")}
             </p>
           </div>
 

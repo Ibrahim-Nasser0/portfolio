@@ -7,8 +7,11 @@ import { MapPin, CheckCircle2, Terminal, ArrowDown, Code2 } from "lucide-react";
 import Image from "next/image";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { TiltCard } from "@/components/ui/TiltCard";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const HeroSection = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="hero" className="relative min-h-[90vh] flex flex-col justify-center py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -32,11 +35,11 @@ export const HeroSection = () => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E58A2B]" />
                 </span>
-                <span>Available for Freelance & Mobile Roles</span>
+                <span>{t("hero.statusBadge")}</span>
               </div>
             </div>
             <p className="text-[#9CA3AF] font-medium tracking-[0.18em]">
-              Full-Stack Mobile Developer / Flutter / .NET / Clean Architecture
+              {t("hero.role")}
             </p>
           </motion.div>
 
@@ -47,9 +50,9 @@ export const HeroSection = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="font-display leading-[0.92] tracking-[-0.03em] text-5xl sm:text-7xl md:text-8xl font-extrabold text-white"
           >
-            <span className="block">Ibrahim</span>
+            <span className="block">{t("hero.firstName")}</span>
             <span className="block text-[#9CA3AF] font-normal hover:text-[#E58A2B] transition-colors">
-              Nasser
+              {t("hero.lastName")}
             </span>
           </motion.h1>
 
@@ -60,7 +63,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-6 max-w-xl text-lg sm:text-xl text-gray-300 font-light leading-relaxed"
           >
-            {personalInfo.summaryHeadline}
+            {t("hero.tagline")}
           </motion.p>
 
           {/* Experience Meta Line */}
@@ -70,7 +73,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-[#6B7280]"
           >
-            GDG Mobile Mentor · Suez Canal University · Clean Architecture & BLoC
+            {t("hero.metaLine")}
           </motion.p>
 
           {/* Magnetic CTAs & Developer CLI Hint */}
@@ -83,21 +86,14 @@ export const HeroSection = () => {
             <div className="flex flex-wrap items-center gap-4">
               <MagneticButton href="#projects">
                 <span className="rounded-full bg-[#E58A2B] hover:bg-[#F5A642] px-7 py-3 text-sm font-bold text-black transition-all shadow-lg shadow-[#E58A2B]/25 flex items-center gap-2">
-                  <span>Explore Work</span>
+                  <span>{t("hero.viewWork")}</span>
                   <ArrowDown className="w-4 h-4" />
-                </span>
-              </MagneticButton>
-
-              <MagneticButton href="/playground">
-                <span className="rounded-full border border-white/20 bg-white/5 hover:bg-white/10 px-7 py-3 text-sm font-semibold text-white transition-all flex items-center gap-2">
-                  <Code2 className="w-4 h-4 text-[#E58A2B]" />
-                  <span>Flutter Engine</span>
                 </span>
               </MagneticButton>
 
               <MagneticButton href={personalInfo.cvUrl} target="_blank" rel="noopener noreferrer">
                 <span className="rounded-full border border-[#E58A2B]/40 px-7 py-3 text-sm font-medium text-[#E58A2B] hover:bg-[#E58A2B] hover:text-black transition-all block">
-                  Résumé ↗
+                  {t("hero.downloadResume")} ↗
                 </span>
               </MagneticButton>
             </div>
@@ -105,7 +101,7 @@ export const HeroSection = () => {
             {/* CLI Keyboard Shortcut Badge */}
             <div className="pt-2 flex items-center gap-2 font-mono text-[11px] text-gray-400">
               <Terminal className="w-3.5 h-3.5 text-[#E58A2B]" />
-              <span>Developer CLI:</span>
+              <span>{t("hero.cliHint")}</span>
               <kbd className="px-2 py-0.5 rounded bg-white/10 border border-white/15 text-white font-mono text-[10px]">
                 Ctrl + K
               </kbd>
@@ -151,23 +147,23 @@ export const HeroSection = () => {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E58A2B]" />
                   </span>
-                  <span>GDG Mentor</span>
+                  <span>{t("hero.gdgBadge")}</span>
                 </div>
 
                 {/* Top-Left Verification Badge */}
                 <div className="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md text-[#E58A2B] font-mono text-[10px] font-bold flex items-center gap-1.5 shadow-lg">
                   <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>VERIFIED PRO</span>
+                  <span>{t("hero.verifiedBadge")}</span>
                 </div>
 
                 {/* Bottom Glass Pill Overlay (Tech Highlights) */}
                 <div className="absolute bottom-4 left-4 right-4 z-20 p-4 rounded-2xl bg-[#15171E]/80 backdrop-blur-xl border border-white/10 space-y-2 shadow-xl">
                   <div className="flex items-center justify-between">
                     <span className="font-display text-sm font-bold text-white">
-                      Ibrahim Nasser
+                      {t("hero.name")}
                     </span>
                     <span className="font-mono text-[10px] text-[#E58A2B] font-bold">
-                      FLUTTER & .NET
+                      {t("hero.specialization")}
                     </span>
                   </div>
 

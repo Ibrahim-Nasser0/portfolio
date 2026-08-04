@@ -1,21 +1,21 @@
+"use client";
+
+import React from "react";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
 import { Navbar } from "@/components/Navbar";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { DeveloperTerminalModal } from "@/components/ui/DeveloperTerminalModal";
 import { ToolsSetupSection } from "@/components/sections/ToolsSetupSection";
 import { Footer } from "@/components/Footer";
-import { Cpu, Terminal, Laptop, Wrench, Sparkles, CheckCircle2 } from "lucide-react";
-
-export const metadata = {
-  title: "Engineering Stack & Workspace · Ibrahim Nasser",
-  description:
-    "Detailed breakdown of hardware, IDE extensions, CLI terminal setup, CI/CD pipelines, and development environment.",
-};
+import { Cpu, Wrench } from "lucide-react";
+import { useTranslation } from "@/context/LanguageContext";
 
 export default function StackPage() {
+  const { t } = useTranslation();
+
   const stackCategories = [
     {
-      category: "Mobile & Core Development",
+      category: t("toolsSetup.mobileTrack"),
       items: [
         { name: "Flutter SDK", desc: "Channel Stable (v3.29.x) with Impeller engine enabled", tags: ["Mobile", "Desktop", "Web"] },
         { name: "Dart", desc: "Sound null safety, extension methods, records & pattern matching", tags: ["Language"] },
@@ -24,7 +24,7 @@ export default function StackPage() {
       ],
     },
     {
-      category: "Architecture & State Management",
+      category: t("toolsSetup.architectureTrack"),
       items: [
         { name: "flutter_bloc & cubit", desc: "Unidirectional data flow, reactive UI state management", tags: ["State Engine"] },
         { name: "get_it & injectable", desc: "Service Locator & Compile-time Dependency Injection", tags: ["DIP"] },
@@ -33,7 +33,7 @@ export default function StackPage() {
       ],
     },
     {
-      category: "DevOps, CI/CD & Testing",
+      category: t("toolsSetup.devopsTrack"),
       items: [
         { name: "GitHub Actions", desc: "Automated Flutter test, static code analysis & APK/IPA builds", tags: ["CI/CD"] },
         { name: "Firebase & Sentry", desc: "Crashlytics error tracking, analytics, and remote config", tags: ["Monitoring"] },
@@ -52,13 +52,13 @@ export default function StackPage() {
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-4">
             <Cpu className="w-3.5 h-3.5" />
-            <span>Developer Workspace & Tools</span>
+            <span>{t("stack.badge")}</span>
           </div>
           <h1 className="font-display text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
-            Engineering Stack & Setup
+            {t("stack.title")}
           </h1>
           <p className="mt-4 text-gray-400 text-base sm:text-lg font-light leading-relaxed">
-            The hardware, software, frameworks, and workflow tools I use to architect mobile and desktop software.
+            {t("stack.subtitle")}
           </p>
         </div>
 

@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { TiltCard } from "@/components/ui/TiltCard";
 import Image from "next/image";
+import { useTranslation } from "@/context/LanguageContext";
 
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -34,34 +35,35 @@ interface CategoryGroup {
 }
 
 export const CertificatesSection = () => {
+  const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [activeCert, setActiveCert] = useState<CertificateModel | null>(null);
 
   const categoryGroups: CategoryGroup[] = [
     {
-      name: "Mobile Architecture & Flutter Engineering",
+      name: t("certificates.mobileCategory"),
       categoryKey: "Mobile",
       icon: Smartphone,
-      description: "Accredited credentials in Flutter, Dart, BLoC, Clean Architecture, and Cross-Platform Development.",
+      description: t("certificates.mobileCategoryDesc"),
     },
     {
-      name: "Backend, APIs & Data Systems",
+      name: t("certificates.backendCategory"),
       categoryKey: "Backend",
       icon: Server,
-      description: "Certifications in MS SQL Server, MongoDB, RESTful APIs, Entity Framework Core, and Database Design.",
+      description: t("certificates.backendCategoryDesc"),
     },
     {
-      name: "UI/UX & Product Design Systems",
+      name: t("certificates.uiuxCategory"),
       categoryKey: "UI/UX",
       icon: Palette,
-      description: "Verified badges in Figma, Wireframing, Prototyping, and User-Centered Product Design.",
+      description: t("certificates.uiuxCategoryDesc"),
     },
     {
-      name: "Tools, Core Principles & Version Control",
+      name: t("certificates.toolsCategory"),
       categoryKey: "Tools & Core",
       icon: Wrench,
-      description: "Certifications in Git/GitHub workflows, SOLID principles, OOP, and Clean Code practices.",
+      description: t("certificates.toolsCategoryDesc"),
     },
   ];
 
@@ -70,7 +72,13 @@ export const CertificatesSection = () => {
     return certifications.filter((c) => c.category === categoryKey).length;
   };
 
-  const categories = ["All", "Mobile", "Backend", "UI/UX", "Tools & Core"];
+  const categories = [
+    { key: "All", label: t("certificates.all") },
+    { key: "Mobile", label: t("certificates.mobile") },
+    { key: "Backend", label: t("certificates.backend") },
+    { key: "UI/UX", label: t("certificates.uiux") },
+    { key: "Tools & Core", label: t("certificates.core") },
+  ];
 
   return (
     <section id="certificates" className="py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06] space-y-20">
@@ -78,13 +86,13 @@ export const CertificatesSection = () => {
       <div className="space-y-6">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-semibold uppercase tracking-[0.2em]">
           <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-          <span>Swiper Categorized Credentials Sliders</span>
+          <span>{t("certificates.badge")}</span>
         </div>
 
         <h1 className="font-display text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.02]">
-          Accredited Badges & <br className="hidden sm:block" />
+          {t("certificates.title")} <br className="hidden sm:block" />
           <span className="text-gray-400 font-normal hover:text-[#E58A2B] transition-colors">
-            Technical Engineering Certifications.
+            {t("certificates.subtitle")}
           </span>
         </h1>
 
@@ -97,18 +105,18 @@ export const CertificatesSection = () => {
           {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-2">
             {categories.map((cat) => {
-              const count = getCategoryCount(cat);
+              const count = getCategoryCount(cat.key);
               return (
                 <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
+                  key={cat.key}
+                  onClick={() => setSelectedCategory(cat.key)}
                   className={`px-4 py-2 rounded-full text-xs font-mono font-semibold transition-all duration-300 ${
-                    selectedCategory === cat
+                    selectedCategory === cat.key
                       ? "bg-[#E58A2B] text-black shadow-lg shadow-[#E58A2B]/20 font-bold"
                       : "bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:border-[#E58A2B]/40"
                   }`}
                 >
-                  {cat} <span className="opacity-75 text-[10px]">({count})</span>
+                  {cat.label} <span className="opacity-75 text-[10px]">({count})</span>
                 </button>
               );
             })}
@@ -116,13 +124,13 @@ export const CertificatesSection = () => {
 
           {/* Search Input */}
           <div className="relative md:w-72">
-            <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2 rtl:left-auto rtl:right-3.5" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search credential or issuer..."
-              className="w-full pl-10 pr-4 py-2 rounded-full bg-[#15171E] border border-white/10 focus:border-[#E58A2B] text-xs font-mono text-white focus:outline-none placeholder:text-gray-500 transition-colors"
+              placeholder={t("certificates.searchPlaceholder")}
+              className="w-full pl-10 pr-4 rtl:pl-4 rtl:pr-10 py-2 rounded-full bg-[#15171E] border border-white/10 focus:border-[#E58A2B] text-xs font-mono text-white focus:outline-none placeholder:text-gray-500 transition-colors"
             />
             {searchQuery && (
               <button

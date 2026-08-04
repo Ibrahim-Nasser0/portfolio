@@ -3,11 +3,13 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { recommendations, RecommendationModel } from "@/data/portfolioData";
-import { Quote, Sparkles, X, CheckCircle2, ArrowUpRight, MessageSquareQuote } from "lucide-react";
+import { Sparkles, X, CheckCircle2, ArrowUpRight } from "lucide-react";
 import { Linkedin } from "@/components/icons/SocialIcons";
 import { TiltCard } from "@/components/ui/TiltCard";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const TestimonialsSection = () => {
+  const { t } = useTranslation();
   const [activeRecommendation, setActiveRecommendation] =
     useState<RecommendationModel | null>(null);
 
@@ -19,15 +21,15 @@ export const TestimonialsSection = () => {
           <Sparkles className="w-3.5 h-3.5 animate-pulse" />
           <span className="text-[#94A3B8] font-mono font-bold">// 07</span>
           <span className="text-white/20">|</span>
-          <span>Verified Peer Endorsements</span>
+          <span>{t("testimonials.badge")}</span>
         </div>
 
         <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Recommendations & Team Endorsements
+          {t("testimonials.title")}
         </h2>
 
         <p className="max-w-2xl text-gray-300 text-base font-light leading-relaxed">
-          Authentic LinkedIn recommendations written by backend engineers, full-stack developers, and teammates who have built software alongside Ibrahim.
+          {t("testimonials.subtitle")}
         </p>
       </div>
 
@@ -51,7 +53,7 @@ export const TestimonialsSection = () => {
                   <div className="flex items-center justify-between">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0077B5]/15 border border-[#0077B5]/30 text-[#0077B5] font-mono text-[10px] font-bold uppercase tracking-wider">
                       <Linkedin className="w-3 h-3 fill-current" />
-                      <span>LinkedIn Verified</span>
+                      <span>{t("testimonials.linkedinVerified")}</span>
                     </span>
 
                     <span className="font-mono text-[11px] text-gray-400">
@@ -78,7 +80,7 @@ export const TestimonialsSection = () => {
                     </div>
 
                     <div className="p-2 rounded-full bg-white/5 group-hover:bg-[#E58A2B] text-gray-400 group-hover:text-black transition-all shrink-0">
-                      <ArrowUpRight className="w-4 h-4" />
+                      <ArrowUpRight className="w-4 h-4 rtl:rotate-180" />
                     </div>
                   </div>
 
@@ -112,7 +114,7 @@ export const TestimonialsSection = () => {
             >
               <button
                 onClick={() => setActiveRecommendation(null)}
-                className="absolute top-4 right-4 p-2.5 rounded-full bg-white/10 hover:bg-[#E58A2B] hover:text-black text-gray-300 transition-colors z-10"
+                className="absolute top-4 right-4 rtl:right-auto rtl:left-4 p-2.5 rounded-full bg-white/10 hover:bg-[#E58A2B] hover:text-black text-gray-300 transition-colors z-10"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -121,7 +123,7 @@ export const TestimonialsSection = () => {
                 <div className="flex items-center justify-between">
                   <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0077B5]/20 border border-[#0077B5]/40 text-[#0077B5] font-mono text-xs font-bold uppercase">
                     <Linkedin className="w-3.5 h-3.5 fill-current" />
-                    <span>Verified LinkedIn Recommendation</span>
+                    <span>{t("testimonials.verifiedRecommendation")}</span>
                   </span>
                   <span className="font-mono text-xs text-gray-400">
                     {activeRecommendation.date}
@@ -151,7 +153,7 @@ export const TestimonialsSection = () => {
               {/* Highlights */}
               <div className="space-y-2 pt-2">
                 <span className="font-mono text-xs font-bold text-[#E58A2B] uppercase tracking-wider block">
-                  Key Strengths Endorsed:
+                  {t("testimonials.keyStrengths")}
                 </span>
                 <div className="flex flex-wrap gap-2">
                   {activeRecommendation.highlights.map((h) => (
@@ -174,15 +176,15 @@ export const TestimonialsSection = () => {
                   rel="noopener noreferrer"
                   className="font-mono text-xs font-bold text-[#0077B5] hover:underline flex items-center gap-1"
                 >
-                  <span>Verify on LinkedIn Profile</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
+                  <span>{t("testimonials.verifyOnLinkedin")}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 rtl:rotate-180" />
                 </a>
 
                 <button
                   onClick={() => setActiveRecommendation(null)}
                   className="px-6 py-2 rounded-full bg-white/10 hover:bg-[#E58A2B] hover:text-black font-mono text-xs font-bold transition-colors"
                 >
-                  Close Endorsement
+                  {t("testimonials.closeEndorsement")}
                 </button>
               </div>
             </motion.div>
@@ -192,3 +194,4 @@ export const TestimonialsSection = () => {
     </section>
   );
 };
+

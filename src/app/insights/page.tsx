@@ -13,8 +13,10 @@ import { CodeBlock } from "@/components/ui/CodeBlock";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/Footer";
 import Link from "next/link";
+import { useTranslation } from "@/context/LanguageContext";
 
 export default function InsightsPage() {
+  const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [activeArticle, setActiveArticle] = useState<ArticleModel | null>(null);
@@ -52,18 +54,18 @@ export default function InsightsPage() {
         <div className="space-y-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-semibold uppercase tracking-[0.2em]">
             <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-            <span>Engineering Publications & Architecture Notes</span>
+            <span>{t("insights.badge")}</span>
           </div>
 
           <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.02]">
-            Technical Insights & <br className="hidden sm:block" />
+            {t("insights.title")} <br className="hidden sm:block" />
             <span className="text-gray-400 font-normal hover:text-[#E58A2B] transition-colors">
-              Software Architecture Gists.
+              {t("insights.subtitle")}
             </span>
           </h1>
 
           <p className="max-w-2xl text-gray-300 text-base sm:text-lg font-light leading-relaxed">
-            A collection of engineering articles, architectural patterns, and production lessons learned building Flutter applications and modular cross-platform software.
+            {t("insights.desc")}
           </p>
         </div>
 
@@ -75,7 +77,7 @@ export default function InsightsPage() {
           >
             <div className="flex items-center justify-between font-mono text-xs">
               <span className="px-3.5 py-1 rounded-full bg-[#E58A2B] text-black font-bold uppercase tracking-wider">
-                FEATURED PUBLICATION
+                {t("insights.featured")}
               </span>
               <div className="flex items-center gap-2 text-gray-400">
                 <Clock className="w-3.5 h-3.5 text-[#E58A2B]" />
@@ -105,7 +107,7 @@ export default function InsightsPage() {
               </div>
 
               <span className="font-bold text-[#E58A2B] group-hover:underline flex items-center gap-1">
-                <span>Read Featured Article</span>
+                <span>{t("insights.readFeatured")}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </span>
             </div>
@@ -127,7 +129,7 @@ export default function InsightsPage() {
                       : "bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:border-[#E58A2B]/40"
                   }`}
                 >
-                  {cat} <span className="opacity-75 text-[10px]">({count})</span>
+                  {cat === "All" ? t("insights.all") : cat} <span className="opacity-75 text-[10px]">({count})</span>
                 </button>
               );
             })}
@@ -139,7 +141,7 @@ export default function InsightsPage() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search articles or tags..."
+              placeholder={t("insights.searchPlaceholder")}
               className="w-full pl-10 pr-4 py-2 rounded-full bg-[#15171E] border border-white/10 focus:border-[#E58A2B] text-xs font-mono text-white focus:outline-none placeholder:text-gray-500 transition-colors"
             />
             {searchQuery && (

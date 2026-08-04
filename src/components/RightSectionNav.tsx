@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useTranslation } from "@/context/LanguageContext";
 
 interface SectionConfig {
   id: string;
@@ -10,62 +11,63 @@ interface SectionConfig {
 
 export const RightSectionNav = () => {
   const pathname = usePathname();
+  const { isRTL, t } = useTranslation();
   const [activeSection, setActiveSection] = useState<string>("");
 
   // Determine sections dynamically based on active page route
   const getPageSections = (): SectionConfig[] => {
     if (pathname === "/") {
       return [
-        { id: "hero", label: "INTRO" },
-        { id: "capabilities", label: "SOLUTIONS" },
-        { id: "impact", label: "IMPACT" },
-        { id: "projects", label: "WORK" },
-        { id: "architecture", label: "ARCHITECTURE" },
-        { id: "performance", label: "PROFILING" },
-        { id: "about", label: "ABOUT" },
-        { id: "contact", label: "CONTACT" },
+        { id: "hero", label: t("rightNav.intro") },
+        { id: "capabilities", label: t("rightNav.solutions") },
+        { id: "impact", label: t("rightNav.impact") },
+        { id: "projects", label: t("rightNav.work") },
+        { id: "architecture", label: t("rightNav.architecture") },
+        { id: "performance", label: t("rightNav.profiling") },
+        { id: "about", label: t("rightNav.about") },
+        { id: "contact", label: t("rightNav.contact") },
       ];
     } else if (pathname === "/work") {
       return [
-        { id: "projects", label: "CASE STUDIES" },
-        { id: "contact", label: "CONTACT" },
+        { id: "projects", label: t("rightNav.caseStudies") },
+        { id: "contact", label: t("rightNav.contact") },
       ];
     } else if (pathname === "/about") {
       return [
-        { id: "about", label: "BIO MATRIX" },
-        { id: "experience", label: "TIMELINE" },
-        { id: "skills", label: "CAPABILITIES" },
-        { id: "contact", label: "CONTACT" },
+        { id: "about", label: t("rightNav.bioMatrix") },
+        { id: "experience", label: t("rightNav.timeline") },
+        { id: "skills", label: t("rightNav.capabilities") },
+        { id: "contact", label: t("rightNav.contact") },
       ];
     } else if (pathname === "/playground") {
       return [
-        { id: "playground", label: "FLUTTER ENGINE" },
-        { id: "contact", label: "CONTACT" },
+        { id: "playground", label: t("rightNav.flutterEngine") },
+        { id: "contact", label: t("rightNav.contact") },
       ];
     } else if (pathname === "/stack") {
       return [
-        { id: "stack", label: "WORKSPACE" },
-        { id: "contact", label: "CONTACT" },
+        { id: "stack", label: t("rightNav.workspace") },
+        { id: "contact", label: t("rightNav.contact") },
       ];
     } else if (pathname === "/changelog") {
       return [
-        { id: "changelog", label: "ACTIVITY STREAM" },
-        { id: "contact", label: "CONTACT" },
+        { id: "changelog", label: t("rightNav.activityStream") },
+        { id: "contact", label: t("rightNav.contact") },
       ];
     } else if (pathname === "/recognition") {
       return [
-        { id: "certificates", label: "CREDENTIALS" },
-        { id: "contact", label: "CONTACT" },
+        { id: "certificates", label: t("rightNav.credentials") },
+        { id: "contact", label: t("rightNav.contact") },
       ];
     } else if (pathname === "/insights") {
       return [
-        { id: "insights", label: "PUBLICATIONS" },
-        { id: "contact", label: "CONTACT" },
+        { id: "insights", label: t("rightNav.publications") },
+        { id: "contact", label: t("rightNav.contact") },
       ];
     }
     return [
-      { id: "hero", label: "INTRO" },
-      { id: "contact", label: "CONTACT" },
+      { id: "hero", label: t("rightNav.intro") },
+      { id: "contact", label: t("rightNav.contact") },
     ];
   };
 
@@ -100,7 +102,8 @@ export const RightSectionNav = () => {
   return (
     <nav
       aria-label="Floating section navigation"
-      className="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-end gap-5 pointer-events-auto"
+      className="fixed top-1/2 -translate-y-1/2 right-8 z-40 hidden xl:flex flex-col gap-5 items-end pointer-events-auto dir-ltr"
+      dir="ltr"
     >
       {sections.map((sec) => {
         const isActive = activeSection === sec.id;
@@ -110,7 +113,7 @@ export const RightSectionNav = () => {
             href={`#${sec.id}`}
             className="group flex items-center justify-end gap-3 py-1 cursor-pointer"
           >
-            {/* Label Text */}
+            {/* Label Text (Always on the inside / left side of the dash line) */}
             <span
               className={`whitespace-nowrap font-mono text-[11px] font-semibold uppercase tracking-[0.22em] transition-all duration-300 ${
                 isActive
@@ -121,9 +124,9 @@ export const RightSectionNav = () => {
               {sec.label}
             </span>
 
-            {/* Dash Bar Line (GPU-accelerated scale-x transform) */}
+            {/* Dash Bar Line (Always on the outside / right edge) */}
             <span
-              className={`w-8 h-[2px] rounded-full origin-right transition-transform duration-300 ${
+              className={`w-8 h-[2px] rounded-full transition-transform duration-300 origin-right ${
                 isActive
                   ? "bg-[#E58A2B] scale-x-100"
                   : "bg-white/30 scale-x-50 group-hover:scale-x-100 group-hover:bg-white/70"

@@ -6,8 +6,10 @@ import { experiences } from "@/data/portfolioData";
 import { calculateRoleDuration, calculateTotalExperienceYears } from "@/utils/dateUtils";
 import { Calendar, Sparkles, Building2, Clock } from "lucide-react";
 import { TiltCard } from "@/components/ui/TiltCard";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const ExperienceSection = () => {
+  const { t } = useTranslation();
   const totalExperienceText = calculateTotalExperienceYears(experiences);
 
   return (
@@ -16,13 +18,13 @@ export const ExperienceSection = () => {
       <div className="space-y-4 mb-20 text-center max-w-3xl mx-auto">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-semibold uppercase tracking-[0.2em]">
           <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-          <span>{totalExperienceText} Cumulative Engineering Experience</span>
+          <span>{totalExperienceText} {t("experience.badge")}</span>
         </div>
 
         <h2 className="font-display text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.02]">
-          Career Timeline & <br />
+          {t("experience.title")} <br />
           <span className="text-gray-400 font-normal hover:text-[#E58A2B] transition-colors">
-            Mobile Engineering Milestones.
+            {t("experience.subtitle")}
           </span>
         </h2>
       </div>
@@ -113,7 +115,7 @@ export const ExperienceSection = () => {
 
                             {isCurrent && (
                               <span className="px-3 py-0.5 rounded-full bg-[#E58A2B] text-black font-mono text-[10px] font-bold uppercase tracking-wider">
-                                PRESENT ROLE
+                                {t("experience.presentRole")}
                               </span>
                             )}
                           </div>
@@ -135,7 +137,7 @@ export const ExperienceSection = () => {
                           {exp.descriptionPoints.map((pt, pIdx) => (
                             <div
                               key={pIdx}
-                              className="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3 hover:border-[#E58A2B]/30 transition-colors text-left"
+                              className="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3 hover:border-[#E58A2B]/30 transition-colors text-left rtl:text-right"
                             >
                               <span className="text-[#E58A2B] font-bold text-sm mt-0.5">•</span>
                               <span className="text-gray-300 text-xs sm:text-sm font-light leading-relaxed">
@@ -179,7 +181,7 @@ export const ExperienceSection = () => {
 
                             {isCurrent && (
                               <span className="px-3 py-0.5 rounded-full bg-[#E58A2B] text-black font-mono text-[10px] font-bold uppercase tracking-wider">
-                                PRESENT ROLE
+                                {t("experience.presentRole")}
                               </span>
                             )}
                           </div>
@@ -201,7 +203,7 @@ export const ExperienceSection = () => {
                           {exp.descriptionPoints.map((pt, pIdx) => (
                             <div
                               key={pIdx}
-                              className="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3 hover:border-[#E58A2B]/30 transition-colors text-left"
+                              className="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-start gap-3 hover:border-[#E58A2B]/30 transition-colors text-left rtl:text-right"
                             >
                               <span className="text-[#E58A2B] font-bold text-sm mt-0.5">•</span>
                               <span className="text-gray-300 text-xs sm:text-sm font-light leading-relaxed">
@@ -225,3 +227,4 @@ export const ExperienceSection = () => {
     </section>
   );
 };
+

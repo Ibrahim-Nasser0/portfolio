@@ -3,11 +3,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, ArrowRight, ShieldCheck, Cpu, Code2 } from "lucide-react";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const SplashScreen = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [stage, setStage] = useState("[ 01 ] BOOTSTRAPPING ENGINE");
+  const [stage, setStage] = useState(t("splash.stage1"));
 
   const cardRef = useRef<HTMLDivElement>(null);
   const [rotateX, setRotateX] = useState(0);
@@ -31,13 +33,13 @@ export const SplashScreen = () => {
 
         // Update stage status message based on progress thresholds
         if (currentProgress < 25) {
-          setStage("[ 01 ] BOOTSTRAPPING ENGINE");
+          setStage(t("splash.stage1"));
         } else if (currentProgress < 55) {
-          setStage("[ 02 ] CLEAN ARCHITECTURE");
+          setStage(t("splash.stage2"));
         } else if (currentProgress < 85) {
-          setStage("[ 03 ] BLOC STATE STREAMS");
+          setStage(t("splash.stage3"));
         } else {
-          setStage("[ 04 ] SYSTEM READY");
+          setStage(t("splash.stage4"));
         }
 
         if (elapsed < duration) {
@@ -52,7 +54,7 @@ export const SplashScreen = () => {
 
       requestAnimationFrame(updateProgress);
     }
-  }, []);
+  }, [t]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -116,7 +118,7 @@ export const SplashScreen = () => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E58A2B]" />
               </span>
               <span className="font-mono text-xs font-bold text-gray-300 uppercase tracking-[0.2em]">
-                System Initialization
+                {t("splash.systemInit")}
               </span>
             </div>
 
@@ -124,7 +126,7 @@ export const SplashScreen = () => {
               onClick={handleComplete}
               className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:border-[#E58A2B] text-gray-300 hover:text-white font-mono text-xs font-semibold backdrop-blur-md transition-all group cursor-pointer shadow-lg"
             >
-              <span>Skip Intro</span>
+              <span>{t("splash.skipIntro")}</span>
               <ArrowRight className="w-3.5 h-3.5 text-[#E58A2B] group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -184,9 +186,9 @@ export const SplashScreen = () => {
                 transition={{ delay: 0.5, duration: 0.4 }}
                 className="flex items-center justify-center gap-2 font-mono text-xs text-[#94A3B8] font-medium uppercase tracking-[0.2em]"
               >
-                <span>Flutter Lead</span>
+                <span>{t("splash.role1")}</span>
                 <span className="text-[#E58A2B]">•</span>
-                <span>Software Engineer</span>
+                <span>{t("splash.role2")}</span>
               </motion.div>
             </div>
           </div>
@@ -214,3 +216,4 @@ export const SplashScreen = () => {
     </AnimatePresence>
   );
 };
+

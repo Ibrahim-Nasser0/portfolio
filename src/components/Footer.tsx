@@ -6,8 +6,10 @@ import { personalInfo } from "@/data/portfolioData";
 import { ArrowUp, Copy, Check, Mail, MapPin, Download, Code2, Cpu, History, ExternalLink, Send, CheckCircle2 } from "lucide-react";
 import { Github, Linkedin, Whatsapp } from "@/components/icons/SocialIcons";
 import confetti from "canvas-confetti";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const Footer = () => {
+  const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
@@ -83,15 +85,15 @@ export const Footer = () => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E58A2B]" />
                 </span>
-                <span>Available for Freelance & Mobile Engineering Roles</span>
+                <span>{t("footer.available")}</span>
               </div>
 
               <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-                Ready to build high-performance <span className="text-[#E58A2B]">mobile applications?</span>
+                {t("footer.headline")} <span className="text-[#E58A2B]">{t("footer.headlineAccent")}</span>
               </h2>
 
               <p className="text-gray-300 text-sm sm:text-base font-light leading-relaxed max-w-xl">
-                Reach out directly via WhatsApp, LinkedIn, GitHub, or send a direct email to discuss architecture and development collaboration.
+                {t("footer.desc")}
               </p>
 
               {/* Complete Direct Action Pill Dock (WhatsApp, LinkedIn, GitHub, Email, CV) */}
@@ -130,17 +132,17 @@ export const Footer = () => {
                 <button
                   onClick={handleCopyEmail}
                   className="px-4 py-2.5 rounded-full bg-white/5 border border-white/15 hover:border-[#E58A2B] font-mono text-xs font-semibold text-gray-200 hover:text-white transition-all flex items-center gap-1.5 active:scale-95"
-                  title="Copy Email"
+                  title={t("footer.copyEmail")}
                 >
                   {copied ? (
                     <>
                       <Check className="w-3.5 h-3.5 text-[#E58A2B]" />
-                      <span className="text-[#E58A2B] font-bold">Email Copied!</span>
+                      <span className="text-[#E58A2B] font-bold">{t("footer.emailCopied")}</span>
                     </>
                   ) : (
                     <>
                       <Copy className="w-3.5 h-3.5 text-[#E58A2B]" />
-                      <span>Copy Email</span>
+                      <span>{t("footer.copyEmail")}</span>
                     </>
                   )}
                 </button>
@@ -153,7 +155,7 @@ export const Footer = () => {
                   title="Download Resume PDF"
                 >
                   <Download className="w-3.5 h-3.5" />
-                  <span>CV (PDF) ↗</span>
+                  <span>{t("footer.cvPdf")}</span>
                 </a>
               </div>
             </div>
@@ -162,44 +164,44 @@ export const Footer = () => {
             <div className="lg:col-span-6 p-6 sm:p-7 rounded-2xl bg-[#0B0C10]/80 border border-white/10 backdrop-blur-xl shadow-xl space-y-4">
               <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <span className="font-mono text-xs font-bold text-[#E58A2B] uppercase tracking-wider flex items-center gap-2">
-                  <Mail className="w-3.5 h-3.5" /> Direct Email Outreach
+                  <Mail className="w-3.5 h-3.5" /> {t("footer.outreach")}
                 </span>
-                <span className="text-[10px] text-[#E58A2B] font-mono font-bold">Instant Dispatch</span>
+                <span className="text-[10px] text-[#E58A2B] font-mono font-bold">{t("footer.instantDispatch")}</span>
               </div>
 
               {submitted ? (
                 <div className="py-8 text-center space-y-2">
                   <CheckCircle2 className="w-12 h-12 text-[#E58A2B] mx-auto animate-bounce" />
-                  <h4 className="font-display text-xl font-bold text-white">Message Sent Successfully!</h4>
-                  <p className="text-gray-400 text-xs font-light">Thank you for reaching out. I will respond to your email promptly.</p>
+                  <h4 className="font-display text-xl font-bold text-white">{t("contact.successTitle")}</h4>
+                  <p className="text-gray-400 text-xs font-light">{t("contact.successMessage")}</p>
                 </div>
               ) : (
                 <form onSubmit={handleFormSubmit} className="space-y-3">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-1">
-                        Name
+                        {t("contact.nameLabel")}
                       </label>
                       <input
                         type="text"
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="Your Name"
+                        placeholder={t("contact.namePlaceholder")}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-[#15171E] border border-white/10 focus:border-[#E58A2B] focus:outline-none text-white text-xs font-mono transition-colors"
                       />
                     </div>
 
                     <div>
                       <label className="block text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-1">
-                        Email
+                        {t("contact.emailLabel")}
                       </label>
                       <input
                         type="email"
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="name@example.com"
+                        placeholder={t("contact.emailPlaceholder")}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-[#15171E] border border-white/10 focus:border-[#E58A2B] focus:outline-none text-white text-xs font-mono transition-colors"
                       />
                     </div>
@@ -207,14 +209,14 @@ export const Footer = () => {
 
                   <div>
                     <label className="block text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-1">
-                      Message
+                      {t("contact.messageLabel")}
                     </label>
                     <textarea
                       required
                       rows={3}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Briefly describe your project or inquiry..."
+                      placeholder={t("contact.messagePlaceholder")}
                       className="w-full px-3.5 py-2.5 rounded-xl bg-[#15171E] border border-white/10 focus:border-[#E58A2B] focus:outline-none text-white text-xs font-mono transition-colors resize-none"
                     />
                   </div>
@@ -224,7 +226,7 @@ export const Footer = () => {
                     className="w-full py-3 rounded-full bg-[#E58A2B] hover:bg-[#F5A642] text-black font-mono font-bold text-xs shadow-lg shadow-[#E58A2B]/20 transition-all flex items-center justify-center gap-2 active:scale-95"
                   >
                     <Send className="w-3.5 h-3.5" />
-                    <span>Send Message</span>
+                    <span>{t("contact.sendButton")}</span>
                   </button>
                 </form>
               )}
@@ -241,20 +243,20 @@ export const Footer = () => {
             </Link>
 
             <p className="text-gray-400 text-sm font-light leading-relaxed">
-              Flutter Developer & Cross-Platform Mobile Engineer specializing in Clean Architecture, BLoC, and SOLID software design principles.
+              {t("hero.tagline")}
             </p>
 
             <div className="space-y-2 font-mono text-xs text-gray-400 pt-1">
               <div className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-[#E58A2B]" />
-                <span>{personalInfo.location} · Suez Canal University</span>
+                <span>{t("hero.location")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E58A2B]" />
                 </span>
-                <span>Local Time: {currentTime || "Ismailia (UTC+3)"}</span>
+                <span>{t("footer.localTime")} {currentTime || "Ismailia (UTC+3)"}</span>
               </div>
             </div>
           </div>
@@ -262,37 +264,37 @@ export const Footer = () => {
           {/* Navigation Sitemap */}
           <div className="space-y-3">
             <p className="font-mono text-xs font-bold text-[#E58A2B] uppercase tracking-[0.2em]">
-              Navigation
+              {t("footer.navigation")}
             </p>
             <ul className="space-y-2 text-sm font-mono">
               <li>
                 <Link href="/" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
                   <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#E58A2B] transition-colors" />
-                  <span>Home</span>
+                  <span>{t("footer.home")}</span>
                 </Link>
               </li>
               <li>
                 <Link href="/work" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
                   <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#E58A2B] transition-colors" />
-                  <span>Work & Case Studies</span>
+                  <span>{t("footer.work")}</span>
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
                   <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#E58A2B] transition-colors" />
-                  <span>About & Experience</span>
+                  <span>{t("footer.about")}</span>
                 </Link>
               </li>
               <li>
                 <Link href="/insights" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
                   <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-[#E58A2B] transition-colors" />
-                  <span>Insights & Articles</span>
+                  <span>{t("footer.insights")}</span>
                 </Link>
               </li>
               <li>
                 <Link href="/stack" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
                   <Cpu className="w-3.5 h-3.5 text-[#E58A2B]" />
-                  <span>Stack & Setup</span>
+                  <span>{t("footer.stack")}</span>
                 </Link>
               </li>
             </ul>
@@ -301,7 +303,7 @@ export const Footer = () => {
           {/* Featured Systems */}
           <div className="space-y-3">
             <p className="font-mono text-xs font-bold text-[#E58A2B] uppercase tracking-[0.2em]">
-              Case Studies
+              {t("footer.caseStudies")}
             </p>
             <ul className="space-y-2 text-sm font-mono">
               <li>
@@ -327,7 +329,7 @@ export const Footer = () => {
               <li>
                 <Link href="/changelog" className="text-gray-400 hover:text-[#E58A2B] transition-colors flex items-center gap-1.5 pt-1">
                   <History className="w-3.5 h-3.5 text-[#E58A2B]" />
-                  <span>Changelog</span>
+                  <span>{t("footer.changelog")}</span>
                 </Link>
               </li>
             </ul>
@@ -336,14 +338,14 @@ export const Footer = () => {
 
         {/* Bottom Bar & Back To Top */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-gray-400">
-          <p>© {new Date().getFullYear()} Ibrahim Nasser Ibrahim. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Ibrahim Nasser Ibrahim. {t("footer.copyright")}</p>
 
           <div className="flex items-center gap-6">
             <button
               onClick={scrollToTop}
               className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#15171E] border border-white/10 hover:border-[#E58A2B] text-gray-300 hover:text-[#E58A2B] transition-all shadow-lg active:scale-95 cursor-pointer"
             >
-              <span>Back to Top</span>
+              <span>{t("footer.backToTop")}</span>
               <ArrowUp className="w-3.5 h-3.5 text-[#E58A2B]" />
             </button>
           </div>
@@ -352,3 +354,4 @@ export const Footer = () => {
     </footer>
   );
 };
+

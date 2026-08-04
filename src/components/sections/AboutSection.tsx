@@ -11,30 +11,32 @@ import {
   Download,
   Sparkles,
   Globe2,
-  CheckCircle2,
-  Code,
   ShieldCheck,
   Zap,
+  Code,
 } from "lucide-react";
 import { Github, Linkedin } from "@/components/icons/SocialIcons";
 import Image from "next/image";
 import { TiltCard } from "@/components/ui/TiltCard";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const AboutSection = () => {
+  const { t } = useTranslation();
+
   const engineeringValues = [
     {
-      title: "Clean Architecture First",
-      description: "Decoupled domain logic, clear boundary interfaces, and testable use cases.",
+      title: t("about.value1Title"),
+      description: t("about.value1Desc"),
       icon: ShieldCheck,
     },
     {
-      title: "Predictable BLoC States",
-      description: "Immutable state streams that eliminate unexpected side effects in mobile UI.",
+      title: t("about.value2Title"),
+      description: t("about.value2Desc"),
       icon: Zap,
     },
     {
-      title: "Continuous Mentorship",
-      description: "Sharing technical knowledge and guiding junior developers at GDG SCU.",
+      title: t("about.value3Title"),
+      description: t("about.value3Desc"),
       icon: Code,
     },
   ];
@@ -47,18 +49,18 @@ export const AboutSection = () => {
           <Sparkles className="w-3.5 h-3.5 animate-pulse" />
           <span className="text-[#94A3B8] font-mono font-bold">// 09</span>
           <span className="text-white/20">|</span>
-          <span>About & Engineering Background</span>
+          <span>{t("about.badge")}</span>
         </div>
 
         <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.02]">
-          Driven by Clean Architecture & <br className="hidden sm:block" />
+          {t("about.title")} <br className="hidden sm:block" />
           <span className="text-gray-400 font-normal hover:text-[#E58A2B] transition-colors">
-            Modular Mobile Systems.
+            {t("about.titleAccent")}
           </span>
         </h1>
 
         <p className="max-w-3xl text-gray-300 text-base sm:text-lg font-light leading-relaxed">
-          I am a Software Engineer and Full-Stack Mobile Developer studying Computer Science at Suez Canal University. I specialize in architecting scalable, maintainable mobile applications using Flutter, BLoC state management, .NET APIs, and SOLID design patterns.
+          {t("about.bio")}
         </p>
       </div>
 
@@ -90,7 +92,7 @@ export const AboutSection = () => {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E58A2B]" />
                   </span>
-                  <span>GDG Mobile Mentor & CS Student</span>
+                  <span>{t("about.portraitPill")}</span>
                 </div>
 
                 <h3 className="font-display text-2xl font-bold text-white">{personalInfo.name}</h3>
@@ -108,7 +110,7 @@ export const AboutSection = () => {
               className="flex-1 text-center py-2.5 rounded-xl bg-[#E58A2B] text-black font-bold hover:bg-[#F5A642] transition-colors flex items-center justify-center gap-1.5"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>Résumé ↗</span>
+              <span>{t("about.resumeCta")}</span>
             </a>
 
             <div className="flex items-center gap-1">
@@ -149,15 +151,15 @@ export const AboutSection = () => {
                 <GraduationCap className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="font-display text-2xl font-bold text-white">Academic Specialty</h3>
-                <p className="text-xs text-gray-400 font-mono">Suez Canal University</p>
+                <h3 className="font-display text-2xl font-bold text-white">{t("about.academicTitle")}</h3>
+                <p className="text-xs text-gray-400 font-mono">{t("about.university")}</p>
               </div>
             </div>
 
-            <div className="border-l-2 border-[#E58A2B] pl-4 py-1 space-y-1">
+            <div className="border-l-2 border-[#E58A2B] rtl:border-l-0 rtl:border-r-2 rtl:pl-0 rtl:pr-4 pl-4 py-1 space-y-1">
               <p className="text-xl font-bold text-white">{education.university}</p>
               <p className="text-sm text-[#E58A2B] font-medium">{education.degree}</p>
-              <p className="text-xs text-gray-400 font-mono">{education.year} · Expected {education.expectedGraduation}</p>
+              <p className="text-xs text-gray-400 font-mono">{education.year} · {t("about.expected")} {education.expectedGraduation}</p>
             </div>
 
             <p className="text-gray-300 text-sm font-light leading-relaxed">
@@ -172,7 +174,7 @@ export const AboutSection = () => {
                 <Mail className="w-4 h-4" />
               </div>
               <div className="min-w-0">
-                <span className="text-[10px] text-gray-400 uppercase tracking-wider block">Email</span>
+                <span className="text-[10px] text-gray-400 uppercase tracking-wider block">{t("about.emailLabel")}</span>
                 <a href={`mailto:${personalInfo.email}`} className="font-bold text-white truncate block hover:text-[#E58A2B] transition-colors">
                   {personalInfo.email}
                 </a>
@@ -184,7 +186,7 @@ export const AboutSection = () => {
                 <Phone className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-[10px] text-gray-400 uppercase tracking-wider block">Phone</span>
+                <span className="text-[10px] text-gray-400 uppercase tracking-wider block">{t("about.phoneLabel")}</span>
                 <a href={`tel:${personalInfo.phone}`} className="font-bold text-white hover:text-[#E58A2B] transition-colors">
                   {personalInfo.phone}
                 </a>
@@ -196,7 +198,7 @@ export const AboutSection = () => {
                 <MapPin className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-[10px] text-gray-400 uppercase tracking-wider block">Location</span>
+                <span className="text-[10px] text-gray-400 uppercase tracking-wider block">{t("about.locationLabel")}</span>
                 <span className="font-bold text-white">{personalInfo.location}</span>
               </div>
             </div>
@@ -206,8 +208,8 @@ export const AboutSection = () => {
                 <Globe2 className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-[10px] text-gray-400 uppercase tracking-wider block">Languages</span>
-                <span className="font-bold text-white">Arabic (Native), English (Proficient)</span>
+                <span className="text-[10px] text-gray-400 uppercase tracking-wider block">{t("about.languagesLabel")}</span>
+                <span className="font-bold text-white">{t("about.languagesValue")}</span>
               </div>
             </div>
           </div>
@@ -215,7 +217,7 @@ export const AboutSection = () => {
           {/* Core Engineering Values */}
           <div className="p-6 rounded-3xl bg-[#15171E] border border-white/10 space-y-4">
             <p className="font-mono text-xs font-bold text-[#E58A2B] uppercase tracking-[0.2em]">
-              [ Core Engineering Pillars ]
+              {t("about.pillarsTitle")}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {engineeringValues.map((val) => {
@@ -237,3 +239,4 @@ export const AboutSection = () => {
     </section>
   );
 };
+

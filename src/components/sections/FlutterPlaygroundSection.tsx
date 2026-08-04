@@ -2,9 +2,11 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Smartphone, Layers, Cpu, Wifi, WifiOff, Sparkles, RefreshCw, Code2, Play, Activity, Sliders, Move } from "lucide-react";
+import { Layers, Cpu, Wifi, WifiOff, Sparkles, RefreshCw, Code2, Play, Sliders, Move } from "lucide-react";
+import { useTranslation } from "@/context/LanguageContext";
 
 export const FlutterPlaygroundSection = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<"bloc" | "physics" | "painter" | "sync" | "glass">("bloc");
   const [showCode, setShowCode] = useState(false);
 
@@ -99,13 +101,13 @@ ClipRRect(
           <Sparkles className="w-3.5 h-3.5" />
           <span className="text-[#94A3B8] font-mono font-bold">// 03</span>
           <span className="text-white/20">|</span>
-          <span>Interactive Flutter Engine Simulator</span>
+          <span>{t("playground.badge")}</span>
         </div>
         <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Flutter UI Mechanics & State Engine
+          {t("playground.title")}
         </h2>
         <p className="mt-4 text-gray-400 text-base sm:text-lg font-light leading-relaxed">
-          Test live Flutter component mechanics, spring physics, BLoC state streams, and offline-first data sync in real time.
+          {t("playground.subtitle")}
         </p>
       </div>
 
@@ -115,46 +117,46 @@ ClipRRect(
         <div className="lg:col-span-5 space-y-3">
           <div className="flex items-center justify-between mb-2">
             <h3 className="text-xs font-mono uppercase tracking-wider text-gray-400 font-bold">
-              Select Showcase Module:
+              {t("playground.selectModule")}
             </h3>
             <button
               onClick={() => setShowCode(!showCode)}
               className="text-[11px] font-mono text-[#E58A2B] hover:underline flex items-center gap-1"
             >
               <Code2 className="w-3.5 h-3.5" />
-              <span>{showCode ? "Hide Dart Code" : "Show Dart Code"}</span>
+              <span>{showCode ? t("playground.hideCode") : t("playground.showCode")}</span>
             </button>
           </div>
 
           {[
             {
               id: "bloc",
-              title: "Reactive BLoC State Management",
-              desc: "Observe unidirectional data flow and state emissions.",
+              title: t("playground.tab1Title"),
+              desc: t("playground.tab1Desc"),
               icon: Layers,
             },
             {
               id: "physics",
-              title: "Physics & Spring Gestures",
-              desc: "Interactive spring physics, dampening & velocity drag.",
+              title: t("playground.tab2Title"),
+              desc: t("playground.tab2Desc"),
               icon: Move,
             },
             {
               id: "painter",
-              title: "Custom Painter & Canvas Shaders",
-              desc: "Low-level Lissajous math rendering & Skia canvas.",
+              title: t("playground.tab3Title"),
+              desc: t("playground.tab3Desc"),
               icon: Cpu,
             },
             {
               id: "sync",
-              title: "Offline-First Sync (Hive + Dio)",
-              desc: "Network dropout simulation & optimistic local queue.",
+              title: t("playground.tab4Title"),
+              desc: t("playground.tab4Desc"),
               icon: isOnline ? Wifi : WifiOff,
             },
             {
               id: "glass",
-              title: "Dynamic Glassmorphism Aesthetics",
-              desc: "HSL accent color picker & specular reflections.",
+              title: t("playground.tab5Title"),
+              desc: t("playground.tab5Desc"),
               icon: Sliders,
             },
           ].map((tab) => {
@@ -165,7 +167,7 @@ ClipRRect(
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 flex items-start gap-4 ${
+                className={`w-full text-left rtl:text-right p-4 rounded-2xl border transition-all duration-300 flex items-start gap-4 ${
                   isSelected
                     ? "bg-[#15171E] border-[#E58A2B] shadow-xl shadow-[#E58A2B]/10 scale-[1.01]"
                     : "bg-white/[0.02] border-white/5 hover:border-white/15 hover:bg-white/[0.04]"
@@ -246,12 +248,12 @@ ClipRRect(
                         {blocState === "loading" ? (
                           <>
                             <RefreshCw className="w-4 h-4 animate-spin" />
-                            <span>Emitting State...</span>
+                            <span>{t("playground.emittingState")}</span>
                           </>
                         ) : (
                           <>
-                            <Play className="w-4 h-4 fill-current" />
-                            <span>Dispatch CounterIncremented</span>
+                            <Play className="w-4 h-4 fill-current rtl:rotate-180" />
+                            <span>{t("playground.dispatchEvent")}</span>
                           </>
                         )}
                       </button>
@@ -267,7 +269,7 @@ ClipRRect(
                       className="space-y-4 text-center"
                     >
                       <p className="text-[11px] text-gray-400 font-mono">
-                        Drag card around to test spring recoil
+                        {t("playground.dragCard")}
                       </p>
                       <motion.div
                         drag
@@ -277,7 +279,7 @@ ClipRRect(
                         className="p-5 rounded-2xl bg-[#E58A2B] text-black font-bold text-xs shadow-2xl cursor-grab active:cursor-grabbing border border-amber-300 flex flex-col items-center gap-2"
                       >
                         <Move className="w-5 h-5 animate-bounce" />
-                        <span>Interactive Spring Physics</span>
+                        <span>{t("playground.springPhysics")}</span>
                       </motion.div>
                     </motion.div>
                   )}
@@ -324,7 +326,7 @@ ClipRRect(
                       className="space-y-4"
                     >
                       <div className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/10 font-mono text-xs">
-                        <span className="text-gray-300">Network State:</span>
+                        <span className="text-gray-300">{t("playground.networkState")}</span>
                         <button
                           onClick={() => setIsOnline(!isOnline)}
                           className={`px-3 py-1 rounded-full text-[10px] font-bold flex items-center gap-1.5 transition-colors ${
@@ -334,20 +336,20 @@ ClipRRect(
                           }`}
                         >
                           {isOnline ? <Wifi className="w-3 h-3" /> : <WifiOff className="w-3 h-3" />}
-                          <span>{isOnline ? "ONLINE" : "OFFLINE"}</span>
+                          <span>{isOnline ? t("playground.online") : t("playground.offline")}</span>
                         </button>
                       </div>
 
                       <div className="p-3 rounded-xl bg-white/5 border border-white/10 space-y-2 max-h-32 overflow-y-auto font-mono text-[11px]">
                         <div className="flex justify-between text-gray-400 font-bold">
-                          <span>Hive Local Queue:</span>
-                          <span>{syncQueue.length} Pending</span>
+                          <span>{t("playground.hiveQueue")}</span>
+                          <span>{syncQueue.length} {t("playground.pending")}</span>
                         </div>
                         {syncQueue.map((item, idx) => (
                           <div key={idx} className="flex items-center justify-between text-gray-300 text-[10px]">
                             <span>{item}</span>
                             <span className={isOnline ? "text-[#E58A2B] font-semibold" : "text-amber-400 font-semibold"}>
-                              {isOnline ? "Synced" : "Cached"}
+                              {isOnline ? t("playground.synced") : t("playground.cached")}
                             </span>
                           </div>
                         ))}
@@ -357,7 +359,7 @@ ClipRRect(
                         onClick={addSyncItem}
                         className="w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-mono text-xs font-semibold border border-white/10 transition-all active:scale-95"
                       >
-                        + Add Local Mutation
+                        {t("playground.addMutation")}
                       </button>
                     </motion.div>
                   )}
@@ -378,7 +380,7 @@ ClipRRect(
                         }}
                       >
                         <div className="flex items-center justify-between">
-                          <span className="font-display text-sm font-bold text-white">Dynamic Glass Card</span>
+                          <span className="font-display text-sm font-bold text-white">{t("playground.glassCard")}</span>
                           <span className="font-mono text-[10px] font-bold text-white">HUE {accentHue}°</span>
                         </div>
                         <p className="text-xs text-gray-300 font-light">
@@ -388,7 +390,7 @@ ClipRRect(
 
                       <div className="space-y-1">
                         <label className="text-[10px] font-mono text-gray-400 flex justify-between">
-                          <span>HSL Hue Accent Picker:</span>
+                          <span>{t("playground.huePicker")}</span>
                           <span>{accentHue}°</span>
                         </label>
                         <input
@@ -439,3 +441,4 @@ ClipRRect(
     </section>
   );
 };
+
