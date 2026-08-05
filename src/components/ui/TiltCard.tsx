@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 
 interface TiltCardProps {
@@ -11,6 +11,15 @@ interface TiltCardProps {
 export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "" }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsTouchDevice(
+        window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768
+      );
+    }
+  }, []);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -22,7 +31,7 @@ export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "" }) 
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (isTouchDevice || !cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
 
     const width = rect.width;
@@ -41,9 +50,14 @@ export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "" }) 
   };
 
   const handleMouseLeave = () => {
+    if (isTouchDevice) return;
     x.set(0);
     y.set(0);
   };
+
+  if (isTouchDevice) {
+    return <div className={`relative ${className}`}>{children}</div>;
+  }
 
   return (
     <motion.div

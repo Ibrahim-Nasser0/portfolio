@@ -17,15 +17,15 @@ export const FeaturedProjectsSection = () => {
   const featuredProjects = projects.filter((p) => p.isFeatured).slice(0, 3);
 
   return (
-    <section id="projects" className="py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+    <section id="projects" className="py-16 md:py-24 lg:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-3">
             <span className="text-[#94A3B8] font-mono font-bold">// 03</span>
             <span className="text-white/20">|</span>
             <span className="uppercase tracking-wider">{t("featuredProjects.badge")}</span>
           </div>
-          <h2 className="mt-4 font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
             {t("featuredProjects.title")}
           </h2>
         </div>
@@ -40,7 +40,7 @@ export const FeaturedProjectsSection = () => {
       </div>
 
       {/* Featured Projects Grid (3 Items) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {featuredProjects.map((project, idx) => (
           <motion.div
             key={project.id}
@@ -79,7 +79,7 @@ export const FeaturedProjectsSection = () => {
                 <span className="px-3 py-1 rounded-full bg-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-bold uppercase">
                   {activeProject.category}
                 </span>
-                <h3 className="font-display text-3xl font-bold text-white mt-2">{activeProject.name}</h3>
+                <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mt-2">{activeProject.name}</h3>
                 <p className="text-gray-300 text-sm mt-2 font-light">{activeProject.heroDescription}</p>
               </div>
 
@@ -133,7 +133,7 @@ export const FeaturedProjectsSection = () => {
               )}
 
               {/* Modal Actions */}
-              <div className="pt-4 border-t border-white/10 flex justify-between items-center">
+              <div className="pt-4 border-t border-white/10 flex justify-between items-center flex-wrap gap-3">
                 <Link
                   href={`/project/${activeProject.id}`}
                   className="font-mono text-xs font-bold text-[#E58A2B] hover:underline"
@@ -158,4 +158,3 @@ export const FeaturedProjectsSection = () => {
     </section>
   );
 };
-

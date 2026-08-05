@@ -27,6 +27,11 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
     let currentMouseX = -1000;
     let currentMouseY = -1000;
     let isTabActive = true;
+    let frameCount = 0;
+
+    const isTouchDevice =
+      typeof window !== "undefined" &&
+      (window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768);
 
     const handleVisibilityChange = () => {
       isTabActive = !document.hidden;
@@ -36,15 +41,9 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
     };
 
     const handleMouseMove = (e: MouseEvent) => {
+      if (isTouchDevice) return;
       mouseX = e.clientX;
       mouseY = e.clientY;
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      if (e.touches && e.touches.length > 0) {
-        mouseX = e.touches[0].clientX;
-        mouseY = e.touches[0].clientY;
-      }
     };
 
     const particles: DustParticle[] = [];
@@ -57,17 +56,19 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
 
     const initParticles = () => {
       particles.length = 0;
-      const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
-      const count = Math.floor((canvas.width * canvas.height) / (isMobile ? 18000 : 10000));
+      const isMobile = window.innerWidth < 768;
+      // Drastically reduce particle count on mobile for smooth 60fps rendering
+      const divider = isMobile ? 35000 : 10000;
+      const count = Math.floor((canvas.width * canvas.height) / divider);
 
       for (let i = 0; i < count; i++) {
-        const maxAlpha = Math.random() * 0.4 + 0.05;
+        const maxAlpha = Math.random() * 0.35 + 0.05;
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.15,
-          vy: (Math.random() - 0.5) * 0.15,
-          size: Math.random() * 1.2 + 0.4,
+          vx: (Math.random() - 0.5) * 0.12,
+          vy: (Math.random() - 0.5) * 0.12,
+          size: Math.random() * 1.1 + 0.4,
           alpha: maxAlpha,
           maxAlpha,
         });
@@ -79,11 +80,20 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
     const render = () => {
       if (document.hidden) return;
 
+      frameCount++;
+      // Frame throttling on touch/mobile devices to minimize main thread work
+      if (isTouchDevice && frameCount % 2 !== 0) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
+
       tick += 0.01;
 
-      // Smooth mouse lerp
-      currentMouseX += (mouseX - currentMouseX) * 0.08;
-      currentMouseY += (mouseY - currentMouseY) * 0.08;
+      // Smooth mouse lerp (desktop only)
+      if (!isTouchDevice) {
+        currentMouseX += (mouseX - currentMouseX) * 0.08;
+        currentMouseY += (mouseY - currentMouseY) * 0.08;
+      }
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -91,8 +101,8 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
       ctx.fillStyle = "#0B0C0E";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // 2. Interactive Mouse Torch Spotlight
-      if (currentMouseX > 0 && currentMouseY > 0) {
+      // 2. Interactive Mouse Torch Spotlight (Desktop only)
+      if (!isTouchDevice && currentMouseX > 0 && currentMouseY > 0) {
         ctx.save();
         ctx.globalCompositeOperation = "screen";
 
@@ -104,7 +114,7 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
           currentMouseY,
           350
         );
-        mouseGlow.addColorStop(0, "rgba(229, 138, 43, 0.10)"); // Subtle warm gold
+        mouseGlow.addColorStop(0, "rgba(229, 138, 43, 0.10)");
         mouseGlow.addColorStop(0.5, "rgba(180, 95, 20, 0.03)");
         mouseGlow.addColorStop(1, "rgba(11, 12, 14, 0)");
 
@@ -125,7 +135,7 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
         if (p.y > canvas.height) p.y = 0;
 
         const twinkle = Math.sin(tick + p.x) * 0.08;
-        const alpha = Math.max(0.02, Math.min(0.6, p.alpha + twinkle));
+        const alpha = Math.max(0.02, Math.min(0.5, p.alpha + twinkle));
 
         ctx.fillStyle = `rgba(240, 240, 245, ${alpha})`;
         ctx.beginPath();
@@ -137,16 +147,18 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
     };
 
     window.addEventListener("resize", resize, { passive: true });
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    if (!isTouchDevice) {
+      window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    }
     document.addEventListener("visibilitychange", handleVisibilityChange);
     resize();
     render();
 
     return () => {
       window.removeEventListener("resize", resize);
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("touchmove", handleTouchMove);
+      if (!isTouchDevice) {
+        window.removeEventListener("mousemove", handleMouseMove);
+      }
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       cancelAnimationFrame(animationFrameId);
     };
@@ -160,7 +172,7 @@ export const AuroraBackground = ({ children }: { children?: React.ReactNode }) =
         className="fixed inset-0 pointer-events-none z-0"
       />
 
-      {/* Top-Right Ambient Warm Gold Radial Glow (Exact match to surendarselvaraj.com) */}
+      {/* Top-Right Ambient Warm Gold Radial Glow */}
       <div
         aria-hidden="true"
         className="pointer-events-none fixed right-[8%] top-[15%] z-0 h-[65vh] w-[65vh] rounded-full opacity-25 blur-[120px]"

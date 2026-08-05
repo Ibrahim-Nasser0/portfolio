@@ -23,6 +23,18 @@ export const Navbar = () => {
   const contactRef = useRef<HTMLDivElement | null>(null);
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Lock body scroll when mobile menu drawer is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   // Primary navigation links including Home
   const primaryLinks = [
     { name: t("nav.home"), href: "/", icon: Home },
@@ -332,9 +344,10 @@ export const Navbar = () => {
               initial={{ opacity: 0, y: -10, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.98 }}
-              className="md:hidden pointer-events-auto mt-3 max-w-7xl mx-auto bg-[#15171E]/95 border border-white/10 rounded-2xl p-6 backdrop-blur-2xl shadow-2xl space-y-4"
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="md:hidden pointer-events-auto mt-3 max-w-7xl mx-auto bg-[#15171E]/95 border border-white/10 rounded-2xl p-5 backdrop-blur-2xl shadow-2xl space-y-4 max-h-[85vh] overflow-y-auto"
             >
-              <div className="grid grid-cols-2 gap-2.5">
+              <div className="grid grid-cols-2 gap-2">
                 {allLinks.map((link) => {
                   const Icon = link.icon;
                   const isActive = pathname === link.href;
@@ -346,18 +359,46 @@ export const Navbar = () => {
                       onClick={() => setMobileMenuOpen(false)}
                       className={`flex items-center gap-2.5 p-3 min-h-[44px] rounded-xl font-mono text-xs transition-all ${
                         isActive
-                          ? "bg-[#E58A2B] text-black font-bold"
+                          ? "bg-[#E58A2B] text-black font-bold shadow-md shadow-[#E58A2B]/20"
                           : "bg-white/5 border border-white/5 text-gray-300 hover:text-white"
                       }`}
                     >
-                      <Icon className="w-4 h-4" />
-                      <span>{link.name}</span>
+                      <Icon className="w-4 h-4 shrink-0" />
+                      <span className="truncate">{link.name}</span>
                     </Link>
                   );
                 })}
               </div>
 
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between flex-wrap gap-3">
+              {/* Direct Quick Contact Buttons inside Drawer */}
+              <div className="pt-3 border-t border-white/10 space-y-2">
+                <span className="font-mono text-[10px] font-bold text-[#E58A2B] uppercase tracking-wider block">
+                  {t("nav.contactChannels")}
+                </span>
+                <div className="grid grid-cols-2 gap-2">
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 text-xs font-mono font-medium hover:border-[#E58A2B]/40"
+                  >
+                    <Whatsapp className="w-4 h-4 text-[#E58A2B]" />
+                    <span className="truncate">WhatsApp</span>
+                  </a>
+                  <a
+                    href={`mailto:${personalInfo.email}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 text-xs font-mono font-medium hover:border-[#E58A2B]/40"
+                  >
+                    <Mail className="w-4 h-4 text-[#E58A2B]" />
+                    <span className="truncate">Email</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Drawer Footer Actions */}
+              <div className="pt-3 border-t border-white/10 flex items-center justify-between flex-wrap gap-2.5">
                 {/* Mobile Drawer Language Switcher Button */}
                 <button
                   onClick={toggleLocale}
@@ -367,7 +408,7 @@ export const Navbar = () => {
                   <span>{locale === "en" ? "العربية (AR)" : "English (EN)"}</span>
                 </button>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
                   <a
                     href={personalInfo.githubUrl}
                     target="_blank"
@@ -386,22 +427,13 @@ export const Navbar = () => {
                   >
                     <Linkedin className="w-4 h-4" />
                   </a>
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2.5 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:text-[#E58A2B]"
-                    aria-label="WhatsApp Chat"
-                  >
-                    <Whatsapp className="w-4 h-4" />
-                  </a>
                 </div>
 
                 <a
                   href={personalInfo.cvUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full text-center py-2.5 text-xs font-mono font-bold text-black bg-[#E58A2B] hover:bg-[#F5A642] rounded-full shadow-md transition-all"
+                  className="w-full text-center py-2.5 text-xs font-mono font-bold text-black bg-[#E58A2B] hover:bg-[#F5A642] rounded-full shadow-md transition-all block"
                 >
                   {t("nav.resume")} ↗
                 </a>
