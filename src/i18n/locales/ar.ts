@@ -44,7 +44,7 @@ export const ar = {
     firstName: "إبراهيم",
     lastName: "ناصر",
     role: "مهندس برمجيات ومطور تطبيقات شامل (Software Engineer & Full-Stack Developer)",
-    tagline: "تطوير وبناء تطبيقات الموبايل وسطح المكتب عالية الأداء بواسطة Flutter و .NET Core، مع تطبيق المعمارية النظيفة Clean Architecture وإدارة الحالة BLoC ومبادئ SOLID لضمان مرونة الأنظمة واستقرارها.",
+    tagline: "أبني تطبيقات موبايل وسطح مكتب عالية الأداء بأحدث التقنيات لتقديم تجربة مستخدم سريعة وسلسة.",
     viewWork: "استعرض دراسات الحالة",
     downloadResume: "تحميل CV",
     location: "الإسماعيلية · مصر (UTC+3)",
@@ -603,5 +603,6 @@ export const ar = {
     step: "خطوة ",
     challenge: "التحدي:",
     solutionLabel: "الحل:",
+    swipeToExplore: "اسحب لاستكشاف الخدمات والحلول",
   },
 };

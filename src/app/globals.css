@@ -33,8 +33,11 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Senior Frontend i18n Arabic Typography Scaling & Optical Balance */
 [dir="rtl"] {
   font-family: var(--font-arabic), 'Cairo', system-ui, -apple-system, sans-serif;
+  font-size: 1.05rem; /* Optical scaling boost for Arabic Cairo font metrics */
+  line-height: 1.65;
 }
 
 [dir="rtl"] .font-display {
@@ -44,6 +47,15 @@ body {
 [dir="rtl"] .font-mono {
   font-family: var(--font-arabic), var(--font-mono), 'Cairo', 'JetBrains Mono', monospace;
 }
+
+/* Boost micro font utility sizes in Arabic (RTL) mode for optimal legibility */
+[dir="rtl"] .text-\[8px\] { font-size: 10px !important; }
+[dir="rtl"] .text-\[9px\] { font-size: 11px !important; }
+[dir="rtl"] .text-\[10px\] { font-size: 12px !important; }
+[dir="rtl"] .text-\[11px\] { font-size: 12.5px !important; }
+[dir="rtl"] .text-xs { font-size: 0.8125rem !important; } /* 13px */
+[dir="rtl"] .text-sm { font-size: 0.9375rem !important; } /* 15px */
+[dir="rtl"] .text-base { font-size: 1.0625rem !important; } /* 17px */
 
 .font-display {
   font-family: var(--font-display), 'Fraunces', serif;

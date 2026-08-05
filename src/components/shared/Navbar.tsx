@@ -116,19 +116,19 @@ export const Navbar = () => {
   return (
     <>
       <ScrollProgress />
-      <header className="fixed inset-x-0 top-0 z-50 py-4 px-4 sm:px-8 pointer-events-none">
+      <header className="fixed inset-x-0 top-0 z-50 py-3.5 px-3.5 sm:px-8 pointer-events-none">
         <div className="max-w-7xl mx-auto flex items-center justify-between pointer-events-auto">
           {/* Left: Brand Logo Pill */}
           <Link
             href="/"
             aria-label="Ibrahim Nasser Home Page"
-            className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#15171E]/90 backdrop-blur-xl border border-white/10 shadow-xl group hover:border-[#E58A2B]/50 transition-all shrink-0"
+            className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#15171E]/90 backdrop-blur-xl border border-white/10 shadow-xl group hover:border-[#E58A2B]/50 transition-all shrink-0"
           >
-            <div className="relative flex h-2.5 w-2.5" aria-hidden="true">
+            <div className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5" aria-hidden="true">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E58A2B]" />
+              <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-[#E58A2B]" />
             </div>
-            <span dir="ltr" className="dir-ltr font-display text-base sm:text-lg font-bold tracking-tight text-white">
+            <span dir="ltr" className="dir-ltr font-display text-sm sm:text-lg font-bold tracking-tight text-white">
               Ibrahim<span className="text-[#E58A2B]">.Nasser</span>
             </span>
           </Link>
@@ -325,11 +325,9 @@ export const Navbar = () => {
               <span className="font-bold uppercase">{locale === "en" ? "AR" : "EN"}</span>
             </button>
 
-            <AmbientAudioPlayer />
-
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full bg-[#15171E]/90 border border-white/10 text-gray-300 hover:text-white backdrop-blur-md shadow-lg"
+              className="p-2 min-h-[40px] min-w-[40px] flex items-center justify-center rounded-full bg-[#15171E]/90 border border-white/10 text-gray-300 hover:text-white backdrop-blur-md shadow-lg"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5 text-[#E58A2B]" /> : <Menu className="w-5 h-5" />}
@@ -399,14 +397,18 @@ export const Navbar = () => {
 
               {/* Drawer Footer Actions */}
               <div className="pt-3 border-t border-white/10 flex items-center justify-between flex-wrap gap-2.5">
-                {/* Mobile Drawer Language Switcher Button */}
-                <button
-                  onClick={toggleLocale}
-                  className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/5 border border-white/10 text-gray-200 hover:text-white font-mono text-xs font-bold active:scale-95 transition-all"
-                >
-                  <Globe className="w-4 h-4 text-[#E58A2B]" />
-                  <span>{locale === "en" ? "العربية (AR)" : "English (EN)"}</span>
-                </button>
+                {/* Mobile Drawer Audio & Language Controls */}
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={toggleLocale}
+                    className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/5 border border-white/10 text-gray-200 hover:text-white font-mono text-xs font-bold active:scale-95 transition-all"
+                  >
+                    <Globe className="w-4 h-4 text-[#E58A2B]" />
+                    <span>{locale === "en" ? "العربية (AR)" : "English (EN)"}</span>
+                  </button>
+
+                  <AmbientAudioPlayer />
+                </div>
 
                 <div className="flex items-center gap-1.5">
                   <a

@@ -44,7 +44,7 @@ export const en = {
     firstName: "Ibrahim",
     lastName: "Nasser",
     role: "Software Engineer & Full-Stack Developer (Mobile & Desktop)",
-    tagline: "Architecting high-performance, enterprise mobile & desktop applications using Flutter, .NET Core, Clean Architecture, BLoC state management, and SOLID principles.",
+    tagline: "I build high-performance mobile & desktop apps designed for speed, scalability, and exceptional user experience.",
     viewWork: "View Case Studies",
     downloadResume: "Download CV",
     location: "Ismailia · Egypt (UTC+3)",
@@ -603,6 +603,7 @@ export const en = {
     step: "STEP ",
     challenge: "Challenge:",
     solutionLabel: "Solution:",
+    swipeToExplore: "Swipe to explore capabilities",
   },
 };
 

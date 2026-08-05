@@ -82,7 +82,7 @@ export default function HomePage() {
       <CustomCursor />
       <Navbar />
       <RightSectionNav />
-      <main className="space-y-6">
+      <main>
         <HeroSection />
         <ServicesCapabilitiesSection />
         <ImpactMetricsSection />
