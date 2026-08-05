@@ -28,24 +28,24 @@
 body {
   background-color: var(--bg);
   color: var(--fg);
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans), 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
 /* Senior Frontend i18n Arabic Typography Scaling & Optical Balance */
 [dir="rtl"] {
-  font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-arabic), 'Cairo', system-ui, -apple-system, sans-serif;
   font-size: 1.05rem;
   line-height: 1.65;
 }
 
 [dir="rtl"] .font-display {
-  font-family: 'Cairo', 'Fraunces', serif;
+  font-family: var(--font-arabic), var(--font-display), 'Cairo', 'Fraunces', serif;
 }
 
 [dir="rtl"] .font-mono {
-  font-family: 'Cairo', 'JetBrains Mono', monospace;
+  font-family: var(--font-arabic), var(--font-mono), 'Cairo', 'JetBrains Mono', monospace;
 }
 
 /* Boost micro font utility sizes in Arabic (RTL) mode for optimal legibility */
@@ -58,15 +58,15 @@ body {
 [dir="rtl"] .text-base { font-size: 1.0625rem !important; } /* 17px */
 
 .font-display {
-  font-family: 'Fraunces', serif;
+  font-family: var(--font-display), 'Fraunces', serif;
 }
 
 .font-sans {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-sans), 'Plus Jakarta Sans', sans-serif;
 }
 
 .font-mono {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
 }
 
 .grain-overlay {

@@ -107,7 +107,6 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Asynchronous Non-Blocking Google Fonts Print Swap Loading */}
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Fraunces:wght@400;700;800&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap"
