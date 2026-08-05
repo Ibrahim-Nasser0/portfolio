@@ -1,33 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Cairo, Fraunces, JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import { GlobalAudioProvider } from "@/context/AudioContext";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { SplashScreen } from "@/components/ui/SplashScreen";
-
-const cairo = Cairo({
-  subsets: ["arabic", "latin"],
-  variable: "--font-arabic",
-  display: "swap",
-});
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-});
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ibrahim-nasser.vercel.app"),
@@ -128,11 +103,14 @@ export default function RootLayout({
   };
 
   return (
-    <html
-      lang="en"
-      className={`h-full antialiased ${cairo.variable} ${fraunces.variable} ${jetbrainsMono.variable} ${plusJakartaSans.variable}`}
-    >
+    <html lang="en" className="h-full antialiased">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Fraunces:wght@400;700;800&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap"
+          rel="stylesheet"
+        />
         <link rel="preload" as="image" href="/assets/images/me1.jpeg" fetchPriority="high" />
         <script
           type="application/ld+json"

@@ -10,6 +10,7 @@ interface TiltCardProps {
 
 export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "" }) => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const rectRef = useRef<DOMRect | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
@@ -30,9 +31,16 @@ export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "" }) 
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
 
+  const handleMouseEnter = () => {
+    if (isTouchDevice || !cardRef.current) return;
+    rectRef.current = cardRef.current.getBoundingClientRect();
+  };
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isTouchDevice || !cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
+    
+    // Use cached rect or compute once on mouse enter to avoid forced reflows
+    const rect = rectRef.current || cardRef.current.getBoundingClientRect();
 
     const width = rect.width;
     const height = rect.height;
@@ -51,6 +59,7 @@ export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "" }) 
 
   const handleMouseLeave = () => {
     if (isTouchDevice) return;
+    rectRef.current = null;
     x.set(0);
     y.set(0);
   };
@@ -62,6 +71,7 @@ export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "" }) 
   return (
     <motion.div
       ref={cardRef}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{

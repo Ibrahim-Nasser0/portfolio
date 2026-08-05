@@ -1,11 +1,14 @@
 import dynamic from "next/dynamic";
-import { AuroraBackground } from "@/components/ui/AuroraBackground";
 import { Navbar } from "@/components/shared/Navbar";
 import { RightSectionNav } from "@/components/shared/RightSectionNav";
 import { HeroSection } from "@/features/home/sections/HeroSection";
 import { Footer } from "@/components/shared/Footer";
 
 // Dynamic Client-Side Component Lazy Imports (Below-the-fold Code Splitting)
+const AuroraBackground = dynamic(() =>
+  import("@/components/ui/AuroraBackground").then((mod) => mod.AuroraBackground)
+);
+
 const CustomCursor = dynamic(() =>
   import("@/components/ui/CustomCursor").then((mod) => mod.CustomCursor)
 );
