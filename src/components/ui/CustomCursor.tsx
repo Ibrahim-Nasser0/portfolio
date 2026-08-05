@@ -13,27 +13,37 @@ export const CustomCursor = () => {
     if (window.matchMedia("(pointer: coarse)").matches) return;
     setIsVisible(true);
 
-    const onMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    let animationFrameId: number;
 
-      // Detect if hovering over clickable elements
-      const target = e.target as HTMLElement | null;
-      if (
-        target &&
-        (target.tagName === "BUTTON" ||
-          target.tagName === "A" ||
-          target.closest("button") ||
-          target.closest("a") ||
-          target.dataset.cursor === "hover")
-      ) {
-        setIsHovered(true);
-      } else {
-        setIsHovered(false);
-      }
+    const onMouseMove = (e: MouseEvent) => {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = requestAnimationFrame(() => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+
+        const target = e.target as HTMLElement | null;
+        if (!target) {
+          setIsHovered(false);
+          return;
+        }
+
+        const tag = target.tagName;
+        const isClickable =
+          tag === "BUTTON" ||
+          tag === "A" ||
+          tag === "INPUT" ||
+          target.role === "button" ||
+          target.dataset?.cursor === "hover" ||
+          (target.parentElement && (target.parentElement.tagName === "BUTTON" || target.parentElement.tagName === "A"));
+
+        setIsHovered(!!isClickable);
+      });
     };
 
-    window.addEventListener("mousemove", onMouseMove);
-    return () => window.removeEventListener("mousemove", onMouseMove);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
   if (!isVisible) return null;

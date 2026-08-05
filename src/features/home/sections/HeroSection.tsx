@@ -138,25 +138,20 @@ export const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* Right Column: Floating Glass Portrait Frame (100% Symmetrical Desktop Style on Mobile) */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="lg:col-span-5 flex justify-center lg:justify-end w-full"
-        >
+        {/* Right Column: Instant High-Priority LCP Hero Portrait Frame */}
+        <div className="lg:col-span-5 flex justify-center lg:justify-end w-full">
           <div className="relative group w-full max-w-[270px] sm:max-w-[340px] lg:max-w-[380px] my-2 sm:my-0">
-            {/* High-Tech Background Orbit Line (Visible on all viewports) */}
+            {/* High-Tech Background Orbit Line */}
             <div className="absolute -inset-4 sm:-inset-6 rounded-[36px] sm:rounded-[44px] border border-white/5 pointer-events-none" />
             <div className="absolute -inset-7 sm:-inset-10 rounded-[42px] sm:rounded-[50px] border border-[#E58A2B]/10 pointer-events-none animate-pulse" />
 
             {/* Ambient Gold Halo Glow */}
             <div className="absolute -inset-2 rounded-[32px] sm:rounded-[36px] bg-gradient-to-tr from-[#E58A2B]/30 via-amber-500/10 to-transparent blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-700" />
 
-            {/* 3D Tilt Card Frame */}
+            {/* Tilt Container Frame */}
             <TiltCard className="w-full">
               <div className="relative aspect-[4/5] w-full rounded-[28px] sm:rounded-[32px] overflow-hidden border border-white/15 group-hover:border-[#E58A2B]/80 transition-all duration-500 shadow-2xl bg-[#0B0C0E]">
-                {/* High-Res Portrait Image */}
+                {/* Instant First-Paint High Priority LCP Image */}
                 <Image
                   src={personalInfo.profileImage}
                   alt={personalInfo.name}
@@ -165,6 +160,7 @@ export const HeroSection = () => {
                   className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
                   priority={true}
                   fetchPriority="high"
+                  quality={85}
                 />
 
                 {/* Vignette Gradients */}
@@ -185,7 +181,7 @@ export const HeroSection = () => {
                   <span>{t("hero.verifiedBadge")}</span>
                 </div>
 
-                {/* Bottom Glass Pill Overlay (100% Symmetrical Desktop Style) */}
+                {/* Bottom Glass Pill Overlay */}
                 <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-20 p-3.5 sm:p-4 rounded-2xl bg-[#15171E]/85 backdrop-blur-xl border border-white/10 space-y-2 shadow-xl">
                   <div className="flex items-center justify-between">
                     <span className="font-display text-xs sm:text-sm font-bold text-white">
@@ -210,7 +206,7 @@ export const HeroSection = () => {
               </div>
             </TiltCard>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
