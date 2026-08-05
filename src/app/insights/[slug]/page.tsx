@@ -1,7 +1,7 @@
 import React from "react";
 import { articles } from "@/data/insightsData";
 import { notFound } from "next/navigation";
-import { InsightDetailClient } from "@/components/pages/InsightDetailClient";
+import { InsightDetailClient } from "@/features/insight-detail/components/InsightDetailClient";
 
 export function generateStaticParams() {
   return articles.map((a) => ({

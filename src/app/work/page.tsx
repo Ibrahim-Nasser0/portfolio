@@ -1,12 +1,12 @@
 import React from "react";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
-import { Navbar } from "@/components/Navbar";
-import { RightSectionNav } from "@/components/RightSectionNav";
+import { Navbar } from "@/components/shared/Navbar";
+import { RightSectionNav } from "@/components/shared/RightSectionNav";
 import { CustomCursor } from "@/components/ui/CustomCursor";
-import { ProjectsSection } from "@/components/sections/ProjectsSection";
-import { ProcessWorkflowSection } from "@/components/sections/ProcessWorkflowSection";
-import { ContactSection } from "@/components/sections/ContactSection";
-import { Footer } from "@/components/Footer";
+import { ProjectsSection } from "@/features/work/sections/ProjectsSection";
+import { ProcessWorkflowSection } from "@/features/home/sections/ProcessWorkflowSection";
+import { ContactSection } from "@/components/shared/ContactSection";
+import { Footer } from "@/components/shared/Footer";
 
 export const metadata = {
   title: "Selected Case Studies & Work · Ibrahim Nasser",

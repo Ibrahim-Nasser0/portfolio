@@ -1,12 +1,12 @@
 import React from "react";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
-import { Navbar } from "@/components/Navbar";
-import { RightSectionNav } from "@/components/RightSectionNav";
+import { Navbar } from "@/components/shared/Navbar";
+import { RightSectionNav } from "@/components/shared/RightSectionNav";
 import { CustomCursor } from "@/components/ui/CustomCursor";
-import { CertificatesSection } from "@/components/sections/CertificatesSection";
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { ContactSection } from "@/components/sections/ContactSection";
-import { Footer } from "@/components/Footer";
+import { CertificatesSection } from "@/features/recognition/sections/CertificatesSection";
+import { TestimonialsSection } from "@/features/recognition/sections/TestimonialsSection";
+import { ContactSection } from "@/components/shared/ContactSection";
+import { Footer } from "@/components/shared/Footer";
 
 export const metadata = {
   title: "Accredited Certifications & Recommendations · Ibrahim Nasser",

@@ -1,7 +1,7 @@
 import React from "react";
 import { projects } from "@/data/portfolioData";
 import { notFound } from "next/navigation";
-import { ProjectDetailClient } from "@/components/pages/ProjectDetailClient";
+import { ProjectDetailClient } from "@/features/project-detail/components/ProjectDetailClient";
 
 export function generateStaticParams() {
   return projects.map((p) => ({

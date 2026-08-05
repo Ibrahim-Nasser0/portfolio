@@ -1,41 +1,8 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Fraunces, JetBrains_Mono, Cairo } from "next/font/google";
 import "./globals.css";
 import { GlobalAudioProvider } from "@/context/AudioContext";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { SplashScreen } from "@/components/ui/SplashScreen";
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-  fallback: ["system-ui", "sans-serif"],
-  adjustFontFallback: false,
-});
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-  fallback: ["Georgia", "serif"],
-  adjustFontFallback: false,
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-  fallback: ["monospace"],
-  adjustFontFallback: false,
-});
-
-const cairo = Cairo({
-  subsets: ["arabic", "latin"],
-  variable: "--font-cairo",
-  display: "swap",
-  fallback: ["system-ui", "sans-serif"],
-  adjustFontFallback: false,
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ibrahim-nasser.vercel.app"),
@@ -136,11 +103,14 @@ export default function RootLayout({
   };
 
   return (
-    <html
-      lang="en"
-      className={`h-full antialiased ${plusJakartaSans.variable} ${fraunces.variable} ${jetbrainsMono.variable} ${cairo.variable}`}
-    >
+    <html lang="en" className="h-full antialiased">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Fraunces:wght@100..900&family=JetBrains+Mono:wght@100..800&family=Plus+Jakarta+Sans:wght@200..800&display=swap"
+          rel="stylesheet"
+        />
         <link rel="preload" as="image" href="/assets/images/me1.jpeg" fetchPriority="high" />
         <script
           type="application/ld+json"
@@ -158,4 +128,3 @@ export default function RootLayout({
     </html>
   );
 }
-

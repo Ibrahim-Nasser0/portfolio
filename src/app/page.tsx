@@ -1,30 +1,30 @@
 import dynamic from "next/dynamic";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
-import { Navbar } from "@/components/Navbar";
-import { RightSectionNav } from "@/components/RightSectionNav";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { ServicesCapabilitiesSection } from "@/components/sections/ServicesCapabilitiesSection";
-import { ImpactMetricsSection } from "@/components/sections/ImpactMetricsSection";
-import { FeaturedProjectsSection } from "@/components/sections/FeaturedProjectsSection";
-import { PerformanceMatrixSection } from "@/components/sections/PerformanceMatrixSection";
-import { ArchitecturePrinciplesSection } from "@/components/sections/ArchitecturePrinciplesSection";
-import { ToolsSetupSection } from "@/components/sections/ToolsSetupSection";
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { AboutSection } from "@/components/sections/AboutSection";
-import { Footer } from "@/components/Footer";
+import { Navbar } from "@/components/shared/Navbar";
+import { RightSectionNav } from "@/components/shared/RightSectionNav";
+import { HeroSection } from "@/features/home/sections/HeroSection";
+import { ServicesCapabilitiesSection } from "@/features/home/sections/ServicesCapabilitiesSection";
+import { ImpactMetricsSection } from "@/features/home/sections/ImpactMetricsSection";
+import { FeaturedProjectsSection } from "@/features/home/sections/FeaturedProjectsSection";
+import { PerformanceMatrixSection } from "@/features/home/sections/PerformanceMatrixSection";
+import { ArchitecturePrinciplesSection } from "@/features/home/sections/ArchitecturePrinciplesSection";
+import { ToolsSetupSection } from "@/features/stack/sections/ToolsSetupSection";
+import { TestimonialsSection } from "@/features/recognition/sections/TestimonialsSection";
+import { AboutSection } from "@/features/about/sections/AboutSection";
+import { Footer } from "@/components/shared/Footer";
 
 const CustomCursor = dynamic(() =>
   import("@/components/ui/CustomCursor").then((mod) => mod.CustomCursor)
 );
 
 const DeveloperTerminalModal = dynamic(() =>
-  import("@/components/ui/DeveloperTerminalModal").then(
+  import("@/components/shared/DeveloperTerminalModal").then(
     (mod) => mod.DeveloperTerminalModal
   )
 );
 
 const ArchitectureVisualizerSection = dynamic(() =>
-  import("@/components/sections/ArchitectureVisualizerSection").then(
+  import("@/features/home/sections/ArchitectureVisualizerSection").then(
     (mod) => mod.ArchitectureVisualizerSection
   )
 );
@@ -59,4 +59,3 @@ export default function HomePage() {
     </AuroraBackground>
   );
 }
-

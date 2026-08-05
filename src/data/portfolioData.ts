@@ -57,7 +57,7 @@ export const personalInfo = {
   profileImage: "/assets/images/me1.jpeg",
   cvUrl: "/assets/cv/Ibrahim NasserCV (Flutter).pdf",
   email: "ibrahimnasser.mobile@gmail.com",
-  phone: "+20 127 898 8474",
+  phone: "+201055810234",
   location: "Ismailia, Egypt",
   linkedinUrl: "https://www.linkedin.com/in/ibrahim-nasser-mobile/",
   githubUrl: "https://github.com/Ibrahim-Nasser0",
@@ -69,44 +69,32 @@ export const personalInfo = {
 export interface RecommendationModel {
   id: string;
   name: string;
-  headline: string;
   date: string;
-  relationship: string;
   linkedinUrl?: string;
-  text: string;
-  highlights: string[];
+  avatarInitials?: string;
 }
 
 export const recommendations: RecommendationModel[] = [
   {
     id: "amr-atef",
     name: "Amr Atef",
-    headline: ".NET Backend Developer | ASP.NET Core · C# · SQL Server | CS Student @ Suez Canal University",
     date: "March 23, 2026",
-    relationship: "Amr worked with Ibrahim on the same team as co-founders of 3AMI Team",
     linkedinUrl: "https://www.linkedin.com/in/amratef/",
-    text: "I've had the privilege of working alongside Ibrahim across multiple projects as co-founders of 3AMI Team, and I can say with confidence that he's one of the most capable and dependable people I've worked with. What makes Ibrahim stand out isn't just his technical depth in Flutter and Clean Architecture — it's how he leads. From day one, he set the standard for how we work: structured GitHub workflows, clear architecture decisions, thorough code reviews, and a constant push to ship things the right way, not just the fast way. He made sure every team member understood the project direction and always kept us aligned even when things got complex. As a backend developer, I especially valued how Ibrahim approached the integration between our .NET APIs and the Flutter frontend — he communicated clearly, defined contracts early, and never left blockers unresolved. Ibrahim doesn't just write good code. He builds teams that write good code. Any engineering team would be lucky to have him.",
-    highlights: ["Technical Depth in Flutter & Clean Architecture", "Structured GitHub Workflows", "Clear .NET API & Flutter Contract Definitions", "Team Leadership & Alignment"],
+    avatarInitials: "AA",
   },
   {
     id: "ahmed-elshazly",
     name: "Ahmed El-Shazly",
-    headline: "Full-Stack Developer | MERN Stack · Next.js · TypeScript | Co-founder @ Modaresy & 3AMI Team",
     date: "September 15, 2025",
-    relationship: "Ahmed and Ibrahim studied and co-founded 3AMI Team together",
     linkedinUrl: "https://www.linkedin.com/in/ahmedelshazly/",
-    text: "I’m thrilled to recommend Ibrahim for his exceptional work as a Flutter developer. During our time collaborating on a mobile app project, Ibrahim showcased an impressive ability to craft seamless, high-performance applications with clean, maintainable code. His deep understanding of Flutter allowed him to build intuitive user interfaces that significantly enhanced the user experience, often exceeding our expectations. Ibrahim tackled complex challenges with a calm, solution-oriented mindset, whether it was optimizing app performance or integrating APIs under tight deadlines. Beyond his technical skills, his collaborative nature and willingness to share knowledge made him a standout team member. He consistently brought creative ideas to the table, elevating the quality of our deliverables. Ibrahim is a dedicated and talented developer who would be a tremendous asset to any team, and I wholeheartedly endorse him for any Flutter development role.",
-    highlights: ["High-Performance Mobile Apps", "Clean Maintainable Code", "API Integration Under Tight Deadlines", "Solution-Oriented Mindset"],
+    avatarInitials: "AS",
   },
   {
     id: "abdullah-mohammed",
     name: "Abdullah Mohammed",
-    headline: "Aspiring Data Analyst | Learning Excel, SQL, Python & Power BI",
     date: "September 14, 2025",
-    relationship: "Abdullah worked with Ibrahim on the same team",
     linkedinUrl: "https://www.linkedin.com/in/abdullahmohammed/",
-    text: "I had the pleasure of working with Ibrahim Naser, and I can confidently say that he is one of the best teammates you could ever work with. He is highly collaborative, dependable, and always ready to support his colleagues. His positive attitude and strong problem-solving skills make him not only an excellent professional but also a true asset to any team. I strongly recommend him for any future opportunities.",
-    highlights: ["Highly Collaborative & Dependable", "Strong Problem-Solving Skills", "Supportive Teammate"],
+    avatarInitials: "AM",
   },
 ];
 

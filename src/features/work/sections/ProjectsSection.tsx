@@ -61,7 +61,6 @@ export const ProjectsSection = () => {
       {/* Work Page Hero Header */}
       <div className="space-y-6 mb-16">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-semibold uppercase tracking-[0.2em]">
-          <Sparkles className="w-3.5 h-3.5 animate-pulse" />
           <span>{t("projects.badge")}</span>
         </div>
 

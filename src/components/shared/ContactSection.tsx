@@ -80,7 +80,7 @@ export const ContactSection = () => {
                   <span className="text-[10px] font-mono text-[#E58A2B] uppercase tracking-wider block font-bold">
                     {t("contact.whatsappCardLabel")}
                   </span>
-                  <span className="font-bold text-sm sm:text-base group-hover:text-[#E58A2B] transition-colors">
+                  <span className="font-bold text-sm sm:text-base group-hover:text-[#E58A2B] transition-colors dir-ltr inline-block" dir="ltr">
                     {personalInfo.phone}
                   </span>
                 </div>

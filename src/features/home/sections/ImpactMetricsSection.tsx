@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { TrendingUp, LayoutGrid, Server, Database, Award } from "lucide-react";
+import { TrendingUp, Layers, Smartphone, Monitor, Award } from "lucide-react";
 import { useTranslation } from "@/context/LanguageContext";
 
 export const ImpactMetricsSection = () => {
@@ -10,36 +10,36 @@ export const ImpactMetricsSection = () => {
 
   const metrics = [
     {
-      id: "screens",
-      title: t("impact.screensShipped"),
-      stat: "27+",
-      desc: t("impact.screensDesc"),
-      icon: LayoutGrid,
+      id: "totalProjects",
+      title: t("impact.totalProjects"),
+      stat: t("impact.totalProjectsStat"),
+      desc: t("impact.totalProjectsDesc"),
+      icon: Layers,
       color: "text-[#E58A2B]",
       borderColor: "border-[#E58A2B]/30",
     },
     {
-      id: "apis",
-      title: t("impact.apiEndpoints"),
-      stat: "30+",
-      desc: t("impact.apiDesc"),
-      icon: Server,
+      id: "mobileApps",
+      title: t("impact.mobileApps"),
+      stat: t("impact.mobileAppsStat"),
+      desc: t("impact.mobileAppsDesc"),
+      icon: Smartphone,
       color: "text-[#E58A2B]",
       borderColor: "border-[#E58A2B]/30",
     },
     {
-      id: "records",
-      title: t("impact.recordsProcessed"),
-      stat: "500+",
-      desc: t("impact.recordsDesc"),
-      icon: Database,
+      id: "desktopApps",
+      title: t("impact.desktopApps"),
+      stat: t("impact.desktopAppsStat"),
+      desc: t("impact.desktopAppsDesc"),
+      icon: Monitor,
       color: "text-[#E58A2B]",
       borderColor: "border-[#E58A2B]/30",
     },
     {
-      id: "crash",
+      id: "crashFreeRate",
       title: t("impact.crashFreeRate"),
-      stat: "99.9%",
+      stat: t("impact.crashFreeStat"),
       desc: t("impact.crashFreeDesc"),
       icon: Award,
       color: "text-[#E58A2B]",
@@ -74,10 +74,10 @@ export const ImpactMetricsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`p-6 rounded-3xl bg-[#15171E] border ${m.borderColor} shadow-2xl flex flex-col justify-between hover:border-white/30 transition-all duration-300 group`}
+              className="p-7 rounded-3xl bg-[#15171E]/90 border border-white/10 hover:border-[#E58A2B]/60 shadow-2xl hover:shadow-[0_0_30px_rgba(229,138,43,0.15)] flex flex-col justify-between hover:-translate-y-1.5 transition-all duration-500 group backdrop-blur-xl"
             >
               <div className="flex items-center justify-between mb-4">
-                <div className={`p-3 rounded-2xl bg-white/5 ${m.color} group-hover:scale-110 transition-transform`}>
+                <div className="p-3.5 rounded-2xl bg-[#E58A2B]/10 text-[#E58A2B] group-hover:scale-110 group-hover:bg-[#E58A2B] group-hover:text-black transition-all duration-300">
                   <Icon className="w-6 h-6" />
                 </div>
                 <span className="font-mono text-[10px] text-gray-500 font-bold uppercase tracking-widest">
@@ -86,11 +86,11 @@ export const ImpactMetricsSection = () => {
               </div>
 
               <div className="space-y-2">
-                <span className={`font-display text-4xl sm:text-5xl font-extrabold block ${m.color}`}>
+                <span className="font-display text-4xl sm:text-5xl font-extrabold block text-white group-hover:text-[#E58A2B] transition-colors">
                   {m.stat}
                 </span>
                 <h3 className="font-display text-base font-bold text-white">{m.title}</h3>
-                <p className="text-xs text-gray-400 font-light leading-relaxed">{m.desc}</p>
+                <p className="text-xs text-gray-300 font-light leading-relaxed">{m.desc}</p>
               </div>
             </motion.div>
           );

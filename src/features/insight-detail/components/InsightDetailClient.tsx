@@ -5,10 +5,10 @@ import { ArticleModel } from "@/data/insightsData";
 import Link from "next/link";
 import { ArrowLeft, Clock } from "lucide-react";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/shared/Navbar";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { CodeBlock } from "@/components/ui/CodeBlock";
-import { Footer } from "@/components/Footer";
+import { Footer } from "@/components/shared/Footer";
 import { useTranslation } from "@/context/LanguageContext";
 
 interface InsightDetailClientProps {

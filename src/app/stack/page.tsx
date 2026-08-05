@@ -2,11 +2,11 @@
 
 import React from "react";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/shared/Navbar";
 import { CustomCursor } from "@/components/ui/CustomCursor";
-import { DeveloperTerminalModal } from "@/components/ui/DeveloperTerminalModal";
-import { ToolsSetupSection } from "@/components/sections/ToolsSetupSection";
-import { Footer } from "@/components/Footer";
+import { DeveloperTerminalModal } from "@/components/shared/DeveloperTerminalModal";
+import { ToolsSetupSection } from "@/features/stack/sections/ToolsSetupSection";
+import { Footer } from "@/components/shared/Footer";
 import { Cpu, Wrench } from "lucide-react";
 import { useTranslation } from "@/context/LanguageContext";
 

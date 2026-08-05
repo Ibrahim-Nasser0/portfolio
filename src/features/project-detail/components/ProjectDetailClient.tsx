@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 import { Github } from "@/components/icons/SocialIcons";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/shared/Navbar";
 import { CustomCursor } from "@/components/ui/CustomCursor";
-import { Footer } from "@/components/Footer";
+import { Footer } from "@/components/shared/Footer";
 import { useTranslation } from "@/context/LanguageContext";
 
 interface ProjectDetailClientProps {

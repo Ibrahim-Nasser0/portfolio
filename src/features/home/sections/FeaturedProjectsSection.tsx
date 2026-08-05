@@ -21,7 +21,7 @@ export const FeaturedProjectsSection = () => {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-3">
-            <span className="text-[#94A3B8] font-mono font-bold">// 02</span>
+            <span className="text-[#94A3B8] font-mono font-bold">// 03</span>
             <span className="text-white/20">|</span>
             <span className="uppercase tracking-wider">{t("featuredProjects.badge")}</span>
           </div>

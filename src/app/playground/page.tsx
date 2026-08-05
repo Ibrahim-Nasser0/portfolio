@@ -2,11 +2,11 @@
 
 import React from "react";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/shared/Navbar";
 import { CustomCursor } from "@/components/ui/CustomCursor";
-import { DeveloperTerminalModal } from "@/components/ui/DeveloperTerminalModal";
-import { FlutterPlaygroundSection } from "@/components/sections/FlutterPlaygroundSection";
-import { Footer } from "@/components/Footer";
+import { DeveloperTerminalModal } from "@/components/shared/DeveloperTerminalModal";
+import { FlutterPlaygroundSection } from "@/features/playground/sections/FlutterPlaygroundSection";
+import { Footer } from "@/components/shared/Footer";
 import { useTranslation } from "@/context/LanguageContext";
 
 export default function PlaygroundPage() {

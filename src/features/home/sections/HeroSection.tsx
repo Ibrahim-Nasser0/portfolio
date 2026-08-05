@@ -27,7 +27,7 @@ export const HeroSection = () => {
             <div className="flex flex-wrap items-center gap-3">
               <div className="flex items-center gap-2 text-[#E58A2B] font-semibold">
                 <MapPin className="w-3.5 h-3.5" />
-                <span>{personalInfo.location} · Cairo (UTC+3)</span>
+                <span>{t("hero.location")}</span>
               </div>
               <span className="hidden sm:inline text-white/20">|</span>
               <div className="px-3 py-0.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/30 text-[#E58A2B] text-[11px] font-medium flex items-center gap-1.5 shadow-sm">
@@ -48,10 +48,10 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-display leading-[0.92] tracking-[-0.03em] text-5xl sm:text-7xl md:text-8xl font-extrabold text-white"
+            className="font-display leading-[1.08] sm:leading-[0.98] rtl:leading-[1.25] sm:rtl:leading-[1.18] tracking-[-0.02em] text-5xl sm:text-7xl md:text-8xl font-extrabold text-white"
           >
             <span className="block">{t("hero.firstName")}</span>
-            <span className="block text-[#9CA3AF] font-normal hover:text-[#E58A2B] transition-colors">
+            <span className="block text-[#9CA3AF] font-normal hover:text-[#E58A2B] transition-colors mt-1 sm:mt-0">
               {t("hero.lastName")}
             </span>
           </motion.h1>
