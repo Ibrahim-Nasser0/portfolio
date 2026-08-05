@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { personalInfo } from "@/data/portfolioData";
-import { Download, Menu, X, Home, User, Briefcase, Award, BookOpen, Code2, Cpu, History, ChevronDown, Mail, MessageSquare, ExternalLink, Globe } from "lucide-react";
+import { Download, Menu, X, Home, User, Briefcase, Award, BookOpen, Cpu, History, ChevronDown, Mail, MessageSquare, ExternalLink, Globe } from "lucide-react";
 import { Github, Linkedin, Whatsapp } from "@/components/icons/SocialIcons";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { AmbientAudioPlayer } from "@/components/ui/AmbientAudioPlayer";
@@ -116,7 +116,7 @@ export const Navbar = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E58A2B]" />
             </div>
-            <span className="font-display text-base sm:text-lg font-bold tracking-tight text-white">
+            <span dir="ltr" className="dir-ltr font-display text-base sm:text-lg font-bold tracking-tight text-white">
               Ibrahim<span className="text-[#E58A2B]">.Nasser</span>
             </span>
           </Link>
@@ -214,9 +214,9 @@ export const Navbar = () => {
             </div>
           </nav>
 
-          {/* Right: Symmetrical CTA Actions Dock (Balanced width matching Left side) */}
+          {/* Right: Symmetrical Desktop CTA Actions Dock */}
           <div className="hidden md:flex items-center gap-2.5 shrink-0">
-            {/* Language Toggle Switcher */}
+            {/* Desktop Language Toggle Switcher */}
             <button
               onClick={toggleLocale}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#15171E] border border-white/10 hover:border-[#E58A2B] text-gray-300 hover:text-white font-mono text-xs transition-all cursor-pointer shadow-md active:scale-95"
@@ -300,12 +300,24 @@ export const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Navigation Controls & Language Switcher */}
           <div className="md:hidden flex items-center gap-2">
+            {/* Mobile Top-Bar Language Toggle */}
+            <button
+              onClick={toggleLocale}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#15171E]/95 border border-white/10 hover:border-[#E58A2B] text-gray-300 hover:text-white font-mono text-xs transition-all cursor-pointer shadow-md active:scale-95 shrink-0"
+              title="Switch Language (EN / AR)"
+              aria-label="Switch Language"
+            >
+              <Globe className="w-3.5 h-3.5 text-[#E58A2B]" />
+              <span className="font-bold uppercase">{locale === "en" ? "AR" : "EN"}</span>
+            </button>
+
             <AmbientAudioPlayer />
+
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 min-h-[48px] min-w-[48px] flex items-center justify-center rounded-full bg-[#15171E]/90 border border-white/10 text-gray-300 hover:text-white backdrop-blur-md shadow-lg"
+              className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full bg-[#15171E]/90 border border-white/10 text-gray-300 hover:text-white backdrop-blur-md shadow-lg"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5 text-[#E58A2B]" /> : <Menu className="w-5 h-5" />}
@@ -345,34 +357,43 @@ export const Navbar = () => {
                 })}
               </div>
 
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                <div className="flex gap-2">
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between flex-wrap gap-3">
+                {/* Mobile Drawer Language Switcher Button */}
+                <button
+                  onClick={toggleLocale}
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/5 border border-white/10 text-gray-200 hover:text-white font-mono text-xs font-bold active:scale-95 transition-all"
+                >
+                  <Globe className="w-4 h-4 text-[#E58A2B]" />
+                  <span>{locale === "en" ? "العربية (AR)" : "English (EN)"}</span>
+                </button>
+
+                <div className="flex items-center gap-2">
                   <a
                     href={personalInfo.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-gray-400 hover:text-[#E58A2B]"
+                    className="p-2.5 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:text-[#E58A2B]"
                     aria-label="GitHub Profile"
                   >
-                    <Github className="w-5 h-5" />
+                    <Github className="w-4 h-4" />
                   </a>
                   <a
                     href={personalInfo.linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-gray-400 hover:text-[#E58A2B]"
+                    className="p-2.5 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:text-[#E58A2B]"
                     aria-label="LinkedIn Profile"
                   >
-                    <Linkedin className="w-5 h-5" />
+                    <Linkedin className="w-4 h-4" />
                   </a>
                   <a
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-gray-400 hover:text-[#E58A2B]"
+                    className="p-2.5 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:text-[#E58A2B]"
                     aria-label="WhatsApp Chat"
                   >
-                    <Whatsapp className="w-5 h-5" />
+                    <Whatsapp className="w-4 h-4" />
                   </a>
                 </div>
 
@@ -380,7 +401,7 @@ export const Navbar = () => {
                   href={personalInfo.cvUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-2.5 text-xs font-mono font-bold text-black bg-[#E58A2B] rounded-full shadow-md"
+                  className="w-full text-center py-2.5 text-xs font-mono font-bold text-black bg-[#E58A2B] hover:bg-[#F5A642] rounded-full shadow-md transition-all"
                 >
                   {t("nav.resume")} ↗
                 </a>
