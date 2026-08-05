@@ -2,13 +2,15 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Cpu, Zap, Activity, Layers, CheckCircle2, ArrowRight, Code2, ChevronDown } from "lucide-react";
+import { Cpu, Zap, Activity, Layers, CheckCircle2, Code2, ChevronDown, Copy, Check } from "lucide-react";
 import { useTranslation } from "@/context/LanguageContext";
 
 export const PerformanceMatrixSection = () => {
   const { t } = useTranslation();
   const [activeBenchmark, setActiveBenchmark] = useState(0);
   const [showMobileCode, setShowMobileCode] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [viewState, setViewState] = useState<"after" | "before">("after");
 
   const benchmarks = [
     {
@@ -110,14 +112,19 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
 
   const current = benchmarks[activeBenchmark];
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(current.code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <section id="performance" className="py-12 sm:py-20 md:py-24 lg:py-32 px-5 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+      <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-4">
           <span className="text-[#94A3B8] font-mono font-bold">// 06</span>
           <span className="text-white/20">|</span>
-          <Activity className="w-3.5 h-3.5" />
           <span>{t("performanceMatrix.badge")}</span>
         </div>
         <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
@@ -128,8 +135,8 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
         </p>
       </div>
 
-      {/* Benchmark Selector: Scrollable Horizontal Strip on Mobile, Grid on Desktop */}
-      <div className="flex overflow-x-auto gap-2.5 sm:gap-4 mb-8 sm:mb-10 pb-2 md:pb-0 md:grid md:grid-cols-4 scrollbar-none">
+      {/* Benchmark Selector Grid: 2 Columns on Mobile (No Nested Scroll) */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 sm:mb-10">
         {benchmarks.map((item, idx) => {
           const Icon = item.icon;
           const isSelected = activeBenchmark === idx;
@@ -138,27 +145,26 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
             <button
               key={item.id}
               onClick={() => setActiveBenchmark(idx)}
-              className={`p-3.5 sm:p-5 rounded-2xl border text-left rtl:text-right transition-all duration-300 flex flex-col justify-between shrink-0 w-[70vw] sm:w-[260px] md:w-auto ${
+              className={`p-3 sm:p-5 rounded-xl sm:rounded-2xl border text-left rtl:text-right transition-all duration-300 flex flex-col justify-between ${
                 isSelected
-                  ? "bg-[#15171E] border-[#E58A2B] shadow-2xl scale-[1.02]"
+                  ? "bg-[#15171E] border-[#E58A2B] shadow-xl scale-[1.02]"
                   : "bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.04]"
               }`}
             >
-              <div className="space-y-2 sm:space-y-3">
+              <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <div className={`p-2 sm:p-2.5 rounded-xl ${isSelected ? "bg-[#E58A2B]/20 text-[#E58A2B]" : "bg-white/5 text-gray-400"}`}>
+                  <div className={`p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl ${isSelected ? "bg-[#E58A2B]/20 text-[#E58A2B]" : "bg-white/5 text-gray-400"}`}>
                     <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <span className="font-mono text-[9px] sm:text-[10px] text-[#94A3B8] font-bold uppercase tracking-wider">
+                  <span className="font-mono text-[9px] text-[#94A3B8] font-bold uppercase tracking-wider hidden sm:inline">
                     {item.badge}
                   </span>
                 </div>
-                <h3 className="font-display text-xs sm:text-base font-bold text-white leading-tight">{item.title}</h3>
+                <h3 className="font-display text-xs sm:text-base font-bold text-white leading-tight truncate">{item.title}</h3>
               </div>
 
-              <div className="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-white/10 flex items-center justify-between">
+              <div className="mt-2.5 sm:mt-4 pt-2 border-t border-white/10 flex items-center justify-between">
                 <span className="font-mono text-xs sm:text-sm font-extrabold text-[#E58A2B]">{item.metric}</span>
-                <ArrowRight className={`w-3.5 h-3.5 transition-transform rtl:rotate-180 ${isSelected ? "text-[#E58A2B] translate-x-1 rtl:-translate-x-1" : "text-gray-500"}`} />
               </div>
             </button>
           );
@@ -168,13 +174,36 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
       {/* Active Benchmark Deep-Dive Panel */}
       <div className="bg-[#15171E] border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-10 shadow-2xl space-y-6 sm:space-y-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
-          {/* Left Column: Problem & Solution Breakdown (5 cols) */}
+          {/* Left Column: Problem & Solution Breakdown */}
           <div className="lg:col-span-5 space-y-5 sm:space-y-6">
-            <div className="space-y-2">
+            <div className="flex items-center justify-between">
               <span className="px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider">
                 {current.badge}
               </span>
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-white mt-2">{current.title}</h3>
+
+              {/* Interactive Before / After Switch */}
+              <div className="flex items-center p-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono">
+                <button
+                  onClick={() => setViewState("after")}
+                  className={`px-3 py-1 rounded-full font-bold transition-all ${
+                    viewState === "after" ? "bg-[#E58A2B] text-black shadow-md" : "text-gray-400 hover:text-white"
+                  }`}
+                >
+                  After
+                </button>
+                <button
+                  onClick={() => setViewState("before")}
+                  className={`px-3 py-1 rounded-full font-bold transition-all ${
+                    viewState === "before" ? "bg-rose-500 text-white shadow-md" : "text-gray-400 hover:text-white"
+                  }`}
+                >
+                  Before
+                </button>
+              </div>
+            </div>
+
+            <div className="space-y-1">
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-white">{current.title}</h3>
               <p className="text-xs sm:text-sm text-[#94A3B8] font-mono">{current.subtitle}</p>
             </div>
 
@@ -184,19 +213,29 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
               <p className="text-xs text-gray-300 font-light">{current.comparison}</p>
             </div>
 
-            {/* Problem & Solution */}
+            {/* Problem & Solution Toggleable View */}
             <div className="space-y-3 sm:space-y-4 text-xs sm:text-sm font-light">
-              <div className="p-3.5 sm:p-4 rounded-xl bg-white/5 border border-white/5 space-y-1">
-                <span className="text-rose-400 font-mono text-[11px] sm:text-xs font-bold uppercase">{t("performanceMatrix.profilingBefore")}</span>
-                <p className="text-gray-300 leading-relaxed">{current.problem}</p>
-              </div>
-
-              <div className="p-3.5 sm:p-4 rounded-xl bg-[#E58A2B]/5 border border-[#E58A2B]/20 space-y-1">
-                <span className="text-[#E58A2B] font-mono text-[11px] sm:text-xs font-bold uppercase flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#E58A2B]" /> {t("performanceMatrix.optimizationAfter")}
-                </span>
-                <p className="text-gray-200 leading-relaxed">{current.solution}</p>
-              </div>
+              {viewState === "before" ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-3.5 sm:p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 space-y-1"
+                >
+                  <span className="text-rose-400 font-mono text-[11px] sm:text-xs font-bold uppercase">{t("performanceMatrix.profilingBefore")}</span>
+                  <p className="text-gray-300 leading-relaxed">{current.problem}</p>
+                </motion.div>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-3.5 sm:p-4 rounded-xl bg-[#E58A2B]/10 border border-[#E58A2B]/30 space-y-1"
+                >
+                  <span className="text-[#E58A2B] font-mono text-[11px] sm:text-xs font-bold uppercase flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#E58A2B]" /> {t("performanceMatrix.optimizationAfter")}
+                  </span>
+                  <p className="text-gray-200 leading-relaxed">{current.solution}</p>
+                </motion.div>
+              )}
             </div>
 
             {/* Stats Row */}
@@ -216,20 +255,28 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
             >
               <div className="flex items-center gap-2">
                 <Code2 className="w-4 h-4" />
-                <span>{showMobileCode ? "Hide Dart Code" : "Show Dart Profiling Code"}</span>
+                <span>{showMobileCode ? "Hide Code" : "Show Dart Profiling Code"}</span>
               </div>
               <ChevronDown className={`w-4 h-4 transition-transform ${showMobileCode ? "rotate-180" : ""}`} />
             </button>
           </div>
 
-          {/* Right Column: DevTools Dart Code Snippet (Always visible on desktop, toggleable on mobile) */}
+          {/* Right Column: DevTools Dart Code Snippet */}
           <div className={`lg:col-span-7 bg-[#0C0D12] border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden shadow-inner flex-col ${showMobileCode ? "flex" : "hidden lg:flex"}`}>
             <div className="flex items-center justify-between px-4 py-2.5 sm:py-3 bg-[#15171E] border-b border-white/10 font-mono text-xs text-gray-400">
               <div className="flex items-center gap-2">
                 <Zap className="w-4 h-4 text-[#E58A2B]" />
                 <span className="text-white font-bold">{current.id}_optimization.dart</span>
               </div>
-              <span className="text-[10px] text-[#94A3B8] font-bold uppercase">{t("performanceMatrix.devToolsVerified")}</span>
+
+              {/* 1-Tap Copy Code Button */}
+              <button
+                onClick={handleCopy}
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 hover:bg-[#E58A2B] hover:text-black transition-colors text-gray-300 font-mono text-[10px] font-bold"
+              >
+                {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                <span>{copied ? "Copied!" : "Copy Code"}</span>
+              </button>
             </div>
             <pre className="p-4 sm:p-5 font-mono text-[11px] sm:text-xs text-amber-100/90 leading-relaxed overflow-x-auto whitespace-pre">
               <code>{current.code}</code>

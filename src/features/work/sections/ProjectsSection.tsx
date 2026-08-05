@@ -372,7 +372,7 @@ export const ProjectsSection = () => {
                   className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#E58A2B] text-black font-bold text-sm hover:bg-[#F5A642] transition-colors"
                 >
                   <Github className="w-4 h-4" />
-                  <span>View Repository ↗</span>
+                  <span>View Repository</span>
                 </a>
               </div>
             </motion.div>

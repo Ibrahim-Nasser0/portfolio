@@ -2,13 +2,14 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShieldCheck, Cpu, Database, Code2, CheckCircle2, Workflow, ChevronDown } from "lucide-react";
+import { ShieldCheck, Cpu, Database, Code2, CheckCircle2, Workflow, ChevronDown, Copy, Check } from "lucide-react";
 import { useTranslation } from "@/context/LanguageContext";
 
 export const ArchitectureVisualizerSection = () => {
   const { t } = useTranslation();
   const [activeLayer, setActiveLayer] = useState<"presentation" | "domain" | "data">("domain");
   const [showMobileCode, setShowMobileCode] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const layers = [
     {
@@ -16,7 +17,6 @@ export const ArchitectureVisualizerSection = () => {
       name: t("architectureVisualizer.layer1Name"),
       subtitle: t("architectureVisualizer.layer1Subtitle"),
       icon: Cpu,
-      color: "from-amber-500/20 to-[#E58A2B]/10",
       borderColor: "border-[#E58A2B]",
       textColor: "text-[#E58A2B]",
       summary: t("architectureVisualizer.layer1Summary"),
@@ -40,7 +40,6 @@ BlocBuilder<AuthBloc, AuthState>(
       name: t("architectureVisualizer.layer2Name"),
       subtitle: t("architectureVisualizer.layer2Subtitle"),
       icon: ShieldCheck,
-      color: "from-[#E58A2B]/20 to-amber-500/10",
       borderColor: "border-[#E58A2B]",
       textColor: "text-[#E58A2B]",
       summary: t("architectureVisualizer.layer2Summary"),
@@ -65,7 +64,6 @@ class GetUserProfileUseCase implements UseCase<UserEntity, String> {
       name: t("architectureVisualizer.layer3Name"),
       subtitle: t("architectureVisualizer.layer3Subtitle"),
       icon: Database,
-      color: "from-[#E58A2B]/15 to-amber-500/5",
       borderColor: "border-[#E58A2B]/60",
       textColor: "text-[#E58A2B]",
       summary: t("architectureVisualizer.layer3Summary"),
@@ -95,11 +93,16 @@ class UserRepositoryImpl implements IUserRepository {
 
   const current = layers.find((l) => l.id === activeLayer)!;
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(current.code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <section id="architecture" className="py-12 sm:py-20 md:py-24 lg:py-32 px-5 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
-      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+      <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-4">
-          <Workflow className="w-3.5 h-3.5" />
           <span className="text-[#94A3B8] font-mono font-bold">// 04</span>
           <span className="text-white/20">|</span>
           <span>{t("architectureVisualizer.badge")}</span>
@@ -112,8 +115,8 @@ class UserRepositoryImpl implements IUserRepository {
         </p>
       </div>
 
-      {/* Layer Navigation Pipeline: Scrollable horizontal strip on Mobile, Grid on Desktop */}
-      <div className="flex overflow-x-auto gap-2.5 sm:gap-4 mb-8 sm:mb-12 pb-2 md:pb-0 md:grid md:grid-cols-3 scrollbar-none">
+      {/* Responsive Grid Layer Navigation (No Nested Scroll) */}
+      <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6 sm:mb-12">
         {layers.map((layer, idx) => {
           const Icon = layer.icon;
           const isSelected = activeLayer === layer.id;
@@ -122,32 +125,22 @@ class UserRepositoryImpl implements IUserRepository {
             <button
               key={layer.id}
               onClick={() => setActiveLayer(layer.id as typeof activeLayer)}
-              className={`relative p-3.5 sm:p-6 rounded-2xl border text-left rtl:text-right transition-all duration-300 shrink-0 w-[70vw] sm:w-[260px] md:w-auto ${
+              className={`relative p-3 sm:p-6 rounded-xl sm:rounded-2xl border text-center sm:text-left sm:rtl:text-right transition-all duration-300 ${
                 isSelected
-                  ? `bg-[#15171E] ${layer.borderColor} shadow-2xl scale-[1.02]`
+                  ? `bg-[#15171E] ${layer.borderColor} shadow-xl scale-[1.02]`
                   : "bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.04]"
               }`}
             >
-              <div className="flex items-center justify-between mb-2 sm:mb-3">
-                <div className={`p-2 sm:p-3 rounded-xl bg-white/5 ${layer.textColor}`}>
-                  <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+              <div className="flex flex-col sm:flex-row items-center justify-between mb-1 sm:mb-3">
+                <div className={`p-1.5 sm:p-3 rounded-lg sm:rounded-xl bg-white/5 ${layer.textColor}`}>
+                  <Icon className="w-4 h-4 sm:w-6 sm:h-6" />
                 </div>
-                <span className="font-mono text-[9px] sm:text-[10px] text-[#94A3B8] font-bold uppercase tracking-widest">
+                <span className="font-mono text-[9px] sm:text-[10px] text-[#94A3B8] font-bold uppercase tracking-widest hidden sm:inline">
                   0{idx + 1}
                 </span>
               </div>
-              <h3 className="font-display text-sm sm:text-lg font-bold text-white">{layer.name}</h3>
-              <p className="text-[10px] sm:text-xs text-gray-400 font-mono mt-0.5 sm:mt-1 truncate">{layer.subtitle}</p>
-
-              {isSelected && (
-                <motion.div
-                  layoutId="activeLayerIndicator"
-                  className={`absolute -bottom-[2px] inset-x-4 sm:inset-x-6 h-[3px] rounded-full ${layer.textColor.replace(
-                    "text-",
-                    "bg-"
-                  )}`}
-                />
-              )}
+              <h3 className="font-display text-xs sm:text-lg font-bold text-white truncate">{layer.name}</h3>
+              <p className="text-[9px] sm:text-xs text-gray-400 font-mono mt-0.5 truncate hidden sm:block">{layer.subtitle}</p>
             </button>
           );
         })}
@@ -196,20 +189,28 @@ class UserRepositoryImpl implements IUserRepository {
             >
               <div className="flex items-center gap-2">
                 <Code2 className="w-4 h-4" />
-                <span>{showMobileCode ? "Hide Dart Code" : "Show Dart Code Implementation"}</span>
+                <span>{showMobileCode ? "Hide Code" : "Show Dart Code Implementation"}</span>
               </div>
               <ChevronDown className={`w-4 h-4 transition-transform ${showMobileCode ? "rotate-180" : ""}`} />
             </button>
           </div>
 
-          {/* Right Column: Code Snippet Viewer (Always visible on desktop, toggleable on mobile) */}
+          {/* Right Column: Code Snippet Viewer */}
           <div className={`lg:col-span-7 bg-[#0C0D12] border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden shadow-inner flex-col ${showMobileCode ? "flex" : "hidden lg:flex"}`}>
             <div className="flex items-center justify-between px-4 py-2.5 sm:py-3 bg-[#15171E] border-b border-white/10 font-mono text-xs text-gray-400">
               <div className="flex items-center gap-2">
                 <Code2 className="w-4 h-4 text-[#E58A2B]" />
                 <span className="text-white font-bold">{current.id}_impl.dart</span>
               </div>
-              <span className="text-[10px] text-[#94A3B8] font-bold uppercase">Clean Arch</span>
+
+              {/* 1-Tap Copy Code Button */}
+              <button
+                onClick={handleCopy}
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 hover:bg-[#E58A2B] hover:text-black transition-colors text-gray-300 font-mono text-[10px] font-bold"
+              >
+                {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                <span>{copied ? "Copied!" : "Copy Code"}</span>
+              </button>
             </div>
             <pre className="p-4 sm:p-5 font-mono text-[11px] sm:text-xs text-amber-100/90 leading-relaxed overflow-x-auto whitespace-pre">
               <code>{current.code}</code>

@@ -12,36 +12,68 @@ import { useTranslation } from "@/context/LanguageContext";
 export const FeaturedProjectsSection = () => {
   const { t } = useTranslation();
   const [activeProject, setActiveProject] = useState<ProjectModel | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
-  // Take top 3 featured projects for the Home Landing page
-  const featuredProjects = projects.filter((p) => p.isFeatured).slice(0, 3);
+  const categories = [
+    { id: "all", label: "All Projects" },
+    { id: "mobile", label: "Mobile Apps" },
+    { id: "desktop", label: "Desktop & Web" },
+  ];
+
+  // Filter projects by category
+  const filteredProjects = projects.filter((p) => {
+    if (selectedCategory === "all") return p.isFeatured;
+    if (selectedCategory === "mobile") return p.category.toLowerCase().includes("mobile") || p.techMobile.length > 0;
+    if (selectedCategory === "desktop") return p.category.toLowerCase().includes("desktop") || p.category.toLowerCase().includes("web");
+    return p.isFeatured;
+  }).slice(0, 3);
 
   return (
-    <section id="projects" className="py-16 md:py-24 lg:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+    <section id="projects" className="py-12 sm:py-20 md:py-24 lg:py-32 px-5 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8 sm:mb-16">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-3">
             <span className="text-[#94A3B8] font-mono font-bold">// 03</span>
             <span className="text-white/20">|</span>
             <span className="uppercase tracking-wider">{t("featuredProjects.badge")}</span>
           </div>
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+          <h2 className="mt-2 sm:mt-4 font-display text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
             {t("featuredProjects.title")}
           </h2>
         </div>
 
         <Link
           href="/work"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 hover:border-[#E58A2B] text-gray-300 hover:text-[#E58A2B] font-mono text-xs font-semibold transition-all self-start md:self-auto"
+          className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full border border-white/10 hover:border-[#E58A2B] text-gray-300 hover:text-[#E58A2B] font-mono text-xs font-semibold transition-all self-start md:self-auto"
         >
           <span>{t("featuredProjects.viewAll")} ({projects.length})</span>
           <ArrowUpRight className="w-4 h-4 text-[#E58A2B] rtl:rotate-180" />
         </Link>
       </div>
 
-      {/* Featured Projects Grid (3 Items) */}
+      {/* Clean Category Filter Tab Bar (No Horizontal Overflow Scroll) */}
+      <div className="flex flex-wrap items-center gap-2 mb-6 sm:mb-8">
+        {categories.map((cat) => {
+          const isSelected = selectedCategory === cat.id;
+          return (
+            <button
+              key={cat.id}
+              onClick={() => setSelectedCategory(cat.id)}
+              className={`px-4 py-2 rounded-full font-mono text-xs font-bold transition-all border ${
+                isSelected
+                  ? "bg-[#E58A2B] text-black border-[#E58A2B] shadow-md shadow-[#E58A2B]/20"
+                  : "bg-white/5 text-gray-300 border-white/10 hover:border-white/20"
+              }`}
+            >
+              {cat.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Featured Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        {featuredProjects.map((project, idx) => (
+        {filteredProjects.map((project, idx) => (
           <motion.div
             key={project.id}
             initial={{ opacity: 0, y: 20 }}
@@ -123,7 +155,7 @@ export const FeaturedProjectsSection = () => {
                   </p>
                   <div className="space-y-3">
                     {activeProject.challenges.map((item, idx) => (
-                      <div key={idx} className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1 text-xs sm:text-sm">
+                      <div key={idx} className="p-4 rounded-xl bg-[#0B0C10] border border-white/10 space-y-1 text-xs sm:text-sm">
                         <p className="text-amber-300 font-semibold">{t("common.challenge")} {item.challenge}</p>
                         <p className="text-gray-300 font-light">{t("common.solutionLabel")} {item.solution}</p>
                       </div>

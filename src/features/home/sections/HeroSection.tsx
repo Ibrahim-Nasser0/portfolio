@@ -114,15 +114,15 @@ export const HeroSection = () => {
           >
             <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5 w-full">
               <MagneticButton href="#projects" className="w-full sm:w-auto">
-                <span className="w-full justify-center rounded-full bg-[#E58A2B] hover:bg-[#F5A642] px-6 py-3.5 text-xs sm:text-sm font-bold text-black transition-all shadow-lg shadow-[#E58A2B]/25 flex items-center gap-2">
-                  <span>{t("hero.viewWork")}</span>
-                  <ArrowDown className="w-4 h-4" />
+                <span className="relative overflow-hidden w-full justify-center rounded-full bg-[#E58A2B] hover:bg-[#F5A642] px-6 py-3.5 text-xs sm:text-sm font-bold text-black transition-all shadow-lg shadow-[#E58A2B]/25 flex items-center gap-2 group">
+                  <span className="relative z-10">{t("hero.viewWork")}</span>
+                  <ArrowDown className="w-4 h-4 relative z-10 transition-transform group-hover:translate-y-0.5" />
                 </span>
               </MagneticButton>
 
               <MagneticButton href={personalInfo.cvUrl} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
                 <span className="w-full text-center rounded-full border border-[#E58A2B]/40 px-6 py-3.5 text-xs sm:text-sm font-medium text-[#E58A2B] hover:bg-[#E58A2B] hover:text-black transition-all block">
-                  {t("hero.downloadResume")} ↗
+                  {t("hero.downloadResume")}
                 </span>
               </MagneticButton>
             </div>
@@ -138,7 +138,7 @@ export const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* Right Column: Instant High-Priority LCP Hero Portrait Frame */}
+        {/* Right Column: Floating Glass Portrait Frame */}
         <div className="lg:col-span-5 flex justify-center lg:justify-end w-full">
           <div className="relative group w-full max-w-[270px] sm:max-w-[340px] lg:max-w-[380px] my-2 sm:my-0">
             {/* High-Tech Background Orbit Line */}

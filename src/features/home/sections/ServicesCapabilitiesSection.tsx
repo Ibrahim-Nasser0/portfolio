@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Smartphone, Monitor, Server, Zap, CheckCircle2, ChevronRight } from "lucide-react";
+import { Smartphone, Monitor, Server, Zap, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { useTranslation } from "@/context/LanguageContext";
 import { TiltCard } from "@/components/ui/TiltCard";
@@ -76,7 +76,7 @@ export const ServicesCapabilitiesSection = () => {
   return (
     <section id="capabilities" className="py-12 sm:py-20 md:py-24 lg:py-32 px-5 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10 sm:mb-16">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8 sm:mb-16">
         <div className="max-w-3xl space-y-3 sm:space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-semibold uppercase tracking-[0.2em]">
             <span className="text-[#94A3B8] font-mono font-bold">// 02</span>
@@ -101,14 +101,8 @@ export const ServicesCapabilitiesSection = () => {
         </Link>
       </div>
 
-      {/* Swipe Indicator Badge on Mobile */}
-      <div className="md:hidden flex items-center justify-between text-[11px] font-mono text-[#E58A2B] mb-3 px-1">
-        <span>← {t("common.swipeToExplore")} →</span>
-        <span className="text-gray-500">1 / 4</span>
-      </div>
-
-      {/* Capabilities Container: Touch Scroll Snap on Mobile, Grid on Desktop */}
-      <div className="flex overflow-x-auto snap-x snap-mandatory space-x-4 rtl:space-x-reverse pb-4 md:pb-0 md:space-x-0 md:grid md:grid-cols-2 md:gap-8 scrollbar-none">
+      {/* Clean 1-Column Mobile Grid (No Nested Scroll) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
         {capabilities.map((item, idx) => {
           const Icon = item.icon;
           return (
@@ -118,7 +112,6 @@ export const ServicesCapabilitiesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="snap-center shrink-0 w-[85vw] sm:w-[380px] md:w-auto md:shrink"
             >
               <TiltCard className="h-full">
                 <div className="relative p-5 sm:p-8 rounded-3xl bg-[#15171E]/90 border border-white/10 hover:border-[#E58A2B]/60 transition-all duration-500 flex flex-col justify-between h-full group shadow-2xl space-y-5 hover:-translate-y-1.5 hover:shadow-[0_0_35px_rgba(229,138,43,0.18)] backdrop-blur-xl overflow-hidden">

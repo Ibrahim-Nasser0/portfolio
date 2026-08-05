@@ -437,7 +437,7 @@ export const Navbar = () => {
                   rel="noopener noreferrer"
                   className="w-full text-center py-2.5 text-xs font-mono font-bold text-black bg-[#E58A2B] hover:bg-[#F5A642] rounded-full shadow-md transition-all block"
                 >
-                  {t("nav.resume")} ↗
+                  {t("nav.resume")}
                 </a>
               </div>
             </motion.div>

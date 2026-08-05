@@ -50,7 +50,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           {/* Hover Floating Action Center Pill */}
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
             <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#E58A2B] text-black font-mono text-xs font-bold shadow-2xl shadow-[#E58A2B]/50 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-              <span>{t("projects.exploreCaseStudy")} ↗</span>
+              <span>{t("projects.exploreCaseStudy")}</span>
             </div>
           </div>
         </div>

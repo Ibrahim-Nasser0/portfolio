@@ -121,7 +121,7 @@ export const en = {
     technologiesUsed: "Technologies Used",
     engineeringSolutions: "Engineering Solutions",
     dedicatedCase: "Dedicated Case Page →",
-    viewRepo: "View Repository ↗",
+    viewRepo: "View Repository",
   },
   projects: {
     badge: "Portfolio & Case Studies",
@@ -132,7 +132,7 @@ export const en = {
     desktop: "Desktop",
     other: "Web & Systems",
     exploreCaseStudy: "Explore Case Study",
-    githubRepo: "GitHub Repo ↗",
+    githubRepo: "GitHub Repo",
     keyFeatures: "Key Architecture & Features",
     techStack: "Tech Stack & Tools",
     challengesSolutions: "Engineering Challenges & Solutions",
@@ -319,7 +319,7 @@ export const en = {
     bio: "I am a Software Engineer and Full-Stack Application Developer studying Computer Science at the Faculty of Science, Suez Canal University. I specialize in architecting scalable, resilient cross-platform applications using Flutter, BLoC state streams, .NET APIs, and SOLID design principles.",
     valuesTitle: "Core Engineering Pillars",
     portraitPill: "GDG Mobile Mentor & CS Student",
-    resumeCta: "Résumé ↗",
+    resumeCta: "Résumé",
     emailLabel: "Email",
     phoneLabel: "Phone",
     locationLabel: "Location",
@@ -355,7 +355,7 @@ export const en = {
     backend: "Backend & Databases",
     uiux: "UI/UX Design",
     core: "Core & Tools",
-    viewCredential: "View Certificate PDF / Link ↗",
+    viewCredential: "View Certificate PDF / Link",
     credentialId: "Credential ID:",
     skillsAcquired: "Skills Acquired:",
     searchPlaceholder: "Search credential or issuer...",
@@ -477,8 +477,8 @@ export const en = {
     availableDesc: "Available for full-time mobile development roles, cross-platform Flutter applications, and software architecture consulting. Connect directly via WhatsApp or email.",
     whatsappCardLabel: "WhatsApp Chat (Instant)",
     emailCardLabel: "Direct Email Inbox",
-    githubProfile: "GitHub Profile ↗",
-    linkedinProfile: "LinkedIn Profile ↗",
+    githubProfile: "GitHub Profile",
+    linkedinProfile: "LinkedIn Profile",
   },
   footer: {
     available: "Available for Engineering & Architecture Roles",
@@ -500,7 +500,7 @@ export const en = {
     changelog: "Changelog",
     copyEmail: "Copy Email",
     emailCopied: "Email Copied!",
-    cvPdf: "CV (PDF) ↗",
+    cvPdf: "CV (PDF)",
   },
   rightNav: {
     intro: "INTRO",
@@ -555,7 +555,7 @@ export const en = {
   projectDetail: {
     backToAll: "Back to All Case Studies",
     productionBadge: "Production Software Architecture",
-    exploreSource: "Explore Source Code ↗",
+    exploreSource: "Explore Source Code",
     caseSpecs: "[ Case Specifications ]",
     roleLabel: "Role",
     roleValue: "Flutter Lead & Dev",
@@ -604,6 +604,7 @@ export const en = {
     challenge: "Challenge:",
     solutionLabel: "Solution:",
     swipeToExplore: "Swipe to explore capabilities",
+    scrollToExplore: "Scroll to explore",
   },
 };
 
