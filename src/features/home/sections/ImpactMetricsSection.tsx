@@ -53,9 +53,9 @@ export const ImpactMetricsSection = () => {
   };
 
   return (
-    <section id="impact" className="py-12 sm:py-20 md:py-24 lg:py-32 px-5 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
-      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-4">
+    <section id="impact" className="py-10 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
+      <div className="max-w-3xl space-y-2 sm:space-y-3 mb-8 sm:mb-12">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold">
           <TrendingUp className="w-3.5 h-3.5" />
           <span className="text-[#94A3B8] font-mono font-bold">// 01</span>
           <span className="text-white/20">|</span>
@@ -64,12 +64,12 @@ export const ImpactMetricsSection = () => {
         <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
           {t("impact.title")}
         </h2>
-        <p className="mt-3 text-gray-400 text-sm sm:text-lg font-light leading-relaxed">
+        <p className="text-gray-400 text-sm sm:text-base md:text-lg font-light leading-relaxed">
           {t("impact.subtitle")}
         </p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
         {metrics.map((m, idx) => {
           const Icon = m.icon;
           const isExpanded = expandedMetric === m.id;
@@ -80,33 +80,33 @@ export const ImpactMetricsSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{ duration: 0.4, delay: idx * 0.08 }}
               onClick={() => toggleExpand(m.id)}
-              className={`p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#15171E]/90 border transition-all duration-300 group cursor-pointer backdrop-blur-xl flex flex-col justify-between ${
+              className={`p-4 sm:p-6 rounded-2xl bg-[#15171E]/90 border transition-all duration-300 group cursor-pointer backdrop-blur-xl flex flex-col justify-between ${
                 isExpanded
                   ? "border-[#E58A2B] shadow-[0_0_25px_rgba(229,138,43,0.3)] bg-[#1c1f28]"
-                  : "border-white/10 hover:border-[#E58A2B]/60 shadow-2xl hover:-translate-y-1.5"
+                  : "border-white/10 hover:border-[#E58A2B]/60 shadow-xl hover:-translate-y-1"
               }`}
             >
-              <div className="flex items-center justify-between mb-3 sm:mb-4">
-                <div className="p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl bg-[#E58A2B]/10 text-[#E58A2B] group-hover:scale-110 group-hover:bg-[#E58A2B] group-hover:text-black transition-all duration-300">
-                  <Icon className="w-4 h-4 sm:w-6 sm:h-6" />
+              <div className="flex items-center justify-between mb-3">
+                <div className="p-2.5 sm:p-3 rounded-xl bg-[#E58A2B]/10 text-[#E58A2B] group-hover:scale-105 group-hover:bg-[#E58A2B] group-hover:text-black transition-all duration-300">
+                  <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <span className="font-mono text-[9px] sm:text-[10px] text-gray-500 font-bold uppercase tracking-widest">
                   0{idx + 1}
                 </span>
               </div>
 
-              <div className="space-y-1 sm:space-y-2">
-                <span className="font-display text-2xl sm:text-5xl font-extrabold block text-white group-hover:text-[#E58A2B] transition-colors">
+              <div className="space-y-1 sm:space-y-1.5">
+                <span className="font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold block text-white group-hover:text-[#E58A2B] transition-colors">
                   {m.stat}
                 </span>
                 <div className="flex items-center justify-between">
-                  <h3 className="font-display text-xs sm:text-base font-bold text-white leading-tight">{m.title}</h3>
+                  <h3 className="font-display text-xs sm:text-sm md:text-base font-bold text-white leading-tight">{m.title}</h3>
                   <ChevronDown className={`w-3.5 h-3.5 text-[#E58A2B] sm:hidden transition-transform ${isExpanded ? "rotate-180" : ""}`} />
                 </div>
 
-                <p className="text-[10px] sm:text-xs text-gray-300 font-light leading-relaxed hidden sm:block">{m.desc}</p>
+                <p className="text-[10px] sm:text-xs text-gray-300 font-light leading-relaxed hidden sm:block pt-0.5">{m.desc}</p>
                 
                 {/* Mobile Tap-to-Expand Description Drawer */}
                 <AnimatePresence>

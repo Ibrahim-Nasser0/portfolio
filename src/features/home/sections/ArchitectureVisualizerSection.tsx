@@ -100,9 +100,9 @@ class UserRepositoryImpl implements IUserRepository {
   };
 
   return (
-    <section id="architecture" className="py-12 sm:py-20 md:py-24 lg:py-32 px-5 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
-      <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-4">
+    <section id="architecture" className="py-10 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
+      <div className="max-w-3xl space-y-2 sm:space-y-3 mb-8 sm:mb-12">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold">
           <span className="text-[#94A3B8] font-mono font-bold">// 04</span>
           <span className="text-white/20">|</span>
           <span>{t("architectureVisualizer.badge")}</span>
@@ -110,13 +110,13 @@ class UserRepositoryImpl implements IUserRepository {
         <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
           {t("architectureVisualizer.title")}
         </h2>
-        <p className="mt-3 text-gray-400 text-sm sm:text-lg font-light leading-relaxed">
+        <p className="text-gray-400 text-sm sm:text-base md:text-lg font-light leading-relaxed">
           {t("architectureVisualizer.subtitle")}
         </p>
       </div>
 
       {/* Responsive Grid Layer Navigation (No Nested Scroll) */}
-      <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6 sm:mb-12">
+      <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6 sm:mb-10">
         {layers.map((layer, idx) => {
           const Icon = layer.icon;
           const isSelected = activeLayer === layer.id;
@@ -125,21 +125,21 @@ class UserRepositoryImpl implements IUserRepository {
             <button
               key={layer.id}
               onClick={() => setActiveLayer(layer.id as typeof activeLayer)}
-              className={`relative p-3 sm:p-6 rounded-xl sm:rounded-2xl border text-center sm:text-left sm:rtl:text-right transition-all duration-300 ${
+              className={`relative p-3 sm:p-5 rounded-xl sm:rounded-2xl border text-center sm:text-left sm:rtl:text-right transition-all duration-300 ${
                 isSelected
-                  ? `bg-[#15171E] ${layer.borderColor} shadow-xl scale-[1.02]`
+                  ? `bg-[#15171E] ${layer.borderColor} shadow-xl scale-[1.01]`
                   : "bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.04]"
               }`}
             >
-              <div className="flex flex-col sm:flex-row items-center justify-between mb-1 sm:mb-3">
-                <div className={`p-1.5 sm:p-3 rounded-lg sm:rounded-xl bg-white/5 ${layer.textColor}`}>
-                  <Icon className="w-4 h-4 sm:w-6 sm:h-6" />
+              <div className="flex flex-col sm:flex-row items-center justify-between mb-1 sm:mb-2">
+                <div className={`p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl bg-white/5 ${layer.textColor}`}>
+                  <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <span className="font-mono text-[9px] sm:text-[10px] text-[#94A3B8] font-bold uppercase tracking-widest hidden sm:inline">
                   0{idx + 1}
                 </span>
               </div>
-              <h3 className="font-display text-xs sm:text-lg font-bold text-white truncate">{layer.name}</h3>
+              <h3 className="font-display text-xs sm:text-base font-bold text-white truncate">{layer.name}</h3>
               <p className="text-[9px] sm:text-xs text-gray-400 font-mono mt-0.5 truncate hidden sm:block">{layer.subtitle}</p>
             </button>
           );
@@ -154,17 +154,17 @@ class UserRepositoryImpl implements IUserRepository {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -15 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 bg-[#15171E]/90 border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-8 backdrop-blur-xl shadow-2xl"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 bg-[#15171E]/90 border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-7 backdrop-blur-xl shadow-2xl"
         >
-          {/* Left Column: Architectural Specs (5 cols) */}
-          <div className="lg:col-span-5 space-y-5 sm:space-y-6 flex flex-col justify-between">
-            <div className="space-y-3 sm:space-y-4">
+          {/* Left Column: Architectural Specs (4 cols on lg) */}
+          <div className="lg:col-span-4 space-y-4 sm:space-y-5 flex flex-col justify-between">
+            <div className="space-y-2.5">
               <div className="flex items-center gap-2">
                 <span className={`px-3 py-1 rounded-full text-xs font-mono font-bold bg-white/5 border border-white/10 ${current.textColor}`}>
                   {current.name}
                 </span>
               </div>
-              <p className="text-sm sm:text-base text-gray-300 font-light leading-relaxed">
+              <p className="text-xs sm:text-sm text-gray-300 font-light leading-relaxed">
                 {current.summary}
               </p>
             </div>
@@ -195,8 +195,8 @@ class UserRepositoryImpl implements IUserRepository {
             </button>
           </div>
 
-          {/* Right Column: Code Snippet Viewer */}
-          <div className={`lg:col-span-7 bg-[#0C0D12] border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden shadow-inner flex-col ${showMobileCode ? "flex" : "hidden lg:flex"}`}>
+          {/* Right Column: Code Snippet Viewer (8 cols) */}
+          <div className={`lg:col-span-8 bg-[#0C0D12] border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden shadow-inner flex-col ${showMobileCode ? "flex" : "hidden lg:flex"}`}>
             <div className="flex items-center justify-between px-4 py-2.5 sm:py-3 bg-[#15171E] border-b border-white/10 font-mono text-xs text-gray-400">
               <div className="flex items-center gap-2">
                 <Code2 className="w-4 h-4 text-[#E58A2B]" />

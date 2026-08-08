@@ -119,10 +119,10 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
   };
 
   return (
-    <section id="performance" className="py-12 sm:py-20 md:py-24 lg:py-32 px-5 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
+    <section id="performance" className="py-10 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-4">
+      <div className="max-w-3xl space-y-2 sm:space-y-3 mb-8 sm:mb-12">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold">
           <span className="text-[#94A3B8] font-mono font-bold">// 06</span>
           <span className="text-white/20">|</span>
           <span>{t("performanceMatrix.badge")}</span>
@@ -130,13 +130,13 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
         <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
           {t("performanceMatrix.title")}
         </h2>
-        <p className="mt-3 text-gray-400 text-sm sm:text-lg font-light leading-relaxed">
+        <p className="text-gray-400 text-sm sm:text-base md:text-lg font-light leading-relaxed">
           {t("performanceMatrix.subtitle")}
         </p>
       </div>
 
       {/* Benchmark Selector Grid: 2 Columns on Mobile (No Nested Scroll) */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 sm:mb-10">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 sm:mb-8">
         {benchmarks.map((item, idx) => {
           const Icon = item.icon;
           const isSelected = activeBenchmark === idx;
@@ -145,25 +145,25 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
             <button
               key={item.id}
               onClick={() => setActiveBenchmark(idx)}
-              className={`p-3 sm:p-5 rounded-xl sm:rounded-2xl border text-left rtl:text-right transition-all duration-300 flex flex-col justify-between ${
+              className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border text-left rtl:text-right transition-all duration-300 flex flex-col justify-between ${
                 isSelected
-                  ? "bg-[#15171E] border-[#E58A2B] shadow-xl scale-[1.02]"
+                  ? "bg-[#15171E] border-[#E58A2B] shadow-xl scale-[1.01]"
                   : "bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.04]"
               }`}
             >
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <div className={`p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl ${isSelected ? "bg-[#E58A2B]/20 text-[#E58A2B]" : "bg-white/5 text-gray-400"}`}>
+                  <div className={`p-1.5 sm:p-2 rounded-lg sm:rounded-xl ${isSelected ? "bg-[#E58A2B]/20 text-[#E58A2B]" : "bg-white/5 text-gray-400"}`}>
                     <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <span className="font-mono text-[9px] text-[#94A3B8] font-bold uppercase tracking-wider hidden sm:inline">
                     {item.badge}
                   </span>
                 </div>
-                <h3 className="font-display text-xs sm:text-base font-bold text-white leading-tight truncate">{item.title}</h3>
+                <h3 className="font-display text-xs sm:text-sm md:text-base font-bold text-white leading-tight truncate">{item.title}</h3>
               </div>
 
-              <div className="mt-2.5 sm:mt-4 pt-2 border-t border-white/10 flex items-center justify-between">
+              <div className="mt-2 sm:mt-3 pt-2 border-t border-white/10 flex items-center justify-between">
                 <span className="font-mono text-xs sm:text-sm font-extrabold text-[#E58A2B]">{item.metric}</span>
               </div>
             </button>
@@ -172,10 +172,10 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
       </div>
 
       {/* Active Benchmark Deep-Dive Panel */}
-      <div className="bg-[#15171E] border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-10 shadow-2xl space-y-6 sm:space-y-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
-          {/* Left Column: Problem & Solution Breakdown */}
-          <div className="lg:col-span-5 space-y-5 sm:space-y-6">
+      <div className="bg-[#15171E] border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-2xl space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
+          {/* Left Column: Problem & Solution Breakdown (4 cols on lg) */}
+          <div className="lg:col-span-4 space-y-4 sm:space-y-5">
             <div className="flex items-center justify-between">
               <span className="px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider">
                 {current.badge}
@@ -261,8 +261,8 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
             </button>
           </div>
 
-          {/* Right Column: DevTools Dart Code Snippet */}
-          <div className={`lg:col-span-7 bg-[#0C0D12] border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden shadow-inner flex-col ${showMobileCode ? "flex" : "hidden lg:flex"}`}>
+          {/* Right Column: DevTools Dart Code Snippet (8 cols) */}
+          <div className={`lg:col-span-8 bg-[#0C0D12] border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden shadow-inner flex-col ${showMobileCode ? "flex" : "hidden lg:flex"}`}>
             <div className="flex items-center justify-between px-4 py-2.5 sm:py-3 bg-[#15171E] border-b border-white/10 font-mono text-xs text-gray-400">
               <div className="flex items-center gap-2">
                 <Zap className="w-4 h-4 text-[#E58A2B]" />

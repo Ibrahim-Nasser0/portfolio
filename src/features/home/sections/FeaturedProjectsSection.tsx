@@ -29,22 +29,22 @@ export const FeaturedProjectsSection = () => {
   }).slice(0, 3);
 
   return (
-    <section id="projects" className="py-12 sm:py-20 md:py-24 lg:py-32 px-5 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8 sm:mb-16">
+    <section id="projects" className="py-10 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-10">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] text-xs font-mono font-semibold mb-3">
             <span className="text-[#94A3B8] font-mono font-bold">// 03</span>
             <span className="text-white/20">|</span>
             <span className="uppercase tracking-wider">{t("featuredProjects.badge")}</span>
           </div>
-          <h2 className="mt-2 sm:mt-4 font-display text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+          <h2 className="mt-2 sm:mt-3 font-display text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
             {t("featuredProjects.title")}
           </h2>
         </div>
 
         <Link
           href="/work"
-          className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full border border-white/10 hover:border-[#E58A2B] text-gray-300 hover:text-[#E58A2B] font-mono text-xs font-semibold transition-all self-start md:self-auto"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 hover:border-[#E58A2B] text-gray-300 hover:text-[#E58A2B] font-mono text-xs font-semibold transition-all self-start md:self-auto"
         >
           <span>{t("featuredProjects.viewAll")} ({projects.length})</span>
           <ArrowUpRight className="w-4 h-4 text-[#E58A2B] rtl:rotate-180" />
@@ -59,7 +59,7 @@ export const FeaturedProjectsSection = () => {
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-4 py-2 rounded-full font-mono text-xs font-bold transition-all border ${
+              className={`px-3.5 py-1.5 rounded-full font-mono text-xs font-bold transition-all border ${
                 isSelected
                   ? "bg-[#E58A2B] text-black border-[#E58A2B] shadow-md shadow-[#E58A2B]/20"
                   : "bg-white/5 text-gray-300 border-white/10 hover:border-white/20"
@@ -72,14 +72,14 @@ export const FeaturedProjectsSection = () => {
       </div>
 
       {/* Featured Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
         {filteredProjects.map((project, idx) => (
           <motion.div
             key={project.id}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: idx * 0.1 }}
+            transition={{ duration: 0.4, delay: idx * 0.08 }}
           >
             <ProjectCard
               project={project}

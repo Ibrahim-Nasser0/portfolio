@@ -22,9 +22,9 @@ export const SplashScreen = () => {
     if (!hasSeenSplash) {
       setIsVisible(true);
 
-      // Smooth progress counter from 0 to 100 over 1200ms
+      // Smooth progress counter from 0 to 100 over 1000ms
       const startTime = performance.now();
-      const duration = 1200;
+      const duration = 1000;
 
       const updateProgress = (currentTime: number) => {
         const elapsed = currentTime - startTime;
@@ -48,7 +48,7 @@ export const SplashScreen = () => {
           // Auto exit after progress reaches 100%
           setTimeout(() => {
             handleComplete();
-          }, 250);
+          }, 200);
         }
       };
 
@@ -101,7 +101,7 @@ export const SplashScreen = () => {
           exit={{
             y: "-100%",
             opacity: 0.95,
-            transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] },
+            transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] },
           }}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
@@ -148,12 +148,12 @@ export const SplashScreen = () => {
               }}
               transition={{ duration: 0.5, ease: "easeOut" }}
               style={{ transformStyle: "preserve-3d" }}
-              className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-[#15171E] border border-[#E58A2B]/60 shadow-[0_0_60px_rgba(229,138,43,0.3)] flex items-center justify-center group"
+              className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-[#15171E] border border-[#E58A2B]/60 shadow-[0_0_60px_rgba(229,138,43,0.3)] flex items-center justify-center group"
             >
               {/* Shimmer Light Reflection */}
               <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent rounded-3xl opacity-50 group-hover:opacity-100 transition-opacity" />
 
-              <span className="font-display text-4xl sm:text-5xl font-extrabold bg-gradient-to-br from-white via-[#E58A2B] to-[#F5A642] bg-clip-text text-transparent tracking-tight">
+              <span className="font-display text-3xl sm:text-4xl font-extrabold bg-gradient-to-br from-white via-[#E58A2B] to-[#F5A642] bg-clip-text text-transparent tracking-tight">
                 IN
               </span>
 
@@ -164,8 +164,8 @@ export const SplashScreen = () => {
             </motion.div>
 
             {/* Kinetic Letter-by-Letter Staggered Name */}
-            <div className="space-y-2.5">
-              <div className="flex items-center justify-center gap-1 font-mono text-base sm:text-xl font-extrabold text-white uppercase tracking-[0.25em]">
+            <div className="space-y-2">
+              <div className="flex items-center justify-center gap-1 font-mono text-base sm:text-lg font-extrabold text-white uppercase tracking-[0.25em]">
                 {devName.map((char, index) => (
                   <motion.span
                     key={index}
@@ -183,7 +183,7 @@ export const SplashScreen = () => {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.4 }}
+                transition={{ delay: 0.4, duration: 0.4 }}
                 className="flex items-center justify-center gap-2 font-mono text-xs text-[#94A3B8] font-medium uppercase tracking-[0.2em]"
               >
                 <span>{t("splash.role1")}</span>
@@ -194,7 +194,7 @@ export const SplashScreen = () => {
           </div>
 
           {/* Bottom Dynamic Stage Status & Progress Bar */}
-          <div className="w-full max-w-lg space-y-3 z-10">
+          <div className="w-full max-w-sm space-y-2.5 z-10">
             <div className="flex items-center justify-between font-mono text-xs">
               <span className="text-[#94A3B8] font-semibold tracking-wider transition-all duration-300">
                 {stage}

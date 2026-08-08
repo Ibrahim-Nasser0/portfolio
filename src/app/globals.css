@@ -13,6 +13,10 @@
   --accent-glow: rgba(229, 138, 43, 0.18);
   --line: rgba(255, 255, 255, 0.08);
   --line-soft: rgba(255, 255, 255, 0.05);
+
+  /* Centralized Layout Spacing Tokens */
+  --section-py-mobile: 3.5rem;
+  --section-py-desktop: 5.5rem;
 }
 
 @theme {

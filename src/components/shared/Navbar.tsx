@@ -116,19 +116,19 @@ export const Navbar = () => {
   return (
     <>
       <ScrollProgress />
-      <header className="fixed inset-x-0 top-0 z-50 py-3.5 px-3.5 sm:px-8 pointer-events-none">
+      <header className="fixed inset-x-0 top-0 z-50 py-3 px-3 sm:px-6 pointer-events-none">
         <div className="max-w-7xl mx-auto flex items-center justify-between pointer-events-auto">
           {/* Left: Brand Logo Pill */}
           <Link
             href="/"
             aria-label="Ibrahim Nasser Home Page"
-            className="flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#15171E]/90 backdrop-blur-xl border border-white/10 shadow-xl group hover:border-[#E58A2B]/50 transition-all shrink-0"
+            className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full bg-[#15171E]/90 backdrop-blur-xl border border-white/10 shadow-xl group hover:border-[#E58A2B]/50 transition-all shrink-0"
           >
-            <div className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5" aria-hidden="true">
+            <div className="relative flex h-2 w-2" aria-hidden="true">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-[#E58A2B]" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E58A2B]" />
             </div>
-            <span dir="ltr" className="dir-ltr font-display text-sm sm:text-lg font-bold tracking-tight text-white">
+            <span dir="ltr" className="dir-ltr font-display text-sm sm:text-base font-bold tracking-tight text-white">
               Ibrahim<span className="text-[#E58A2B]">.Nasser</span>
             </span>
           </Link>
@@ -136,7 +136,7 @@ export const Navbar = () => {
           {/* Center: Desktop Primary Navigation Pill */}
           <nav
             aria-label="Primary Navigation"
-            className="hidden md:flex items-center gap-1 p-1.5 rounded-full bg-[#15171E]/90 backdrop-blur-xl border border-white/10 shadow-2xl"
+            className="hidden md:flex items-center gap-1 p-1 rounded-full bg-[#15171E]/90 backdrop-blur-xl border border-white/10 shadow-2xl"
           >
             {primaryLinks.map((link) => {
               const Icon = link.icon;
@@ -148,7 +148,7 @@ export const Navbar = () => {
                   href={link.href}
                   onMouseEnter={() => setHoveredLink(link.href)}
                   onMouseLeave={() => setHoveredLink(null)}
-                  className={`relative flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-medium transition-colors z-10 ${
+                  className={`relative flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-medium transition-colors z-10 ${
                     isActive ? "text-black font-bold" : "text-gray-300 hover:text-white"
                   }`}
                 >
@@ -175,7 +175,7 @@ export const Navbar = () => {
             >
               <button
                 onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
-                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-mono font-medium transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-medium transition-all ${
                   isMoreActive || moreDropdownOpen
                     ? "bg-white/10 text-[#E58A2B] font-bold"
                     : "text-gray-300 hover:text-white hover:bg-white/5"

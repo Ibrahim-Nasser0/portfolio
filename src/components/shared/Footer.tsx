@@ -85,18 +85,18 @@ export const Footer = () => {
   const whatsappUrl = `https://wa.me/${personalInfo.phone.replace(/[^0-9]/g, "")}`;
 
   return (
-    <footer id="contact" className="relative z-10 border-t border-white/10 bg-[#0B0C0E] text-gray-300 pt-20 pb-12 px-6 sm:px-8 lg:px-12 overflow-hidden">
+    <footer id="contact" className="relative z-10 border-t border-white/10 bg-[#0B0C0E] text-gray-300 pt-14 sm:pt-16 pb-10 px-4 sm:px-8 lg:px-12 overflow-hidden">
       {/* Subtle Background Radial Glow */}
       <div className="absolute bottom-0 right-1/4 w-[450px] h-[250px] bg-[#E58A2B]/10 blur-[140px] pointer-events-none rounded-full" />
 
-      <div className="max-w-7xl mx-auto space-y-16 relative z-10">
+      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-14 relative z-10">
         {/* Streamlined Contact Card */}
-        <div className="relative p-8 sm:p-10 lg:p-12 rounded-3xl bg-[#15171E] border border-white/10 hover:border-[#E58A2B]/40 transition-all duration-500 shadow-2xl backdrop-blur-xl overflow-hidden group/card">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="relative p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl bg-[#15171E] border border-white/10 hover:border-[#E58A2B]/40 transition-all duration-500 shadow-2xl backdrop-blur-xl overflow-hidden group/card">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             {/* Left Column (6 cols): Direct Contact Info & Uniform Icon Dock */}
-            <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-semibold uppercase tracking-wider">
+            <div className="lg:col-span-6 space-y-5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-semibold uppercase tracking-wider">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E58A2B]" />
@@ -104,7 +104,7 @@ export const Footer = () => {
                 <span>{t("footer.available")}</span>
               </div>
 
-              <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+              <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
                 {t("footer.headline")} <span className="text-[#E58A2B]">{t("footer.headlineAccent")}</span>
               </h2>
 

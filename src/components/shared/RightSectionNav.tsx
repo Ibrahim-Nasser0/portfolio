@@ -118,7 +118,7 @@ export const RightSectionNav = () => {
   return (
     <nav
       aria-label="Floating section navigation"
-      className="fixed top-1/2 -translate-y-1/2 right-8 z-40 hidden xl:flex flex-col gap-5 items-end pointer-events-auto dir-ltr"
+      className="fixed top-1/2 -translate-y-1/2 right-6 z-40 hidden xl:flex flex-col gap-3.5 items-end pointer-events-auto dir-ltr"
       dir="ltr"
     >
       {sections.map((sec) => {
@@ -128,11 +128,11 @@ export const RightSectionNav = () => {
             key={sec.id}
             href={`#${sec.id}`}
             onClick={(e) => handleSectionClick(e, sec.id)}
-            className="group flex items-center justify-end gap-3 py-1 cursor-pointer"
+            className="group flex items-center justify-end gap-2.5 py-0.5 cursor-pointer"
           >
             {/* Label Text (Always on the inside / left side of the dash line) */}
             <span
-              className={`whitespace-nowrap font-mono text-[11px] font-semibold uppercase tracking-[0.22em] transition-all duration-300 ${
+              className={`whitespace-nowrap font-mono text-[10px] font-semibold uppercase tracking-[0.22em] transition-all duration-300 ${
                 isActive
                   ? "text-[#E58A2B] opacity-100 translate-x-0"
                   : "text-[#94A3B8] opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0"
@@ -143,7 +143,7 @@ export const RightSectionNav = () => {
 
             {/* Dash Bar Line (Always on the outside / right edge) */}
             <span
-              className={`w-8 h-[2px] rounded-full transition-transform duration-300 origin-right ${
+              className={`w-6 h-[2px] rounded-full transition-transform duration-300 origin-right ${
                 isActive
                   ? "bg-[#E58A2B] scale-x-100"
                   : "bg-white/30 scale-x-50 group-hover:scale-x-100 group-hover:bg-white/70"

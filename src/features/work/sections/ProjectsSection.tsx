@@ -57,26 +57,26 @@ export const ProjectsSection = () => {
   });
 
   return (
-    <section id="projects" className="py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
+    <section id="projects" className="py-16 md:py-24 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
       {/* Work Page Hero Header */}
-      <div className="space-y-6 mb-16">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-semibold uppercase tracking-[0.2em]">
+      <div className="space-y-4 mb-12">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E58A2B]/10 border border-[#E58A2B]/20 text-[#E58A2B] font-mono text-xs font-semibold uppercase tracking-[0.2em]">
           <span>{t("projects.badge")}</span>
         </div>
 
-        <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.02]">
+        <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-[1.05]">
           {t("projects.title")} <br className="hidden sm:block" />
           <span className="text-gray-400 font-normal hover:text-[#E58A2B] transition-colors">
             {t("projects.subtitle")}
           </span>
         </h1>
 
-        <p className="max-w-2xl text-gray-300 text-base sm:text-lg font-light leading-relaxed">
+        <p className="max-w-2xl text-gray-300 text-sm sm:text-base font-light leading-relaxed">
           {t("featuredProjects.subtitle")}
         </p>
 
         {/* Live Search & Filter Bar Controls */}
-        <div className="pt-6 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 border-t border-white/10">
+        <div className="pt-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 border-t border-white/10">
           {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-2">
             {categories.map((cat) => {
@@ -85,7 +85,7 @@ export const ProjectsSection = () => {
                 <button
                   key={cat.key}
                   onClick={() => setSelectedCategory(cat.key)}
-                  className={`px-4 py-2 rounded-full text-xs font-mono font-semibold transition-all duration-300 ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold transition-all duration-300 ${
                     selectedCategory === cat.key
                       ? "bg-[#E58A2B] text-black shadow-lg shadow-[#E58A2B]/20 font-bold"
                       : "bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:border-[#E58A2B]/40"
@@ -169,7 +169,7 @@ export const ProjectsSection = () => {
 
       {/* 3D Grid Mode */}
       {viewMode === "grid" && filteredProjects.length > 0 && (
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           <AnimatePresence>
             {filteredProjects.map((project, idx) => (
               <motion.div
@@ -196,14 +196,14 @@ export const ProjectsSection = () => {
 
       {/* Executive List Mode */}
       {viewMode === "list" && filteredProjects.length > 0 && (
-        <div className="space-y-4">
+        <div className="space-y-3">
           {filteredProjects.map((project, idx) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: idx * 0.04 }}
-              className="group p-6 rounded-2xl bg-[#15171E] border border-white/10 hover:border-[#E58A2B]/50 transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-lg hover:-translate-y-0.5"
+              className="group p-4 sm:p-5 rounded-2xl bg-[#15171E] border border-white/10 hover:border-[#E58A2B]/50 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-lg hover:-translate-y-0.5"
             >
               <div className="flex items-center gap-6">
                 <span className="font-mono text-sm font-bold text-[#E58A2B] shrink-0">

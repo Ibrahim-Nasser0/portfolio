@@ -13,13 +13,13 @@ export const HeroSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="hero" className="relative min-h-[auto] lg:min-h-[90vh] flex flex-col justify-center pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-20 md:pb-24 lg:pb-32 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto border-b border-white/[0.06]">
+    <section id="hero" className="relative min-h-[auto] lg:min-h-[85vh] flex flex-col justify-center pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-10 sm:pb-16 md:pb-20 max-w-7xl mx-auto border-b border-white/[0.06] px-4 sm:px-8 lg:px-12">
       {/* Top Eyebrow Badge Row (Visible above Image on Mobile) */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-6 sm:mb-8 font-mono text-xs uppercase tracking-[0.14em] lg:hidden w-full text-center space-y-2.5"
+        className="mb-5 sm:mb-6 font-mono text-xs uppercase tracking-[0.14em] lg:hidden w-full text-center space-y-2"
       >
         <div className="flex flex-wrap items-center justify-center gap-2">
           <div className="flex items-center gap-1.5 text-[#E58A2B] font-semibold text-xs">
@@ -37,20 +37,20 @@ export const HeroSection = () => {
         </div>
 
         {/* Role: Software Engineer & Full-Stack Developer */}
-        <p className="text-[#9CA3AF] font-semibold tracking-[0.14em] text-xs sm:text-sm uppercase pt-1">
+        <p className="text-[#9CA3AF] font-semibold tracking-[0.14em] text-xs sm:text-sm uppercase pt-0.5">
           {t("hero.role")}
         </p>
       </motion.div>
 
-      <div className="flex flex-col-reverse lg:grid lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center">
-        {/* Left Column: Typography & CTAs */}
-        <div className="lg:col-span-7 z-10 w-full text-center sm:text-left rtl:sm:text-right">
+      <div className="flex flex-col-reverse lg:grid lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-10 items-center">
+        {/* Left Column: Typography & CTAs (8 columns on desktop) */}
+        <div className="lg:col-span-8 z-10 w-full text-center sm:text-left rtl:sm:text-right space-y-4">
           {/* Eyebrow Badge Row (Desktop only) */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-5 sm:mb-6 font-mono text-xs uppercase tracking-[0.14em] hidden lg:block"
+            className="mb-3 font-mono text-xs uppercase tracking-[0.14em] hidden lg:block"
           >
             <div className="flex flex-wrap items-center justify-start gap-3">
               <div className="flex items-center gap-1.5 text-[#E58A2B] font-semibold text-xs">
@@ -77,7 +77,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-display leading-[1.1] sm:leading-[0.98] rtl:leading-[1.2] tracking-[-0.02em] text-[30px] sm:text-5xl md:text-7xl lg:text-8xl font-extrabold text-white"
+            className="font-display leading-[1.02] sm:leading-[0.95] rtl:leading-[1.15] tracking-[-0.03em] text-[32px] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-white"
           >
             <span className="inline sm:block">{t("hero.firstName")} </span>
             <span className="inline sm:block text-[#9CA3AF] font-normal hover:text-[#E58A2B] transition-colors">
@@ -90,7 +90,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-3 sm:mt-6 max-w-xl mx-auto sm:mx-0 text-base sm:text-xl text-gray-300 font-light leading-relaxed"
+            className="max-w-xl mx-auto sm:mx-0 text-sm sm:text-lg md:text-xl text-gray-300 font-light leading-relaxed pt-1"
           >
             {t("hero.tagline")}
           </motion.p>
@@ -100,7 +100,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-3 font-mono text-xs uppercase tracking-[0.14em] text-[#6B7280] hidden sm:block"
+            className="font-mono text-xs uppercase tracking-[0.14em] text-[#6B7280] hidden sm:block pt-0.5"
           >
             {t("hero.metaLine")}
           </motion.p>
@@ -110,25 +110,25 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-5 sm:mt-8 space-y-3"
+            className="pt-2 space-y-3"
           >
             <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5 w-full">
               <MagneticButton href="#projects" className="w-full sm:w-auto">
-                <span className="relative overflow-hidden w-full justify-center rounded-full bg-[#E58A2B] hover:bg-[#F5A642] px-6 py-3.5 text-xs sm:text-sm font-bold text-black transition-all shadow-lg shadow-[#E58A2B]/25 flex items-center gap-2 group">
+                <span className="relative overflow-hidden w-full justify-center rounded-full bg-[#E58A2B] hover:bg-[#F5A642] px-6 py-3 text-xs sm:text-sm font-bold text-black transition-all shadow-lg shadow-[#E58A2B]/25 flex items-center gap-2 group">
                   <span className="relative z-10">{t("hero.viewWork")}</span>
                   <ArrowDown className="w-4 h-4 relative z-10 transition-transform group-hover:translate-y-0.5" />
                 </span>
               </MagneticButton>
 
               <MagneticButton href={personalInfo.cvUrl} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                <span className="w-full text-center rounded-full border border-[#E58A2B]/40 px-6 py-3.5 text-xs sm:text-sm font-medium text-[#E58A2B] hover:bg-[#E58A2B] hover:text-black transition-all block">
+                <span className="w-full text-center rounded-full border border-[#E58A2B]/40 px-6 py-3 text-xs sm:text-sm font-medium text-[#E58A2B] hover:bg-[#E58A2B] hover:text-black transition-all block">
                   {t("hero.downloadResume")}
                 </span>
               </MagneticButton>
             </div>
 
             {/* CLI Keyboard Shortcut Badge (Desktop Only) */}
-            <div className="pt-2 hidden sm:flex items-center justify-start gap-2 font-mono text-[11px] text-gray-400">
+            <div className="pt-1.5 hidden sm:flex items-center justify-start gap-2 font-mono text-[11px] text-gray-400">
               <Terminal className="w-3.5 h-3.5 text-[#E58A2B]" />
               <span>{t("hero.cliHint")}</span>
               <kbd className="px-2 py-0.5 rounded bg-white/10 border border-white/15 text-white font-mono text-[10px]">
@@ -138,25 +138,25 @@ export const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* Right Column: Floating Glass Portrait Frame */}
-        <div className="lg:col-span-5 flex justify-center lg:justify-end w-full">
-          <div className="relative group w-full max-w-[270px] sm:max-w-[340px] lg:max-w-[380px] my-2 sm:my-0">
+        {/* Right Column: Floating Glass Portrait Frame (4 columns on desktop) */}
+        <div className="lg:col-span-4 flex justify-center lg:justify-end w-full">
+          <div className="relative group w-full max-w-[260px] sm:max-w-[300px] lg:max-w-[320px] my-1 sm:my-0">
             {/* High-Tech Background Orbit Line */}
-            <div className="absolute -inset-4 sm:-inset-6 rounded-[36px] sm:rounded-[44px] border border-white/5 pointer-events-none" />
-            <div className="absolute -inset-7 sm:-inset-10 rounded-[42px] sm:rounded-[50px] border border-[#E58A2B]/10 pointer-events-none animate-pulse" />
+            <div className="absolute -inset-4 rounded-[32px] sm:rounded-[36px] border border-white/5 pointer-events-none" />
+            <div className="absolute -inset-6 rounded-[38px] sm:rounded-[42px] border border-[#E58A2B]/10 pointer-events-none animate-pulse" />
 
             {/* Ambient Gold Halo Glow */}
-            <div className="absolute -inset-2 rounded-[32px] sm:rounded-[36px] bg-gradient-to-tr from-[#E58A2B]/30 via-amber-500/10 to-transparent blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="absolute -inset-2 rounded-[28px] sm:rounded-[32px] bg-gradient-to-tr from-[#E58A2B]/25 via-amber-500/10 to-transparent blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-700" />
 
             {/* Tilt Container Frame */}
             <TiltCard className="w-full">
-              <div className="relative aspect-[4/5] w-full rounded-[28px] sm:rounded-[32px] overflow-hidden border border-white/15 group-hover:border-[#E58A2B]/80 transition-all duration-500 shadow-2xl bg-[#0B0C0E]">
+              <div className="relative aspect-[4/5] w-full rounded-[24px] sm:rounded-[28px] overflow-hidden border border-white/15 group-hover:border-[#E58A2B]/80 transition-all duration-500 shadow-2xl bg-[#0B0C0E]">
                 {/* Instant First-Paint High Priority LCP Image */}
                 <Image
                   src={personalInfo.profileImage}
                   alt={personalInfo.name}
                   fill
-                  sizes="(max-width: 640px) 270px, (max-width: 1024px) 340px, 380px"
+                  sizes="(max-width: 640px) 260px, (max-width: 1024px) 300px, 320px"
                   className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
                   priority={true}
                   fetchPriority="high"
@@ -167,27 +167,21 @@ export const HeroSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C0E] via-transparent to-black/20 opacity-80" />
 
                 {/* Top-Right Floating Status Pill */}
-                <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20 px-3 py-1.5 rounded-full bg-[#0B0C0E]/80 border border-white/15 backdrop-blur-md text-[#E58A2B] font-mono text-xs font-bold flex items-center gap-1.5 shadow-lg">
-                  <span className="relative flex h-2 w-2">
+                <div className="absolute top-3 right-3 z-20 px-2.5 py-1 rounded-full bg-[#0B0C0E]/80 border border-white/15 backdrop-blur-md text-[#E58A2B] font-mono text-[11px] font-bold flex items-center gap-1.5 shadow-lg">
+                  <span className="relative flex h-1.5 w-1.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E58A2B] opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E58A2B]" />
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#E58A2B]" />
                   </span>
                   <span>{t("hero.gdgBadge")}</span>
                 </div>
 
-                {/* Top-Left Verification Badge */}
-                <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 z-20 px-2.5 py-1 rounded-full bg-black/70 border border-white/10 backdrop-blur-md text-[#E58A2B] font-mono text-xs font-bold flex items-center gap-1 shadow-lg">
-                  <CheckCircle2 className="w-3 h-3 text-[#E58A2B]" />
-                  <span>{t("hero.verifiedBadge")}</span>
-                </div>
-
                 {/* Bottom Glass Pill Overlay */}
-                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-20 p-3.5 sm:p-4 rounded-2xl bg-[#15171E]/85 backdrop-blur-xl border border-white/10 space-y-2 shadow-xl">
+                <div className="absolute bottom-3 left-3 right-3 z-20 p-3 rounded-xl bg-[#15171E]/85 backdrop-blur-xl border border-white/10 space-y-1.5 shadow-xl">
                   <div className="flex items-center justify-between">
                     <span className="font-display text-xs sm:text-sm font-bold text-white">
                       {t("hero.name")}
                     </span>
-                    <span className="font-mono text-xs text-[#E58A2B] font-bold">
+                    <span className="font-mono text-[11px] text-[#E58A2B] font-bold">
                       {t("hero.specialization")}
                     </span>
                   </div>
@@ -196,7 +190,7 @@ export const HeroSection = () => {
                     {["Flutter", "Clean Arch", "BLoC", "C#"].map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-0.5 rounded-full bg-white/5 border border-white/10 font-mono text-xs text-gray-300"
+                        className="px-2 py-0.5 rounded-full bg-white/5 border border-white/10 font-mono text-[10px] text-gray-300"
                       >
                         {tag}
                       </span>
