@@ -1,33 +1,8 @@
 import type { Metadata } from "next";
-import { Fraunces, Cairo, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { GlobalAudioProvider } from "@/context/AudioContext";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { SplashScreen } from "@/components/ui/SplashScreen";
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  weight: ["400", "700", "800"],
-  variable: "--font-display",
-});
-
-const cairo = Cairo({
-  subsets: ["latin"],
-  weight: ["300", "400", "600", "700", "800"],
-  variable: "--font-body",
-});
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "600", "700", "800"],
-  variable: "--font-sans",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-mono",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ibrahim-nasser.vercel.app"),
@@ -142,7 +117,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#0B0C0E] text-[#F3F4F6]">
+      <body className="min-h-full flex flex-col bg-[#0B0C0E] text-[#F3F4F6] font-sans">
         <LanguageProvider>
           <GlobalAudioProvider>
             <SplashScreen />
